@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ############################  SETUP PARAMETERS
-app_name='LinuxLab'
+app_name='code-env'
 [ -z "$repo_url" ] && repo_url='https://github.com/ppnman/LinuxLab.git'
 
 ############################  BASIC SETUP TOOLS
@@ -59,7 +59,7 @@ do_backup()
 
 clone_repo() 
 {
-    msg "Trying to clone $app_name"
+    msg "Trying to clone $app_name."
     git clone "$repo_url"
     success_or_error "Successfully cloned $app_name." \
                      "Failed to cloned $app_name"
@@ -236,13 +236,16 @@ setup_tmux()
 ############################ MAIN()
 msg "Welcome to $app_name, I will guide you through the installation."
 
+program_must_exist "git"
+
 if [ -z "$HOME" ]; then
     msg "\33[31m[✘]\33[0m Must have HOME environmental variable."
     exit 1
 fi
 
-program_must_exist "git"
-clone_repo
+if [ ! -e "./$app_name" ]; then
+    clone_repo
+fi
 
 read -p ">>> Do you want to use my zsh? (y/n)" ans
 if [ "$ans" == "y" ]; then
@@ -261,3 +264,7 @@ if [ "$ans" == "y" ]; then
     msg "Vim installation will begin......"
     setup_vim
 fi
+
+rm -rf "$app_name"
+
+msg "Thanks for installing $app_name, enjoy it!"
