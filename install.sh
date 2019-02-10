@@ -46,14 +46,12 @@ program_must_exist()
 ############################ SETUP FUNCTIONS
 do_backup() 
 {
-    if [ -e "$1" ] || [ -e "$2" ] || [ -e "$3" ]; then
-        msg "Attempting to back up your original configuration."
+    if [ -e "$1" ]; then
+        msg "Attempting to back up $1."
         today=`date +%Y%m%d_%s`
-        for i in "$1" "$2" "$3"; do
-            [ -e "$i" ] && [ ! -L "$i" ] && mv -v "$i" "$i.$today";
-        done
-        success_or_error "Your original configuration has been backed up." \
-                         "Failed to back up your original configuration."
+        [ -e "$1" ] && [ ! -L "$1" ] && mv -v "$1" "$1.$today";
+        success_or_error "$1 has been backed up." \
+                         "Failed to back up $1."
     fi
 }
 
@@ -125,7 +123,8 @@ setup_vim()
         install_vim8_from_source
     fi
 
-    do_backup "$HOME/.vim" "$HOME/.vimrc"
+    do_backup "$HOME/.vim"
+    do_backup "$HOME/.vimrc"
     cp "$app_name"/vimrc "$HOME"/.vimrc
     mkdir -p "$HOME"/.vim
     cp -r "$app_name"/autoload "$HOME"/.vim
