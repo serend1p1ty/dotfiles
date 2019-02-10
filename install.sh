@@ -227,7 +227,7 @@ setup_tmux()
     install_tmux_from_source
 
     do_backup "$HOME/.tmux.conf"
-    cp "app_name"/tmux.conf "$HOME"/.tmux.conf
+    cp "$app_name"/tmux.conf "$HOME"/.tmux.conf
 
     msg "Thanks for installing my tmux!"
 }
