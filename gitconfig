@@ -1,0 +1,13 @@
+[user]
+    email = zjli1997@163.com
+    name = serend1p1ty
+[core]
+    editor = vim
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[alias]
+    d = difftool
+[credential]
+    helper = cache --timeout=86400
