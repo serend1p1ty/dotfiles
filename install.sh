@@ -66,7 +66,7 @@ clone_repo()
 install_vim8_from_source()
 {
     # step0: remove original vim.
-    sudo apt-get purge vim vim-runtime vim-gnome vim-common vim-tiny vim-gui-common
+    sudo apt purge -y vim vim-runtime vim-gnome vim-common vim-tiny vim-gui-common
 
     # step1: install some essential softwares.
     sudo apt install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
