@@ -2,7 +2,7 @@
 
 ############################  SETUP PARAMETERS
 app_name='code-env'
-[ -z "$repo_url" ] && repo_url='https://github.com/ppnman/LinuxLab.git'
+[ -z "$repo_url" ] && repo_url='https://github.com/ppnman/code-env.git'
 
 ############################  BASIC SETUP TOOLS
 msg() 
