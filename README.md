@@ -59,7 +59,7 @@ curl -s -L https://bit.ly/2WOXNKx > install.sh && bash install.sh
 
 :zap:**vim安装注意事项**：
 
-**语法检错**和**代码规范化**是可选功能，还需要安装一些依赖包。
+**语法检错**和**代码规范化**是可选功能，如想使用还需要安装一些依赖包。
 
 - 安装`pip3`，在终端运行`sudo apt install python3-pip`
 - 在vim的**命令行模式**下运行`:call InstallRequirements()`
