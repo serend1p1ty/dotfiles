@@ -19,6 +19,11 @@ set noshowmode                  " 关闭左下角类似"-- INSERT --"的状态�
 filetype plugin indent on       " 根据文件类型设置缩进风格
 syntax enable                   " 语法高亮
 
+" 根据不同的文件设置不同的折叠类型
+autocmd FileType c,cpp set foldmethod=syntax
+autocmd FileType python set foldmethod=indent
+set foldlevelstart=99           " 关闭自动折叠
+
 " vim开启真彩色
 if has("termguicolors")
     " 修复vim的bug
