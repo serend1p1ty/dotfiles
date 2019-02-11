@@ -29,7 +29,7 @@ if has("termguicolors")
     set termguicolors
 endif
 
-" ;开启命令行模式
+" ; 开启命令行模式
 nnoremap ; :
 
 " ,代替<leader>
@@ -44,23 +44,26 @@ nnoremap <leader>a :qa<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>x :x<CR>
 
-" ,o只保留当前窗口
+" ,o 只保留当前窗口
 nnoremap <leader>o :only<CR>
 
-" ,t只保留当前标签页
+" ,t 只保留当前标签页
 nnoremap <leader>t :tabo<CR>
 
-" ,n/p进入下一个/上一个标签页
+" ,n/p 进入下一个/上一个标签页
 nnoremap <leader>n :tabn<CR>
 nnoremap <leader>p :tabp<CR>
 
-" \h关闭高亮显示搜索项
-nnoremap \h :nohlsearch<CR>
+" \\ 关闭高亮显示搜索项
+nnoremap \\ :nohlsearch<CR>
 
-" 插入模式下向右移动
+" ,s 插入ipdb.set_trace()
+nnoremap <leader>s oimport ipdb; ipdb.set_trace(context=7)<ESC>
+
+" <C-L> 插入模式下向右移动
 inoremap <C-L> <right>
 
-" <F5>执行代码
+" <F5> 执行代码
 noremap <F5> :call RunCode()<CR>
 
 " 普通模式下多窗口之间的移动
@@ -225,4 +228,7 @@ call plug#end()
 " 设置vim主题，这句话要在插件加载结束之后
 if isdirectory(expand('~/.vim/plugged/iceberg.vim'))
     colorscheme iceberg
+
+    " 斜体显示注释
+    hi Comment gui=italic cterm=italic term=italic
 endif
