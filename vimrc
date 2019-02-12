@@ -70,6 +70,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" [/]b 进入下一个/上一个缓存区
+nnoremap [b :bnext<CR>
+nnoremap ]b :bprevious<CR>
+
 " 代码超过80行时用下划线标识
 au BufRead,BufNewFile *.* 2match Underlined /.\%81v/
 
