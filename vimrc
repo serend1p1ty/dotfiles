@@ -180,6 +180,8 @@ let g:NERDCommentEmptyLines = 1
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 " ,m MRU(most recently used)文件搜索
 nnoremap <leader>m :LeaderfMru<CR>
+" [c 历史命令搜索
+nnoremap [c :LeaderfHistoryCmd<CR>
 " 搜索结果显示框高度为全屏的30%
 let g:Lf_WindowHeight=0.3
 
