@@ -49,16 +49,6 @@ nnoremap <leader>a :qa<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>x :x<CR>
 
-" ,o 只保留当前窗口
-nnoremap <leader>o :only<CR>
-
-" ,t 只保留当前标签页
-nnoremap <leader>t :tabo<CR>
-
-" ,n/p 进入下一个/上一个标签页
-nnoremap <leader>n :tabn<CR>
-nnoremap <leader>p :tabp<CR>
-
 " \\ 关闭高亮显示搜索项
 nnoremap \\ :nohlsearch<CR>
 
@@ -70,6 +60,9 @@ inoremap <C-L> <right>
 
 " <F5> 执行代码
 noremap <F5> :call RunCode()<CR>
+
+" ,o 只保留当前窗口
+nnoremap <leader>o :only<CR>
 
 " 普通模式下多窗口之间的移动
 nnoremap <C-J> <C-W><C-J>
