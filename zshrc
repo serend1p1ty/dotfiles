@@ -55,3 +55,6 @@ vf() {
      print -l $files[1]
   fi
 }
+
+# 别名
+alias vi="vim"
