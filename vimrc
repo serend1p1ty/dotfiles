@@ -40,8 +40,8 @@ nnoremap ; :
 " ,代替<leader>
 let mapleader=","
 
-" F10 打开/关闭粘贴模式
-set pastetoggle=<F10>
+" F7 打开/关闭粘贴模式
+set pastetoggle=<F7>
 
 " ,q/a/w/x 退出/退出所有/保存/保存并退出文件
 nnoremap <leader>q :q<CR>
@@ -69,6 +69,9 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" F3 显示缓存区
+nnoremap <F3> :buffers<CR>
 
 " [/]b 进入下一个/上一个缓存区
 nnoremap [b :bnext<CR>
@@ -153,13 +156,13 @@ Plug 'skywind3000/asyncrun.vim'
 augroup MyGroup
     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
 augroup END
-" F9 打开/关闭quickfix窗口
-noremap <F9> :call asyncrun#quickfix_toggle(8)<cr>
+" F6 打开/关闭quickfix窗口
+noremap <F6> :call asyncrun#quickfix_toggle(8)<CR>
 
 " 代码规范化插件
 Plug 'Chiel92/vim-autoformat', { 'for':  'python' }
-" F3 代码格式化
-noremap <F3> :Autoformat<CR>
+" F4 代码格式化
+noremap <F4> :Autoformat<CR>
 
 " 增强tab功能插件
 Plug 'ervandew/supertab'
