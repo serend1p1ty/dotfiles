@@ -50,7 +50,7 @@
 只需要一行命令即可完成`code-env`的基本配置
 
 ```
-curl -s -L https://bit.ly/2WOXNKx > install.sh && bash install.sh
+curl -sL https://bit.ly/2WOXNKx > install.sh && bash install.sh
 ```
 
 :zap:**zsh安装注意事项**：
