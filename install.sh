@@ -196,6 +196,12 @@ setup_zsh()
 
         setup_zsh_plug
 
+        msg "Trying to install fuzzy finder."
+        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+        ~/.fzf/install
+        success_or_error "Successfully installed fuzzy finder." \
+                         "Failed to install fuzzy finder."
+
         msg "Thanks for installing my zsh!"
     fi
 }
