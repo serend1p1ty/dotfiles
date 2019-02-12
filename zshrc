@@ -3,6 +3,15 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
+plugins=(
+    git
+    zsh-autosuggestions
+    autojump
+    zsh-syntax-highlighting
+)
+
+source $ZSH/oh-my-zsh.sh
+
 # powerlevel9k配置
 # 双行提示
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -18,14 +27,8 @@ POWERLEVEL9K_DISABLE_RPROMPT=true
 # 改变提示字符的颜色
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=24"
 
-plugins=(
-    git
-    zsh-autosuggestions
-    autojump
-    zsh-syntax-highlighting
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# fuzzy finder
+# fuzzy finder配置
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS="--height 50% --layout=reverse \
+                         --preview '(highlight -O ansi -l {} \
+                         || cat {}) 2> /dev/null | head -500'"
