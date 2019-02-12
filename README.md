@@ -8,13 +8,14 @@
 
 ## 1. :pencil:介绍
 
-`zsh`内置4个插件。
+`zsh`内置5个插件。
 
 | 功能         | 对应的插件            |
 | ------------ | --------------------- |
 | 快速目录跳转 | `autojump`            |
 | 历史命令提示 | `autosuggestions`     |
 | 语法高亮     | `syntax-highlighting` |
+| 模糊搜索     | `fzf`                 |
 | 彩色主题     | `powerlevel9k`        |
 
 `vim`内置13个插件，专为`Python`打造。
