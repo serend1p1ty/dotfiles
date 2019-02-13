@@ -233,12 +233,26 @@ install_tmux_from_source()
     rm -rf tmux
 }
 
+enable_italic()
+{
+    # create a new type of terminal named "tmux-256color"
+    echo "tmux-256color|tmux with 256 colors,
+  ritm=\E[23m, rmso=\E[27m, sitm=\E[3m, smso=\E[7m, Ms@,
+  khome=\E[1~, kend=\E[4~,
+  use=xterm-256color, use=screen-256color," >> tmux-256color.terminfo
+
+    # install tmux-256color
+    tic -x tmux-256color.terminfo
+}
+
 setup_tmux()
 {
     install_tmux_from_source
 
     do_backup "$HOME/.tmux.conf"
     cp "$app_name"/tmux.conf "$HOME"/.tmux.conf
+
+    enable_italic
 
     msg "Thanks for installing my tmux!"
 }
