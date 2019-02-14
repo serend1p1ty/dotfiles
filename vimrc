@@ -53,7 +53,7 @@ nnoremap <leader>x :x<CR>
 nnoremap \\ :nohlsearch<CR>
 
 " ,s 插入ipdb.set_trace()
-nnoremap <leader>s oimport ipdb; ipdb.set_trace(context=7)<ESC>
+nnoremap <leader>s Oimport ipdb; ipdb.set_trace(context=7)<ESC>
 
 " <C-L> 插入模式下向右移动
 inoremap <C-L> <right>
