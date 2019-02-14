@@ -29,9 +29,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=24"
 
 # fuzzy finder配置
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS="--height 50% --layout=reverse \
-                         --preview '(highlight -O ansi -l {} \
-                         || cat {}) 2> /dev/null | head -500'"
+export FZF_DEFAULT_OPTS="--height 50% --layout=reverse"
 
 # 打开~/.viminfo里的文件(即最近使用过的文件)
 v() 
@@ -39,7 +37,7 @@ v()
     local files
     files=$(grep '^>' ~/.viminfo | cut -c3- |
             while read line; do
-                [ -f "${line/\~/$HOME}" ] && echo "${line/\~/$HOME}"
+                [ -f "${line/\~/$HOME}" ] && echo "$line"
             done | fzf -0 -1 -m -q "$*" | tr '\n' ' ')
 
     if [[ -n $files ]]
@@ -48,8 +46,7 @@ v()
     fi
 }
 
-# 在任何地方打开文件
-# ex: vf word1 word2......
+# 打开任何地方的文件
 vf() 
 {
     local files

@@ -50,7 +50,7 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>x :x<CR>
 
 " \\ 关闭高亮显示搜索项
-nnoremap \\ :nohlsearch<CR>
+nnoremap <silent> \\ :nohlsearch<CR>
 
 " ,s 插入ipdb.set_trace()
 nnoremap <leader>s Oimport ipdb; ipdb.set_trace(context=7)<ESC>
