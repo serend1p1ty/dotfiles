@@ -16,6 +16,7 @@ set backspace=indent,eol,start  " Backspace删除
 let python_highlight_all=1      " 高亮python语法
 set completeopt=longest,menu    " 关闭函数预览窗口
 set noshowmode                  " 关闭左下角类似"-- INSERT --"的状态提示
+set nowrap                      " 当一行太长时不自动换行
 filetype plugin indent on       " 根据文件类型设置缩进风格
 syntax enable                   " 语法高亮
 
@@ -222,6 +223,9 @@ nnoremap <F12> :IndentLinesToggle<CR>
 
 " 自动补全括号插件
 Plug 'jiangmiao/auto-pairs'
+
+" 操作成对符号的插件
+Plug 'tpope/vim-surround'
 
 " 状态栏插件
 Plug 'vim-airline/vim-airline'
