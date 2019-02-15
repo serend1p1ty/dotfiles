@@ -60,4 +60,5 @@ vf()
 }
 
 # 别名
-alias vi="vim"
+alias vi='vim'
+alias f='vim $(fzf)'
