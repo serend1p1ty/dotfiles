@@ -221,6 +221,10 @@ let g:indentLine_char = '¦'
 " F12 打开/关闭缩进线显示
 nnoremap <F12> :IndentLinesToggle<CR>
 
+" 代码片段补全插件
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 " 自动补全括号插件
 Plug 'jiangmiao/auto-pairs'
 
