@@ -170,8 +170,6 @@ let g:SuperTabDefaultCompletionType = "context"
 Plug 'scrooloose/nerdcommenter'
 " 在注释符后面加一个空格
 let g:NERDSpaceDelims = 1
-" 允许注释空行
-let g:NERDCommentEmptyLines = 1
 
 " 查找文件插件
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
