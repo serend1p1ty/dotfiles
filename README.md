@@ -4,8 +4,6 @@
 
 ![](https://github.com/ppnman/code-env/blob/master/doc/vim.png)
 
-![](https://github.com/ppnman/code-env/blob/master/doc/zsh.png)
-
 ## 1. :pencil:介绍
 
 `zsh`内置5个插件。
