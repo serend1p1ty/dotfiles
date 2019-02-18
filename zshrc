@@ -62,3 +62,4 @@ vf()
 # 别名
 alias vi='vim'
 alias f='vim $(fzf)'
+alias cl='clear'
