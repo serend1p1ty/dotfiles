@@ -217,7 +217,7 @@ nnoremap <F12> :IndentLinesToggle<CR>
 
 " 代码片段补全插件
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'ppnman/vim-snippets'
 
 " 自动补全括号插件
 Plug 'jiangmiao/auto-pairs'
