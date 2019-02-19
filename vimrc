@@ -230,6 +230,9 @@ Plug 'tpope/vim-surround'
 " 状态栏插件
 Plug 'vim-airline/vim-airline'
 
+" git插件
+Plug 'mhinz/vim-signify'
+
 " vim主题插件
 Plug 'cocopon/iceberg.vim'
 
