@@ -118,6 +118,13 @@ setup_vim_plug()
     sudo apt install -y ctags
     success_or_error "Successfully installed ctags." \
                      "Failed to install ctags."
+
+    msg "Trying to install ripgrep."
+    wget -c https://github.com/BurntSushi/ripgrep/releases/download/0.10.0/ripgrep_0.10.0_amd64.deb
+    sudo dpkg -i ripgrep_0.10.0_amd64.deb
+    success_or_error "Successfully installed ripgrep." \
+                     "Failed to install ripgrep."
+    rm ripgrep_0.10.0_amd64.deb
 }
 
 setup_vim()
@@ -141,6 +148,16 @@ setup_vim()
 
 setup_zsh_plug()
 {
+    msg "Trying to install zsh-theme."
+    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    success_or_error "Successfully installed zsh-theme." \
+                     "Failed to install zsh-theme."
+
+    msg "Trying to install powerline fonts."
+    sudo apt install -y fonts-powerline
+    success_or_error "Successfully installed powerline fonts." \
+                     "Failed to install powerline fonts."
+
     msg "Trying to install zsh-plugin: autojump."
     sudo apt install -y autojump
     success_or_error "Successfully installed autojump." \
@@ -201,16 +218,6 @@ setup_zsh()
 
         do_backup "$HOME/.zshrc"
         cp "$app_name"/zshrc "$HOME"/.zshrc
-
-        msg "Trying to install zsh-theme."
-        git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-        success_or_error "Successfully installed zsh-theme." \
-                         "Failed to install zsh-theme."
- 
-        msg "Trying to install powerline fonts."
-        sudo apt install -y fonts-powerline
-        success_or_error "Successfully installed powerline fonts." \
-                         "Failed to install powerline fonts."
 
         setup_zsh_plug
 
