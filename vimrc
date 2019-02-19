@@ -181,6 +181,8 @@ nnoremap [c :LeaderfHistoryCmd<CR>
 nnoremap [f :LeaderfFunction<CR>
 " 搜索光标处的单词
 noremap <leader>F :<C-U><C-R>=printf("Leaderf! rg -e %s", expand("<cword>"))<CR>
+" 重新打开上一次的搜索结果
+noremap re :<C-U>Leaderf! rg --recall<CR>
 
 " 彩虹括号插件
 Plug 'luochen1990/rainbow'
