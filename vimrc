@@ -179,6 +179,8 @@ nnoremap <leader>m :LeaderfMru<CR>
 nnoremap [c :LeaderfHistoryCmd<CR>
 " [f 函数搜索
 nnoremap [f :LeaderfFunction<CR>
+" 搜索光标处的单词
+noremap <leader>F :<C-U><C-R>=printf("Leaderf! rg -e %s", expand("<cword>"))<CR>
 
 " 彩虹括号插件
 Plug 'luochen1990/rainbow'
