@@ -202,11 +202,6 @@ setup_zsh()
         success_or_error "Successfully installed fuzzy finder." \
                          "Failed to install fuzzy finder."
 
-        msg "Trying to install highlight."
-        sudo apt install highlight
-        success_or_error "Successfully installed highlight." \
-                         "Failed to install highlight."
-
         msg "Thanks for installing my zsh!"
     fi
 }
