@@ -150,6 +150,19 @@ setup_zsh_plug()
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     success_or_error "Successfully installed syntax-highlighting." \
                      "Failed to install syntax-highlighting."
+
+    msg "Trying to install fuzzy finder."
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+    success_or_error "Successfully installed fuzzy finder." \
+                     "Failed to install fuzzy finder."
+
+    msg "Trying to install fd."
+    wget -c https://github.com/sharkdp/fd/releases/download/v7.3.0/fd_7.3.0_amd64.deb
+    sudo dpkg -i fd_7.3.0_amd64.deb
+    success_or_error "Successfully installed fd." \
+                     "Failed to install fd."
+    rm fd_7.3.0_amd64.deb
 }
 
 setup_zsh()
@@ -195,12 +208,6 @@ setup_zsh()
                          "Failed to install powerline fonts."
 
         setup_zsh_plug
-
-        msg "Trying to install fuzzy finder."
-        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-        ~/.fzf/install
-        success_or_error "Successfully installed fuzzy finder." \
-                         "Failed to install fuzzy finder."
 
         msg "Thanks for installing my zsh!"
     fi

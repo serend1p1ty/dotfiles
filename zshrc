@@ -29,9 +29,11 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=24"
 
 # fuzzy finder配置
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_DEFAULT_OPTS="--height 50% --layout=reverse"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# 打开~/.viminfo里的文件(即最近使用过的文件)
+# 打开最近使用过的文件
 v() 
 {
     local files
@@ -50,16 +52,21 @@ v()
 vf() 
 {
     local files
-
     files=(${(f)"$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1 -m)"})
-
     if [[ -n $files ]]
     then
         vim $files
     fi
 }
 
+# 打开当前目录下的文件
+fe() 
+{
+    local files
+    IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+    [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
 # 别名
 alias vi='vim'
-alias f='vim $(fzf)'
 alias cl='clear'
