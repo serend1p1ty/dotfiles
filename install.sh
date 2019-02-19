@@ -113,6 +113,11 @@ setup_vim_plug()
                      "Failed to install plugins with vim-plug."
 
     export SHELL="$system_shell"
+
+    msg "Trying to install ctags."
+    sudo apt install -y ctags
+    success_or_error "Successfully installed ctags." \
+                     "Failed to install ctags."
 }
 
 setup_vim()
