@@ -177,8 +177,8 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 nnoremap <leader>m :LeaderfMru<CR>
 " [c 历史命令搜索
 nnoremap [c :LeaderfHistoryCmd<CR>
-" 搜索结果显示框高度为全屏的30%
-let g:Lf_WindowHeight=0.3
+" [f 函数搜索
+nnoremap [f :LeaderfFunction<CR>
 
 " 彩虹括号插件
 Plug 'luochen1990/rainbow'
