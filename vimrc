@@ -168,35 +168,62 @@ let s:git = 1
 call plug#begin('~/.vim/plugged')
 
 if s:basic > 0
+    " 目录树
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+    " 增强tab
     Plug 'ervandew/supertab'
+
+    " 搜索文件
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+
+    " 异步执行
     Plug 'skywind3000/asyncrun.vim'
+
+    " 快速注释
     Plug 'scrooloose/nerdcommenter'
 endif
 
 if s:appearance > 0
+    " 配色方案
     Plug 'cocopon/iceberg.vim'
     Plug 'lifepillar/vim-solarized8'
+
+    " 彩虹括号
     Plug 'luochen1990/rainbow'
+
+    " 状态栏
     Plug 'vim-airline/vim-airline'
 endif
 
 if s:text > 0
+    " 代码片段补全
     Plug 'SirVer/ultisnips'
     Plug 'ppnman/vim-snippets'
+
+    " 自动括号
     Plug 'jiangmiao/auto-pairs'
+
+    " 操作成对符号
     Plug 'tpope/vim-surround'
 endif
 
 if s:python > 0
+    " 代码提示
     Plug 'davidhalter/jedi-vim', { 'for':  'python' }
+
+    " 代码检错
     Plug 'w0rp/ale', { 'for':  'python' }
+
+    " 代码格式化
     Plug 'Chiel92/vim-autoformat', { 'for':  'python' }
+
+    " 显示缩进线
     Plug 'Yggdroot/indentLine', { 'for': 'python' }
 endif
 
 if s:git > 0
+    " 显示gitdiff
     Plug 'mhinz/vim-signify'
 endif
 
@@ -205,7 +232,7 @@ call plug#end()
 """"""""""""""
 "  jedi-vim  "
 """"""""""""""
-" 在vim的命令行里显示函数签名(即函数参数提示)
+" 在vim的命令行中显示函数签名
 let g:jedi#show_call_signatures = "2"
 
 """"""""""""""
@@ -214,7 +241,7 @@ let g:jedi#show_call_signatures = "2"
 " F2 开启/关闭目录树
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
 
-" 当只剩下NERDtree时退出vim
+" 只剩下目录树时退出vim
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """""""""
@@ -235,7 +262,7 @@ let g:ale_sign_warning = '•'
 """"""""""""""
 "  asyncrun  "
 """"""""""""""
-" 每次运行AsyncRunStart的时候自动打开quickfix窗口
+" 运行AsyncRunStart时打开quickfix窗口
 augroup MyGroup
     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
 augroup END
@@ -252,7 +279,7 @@ noremap <F4> :Autoformat<CR>
 """"""""""""""
 "  supertab  "
 """"""""""""""
-" 根据当前文本自动选择补全方式
+" 默认根据上下文补全
 let g:SuperTabDefaultCompletionType = "context"
 
 """""""""""""""""""
