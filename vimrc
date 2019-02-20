@@ -209,9 +209,10 @@ if s:text > 0
 
     " 文本对象
     Plug 'kana/vim-textobj-user'
-    Plug 'kana/vim-textobj-function'
     Plug 'kana/vim-textobj-indent'
     Plug 'sgur/vim-textobj-parameter'
+    Plug 'bps/vim-textobj-python', { 'for':  'python' }
+    Plug 'kana/vim-textobj-function', { 'for': ['c','cpp','vim','java'] }
 endif
 
 if s:python > 0
