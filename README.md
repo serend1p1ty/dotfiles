@@ -47,6 +47,7 @@
 
 - `git`
 - `curl`
+- `pip3`
 
 ### 2.2 安装
 
@@ -60,13 +61,6 @@ curl -sL https://bit.ly/2WOXNKx > install.sh && bash install.sh
 
 - `zsh`的安装分为第一部分(安装`zsh`)，第二部分(安装`oh-my-zsh`及其插件)。安装脚本执行的时候会询问你执行第几部分的安装。第一次运行安装脚本，请执行第一部分的安装。第一部分安装完之后，电脑会重启。重启之后再次执行命令`bash install.sh`，此次选择第二部分的安装。
 - 安装完成之后需要运行`source ~/.zshrc`加载配置。
-
-:zap:**vim安装注意事项**：
-
-**语法检错**和**代码规范化**是可选功能，如想使用还需要安装一些依赖包。
-
-- 安装`pip3`，在终端运行`sudo apt install python3-pip`
-- 在vim的**命令行模式**下运行`:call InstallRequirements()`
 
 ## 3. :sos:帮助
 

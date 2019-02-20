@@ -285,6 +285,7 @@ setup_tmux()
 msg "Welcome to $app_name, I will guide you through the installation."
 
 program_must_exist "git"
+program_must_exist "pip3"
 
 if [ -z "$HOME" ]; then
     msg "\33[31m[✘]\33[0m Must have HOME environmental variable."
