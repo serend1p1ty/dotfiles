@@ -76,6 +76,9 @@ endif
 if s:git > 0
     " 显示gitdiff
     Plug 'mhinz/vim-signify'
+
+    " git命令包装器
+    Plug 'tpope/vim-fugitive'
 endif
 
 call plug#end()

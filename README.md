@@ -16,7 +16,7 @@
 | 模糊搜索     | `fzf`                 |
 | 彩色主题     | `powerlevel9k`        |
 
-`vim`内置23个插件，专为`Python`打造。
+`vim`内置24个插件，专为`Python`打造。
 
 | 功能         | 对应的插件       |
 | ------------ | ---------------- |
@@ -36,6 +36,7 @@
 | 代码片段补全 | `vim-ultisnips`和`vim-snippets`|
 | 状态栏       | `vim-airline`    |
 | 显示gitdiff  | `vim-signify`    |
+| git命令包装器| `vim-fugitive`   |
 | 多主题       | `iceberg.vim`和`vim-solarized8`|
 
 ## 2. :hammer_and_wrench:安装
