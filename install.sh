@@ -114,6 +114,16 @@ setup_vim_plug()
 
     export SHELL="$system_shell"
 
+    msg "Trying to install autopep8."
+    sudo pip3 install -i https://pypi.douban.com/simple/ autopep8
+    success_or_error "Successfully installed autopep8." \
+                     "Failed to install autopep8."
+
+    msg "Trying to install flake8."
+    sudo pip3 install -i https://pypi.douban.com/simple/ flake8
+    success_or_error "Successfully installed flake8." \
+                     "Failed to install flake8."
+
     msg "Trying to install ctags."
     sudo apt install -y ctags
     success_or_error "Successfully installed ctags." \

@@ -167,11 +167,14 @@ set pastetoggle=<F7>
 " \\ 关闭高亮显示搜索项
 nnoremap <silent> \\ :nohlsearch<CR>
 
-" <leader>s 插入ipdb.set_trace()
-nnoremap <leader>s Oimport ipdb; ipdb.set_trace(context=7)<ESC>
+" st 插入ipdb.set_trace()
+nnoremap st Oimport ipdb; ipdb.set_trace(context=7)<ESC>
 
 " <C-L> 插入模式下向右移动
 inoremap <C-L> <right>
+
+" 在全文范围内替换光标处的单词
+nnoremap <leader>s :%s/\<<C-R><C-W>\>//g<left><left>
 
 " zj/k 在当前行的下一行/上一行插入新行，并进入普通模式
 nnoremap zj o<ESC>k
@@ -209,9 +212,9 @@ nnoremap [b :bnext<CR>
 " ]b 进入上一个缓存区
 nnoremap ]b :bprevious<CR>
 
-"""""""""""""""""""
-"  command model  "
-"""""""""""""""""""
+""""""""""""""""""
+"  command mode  "
+""""""""""""""""""
 " ; 开启命令行模式
 nnoremap ; :
 
@@ -221,37 +224,19 @@ cnoremap <C-J> <down>
 " <C-H> 上一条命令
 cnoremap <C-K> <up>
 
-"""""""""
-"  run  "
-"""""""""
+""""""""""""""
+"  run code  "
+""""""""""""""
 " <F5> 执行代码
 nnoremap <F5> :call RunCode()<CR>
-func! RunCode()
+fun! RunCode()
     exec "w"
     if &filetype == 'sh'
         exec "AsyncRun! sh %"
     elseif &filetype == 'python'
         exec "AsyncRun! python3 %"
     endif
-endfunc
-
-""""""""""""""""""
-"  requirements  "
-""""""""""""""""""
-" F10 为vim插件安装必要的依赖
-nnoremap <F10> :call InstallRequirements()<CR>
-func! InstallRequirements()
-    let req = {"pip3": ['autopep8', 'flake8']}
-    let cmd_map = {"pip3": "sudo pip3 install -i https://pypi.douban.com/simple/"}
-
-    execute "! echo '>>> Installing essential softwares for vim plugins.'"
-    for [src, pkgs] in items(req)
-        for pkg in pkgs
-            let cmd = cmd_map[src] . " " . pkg
-            execute "!" . cmd
-        endfor
-    endfor
-endfunc
+endf
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Plugins Configuration                            "
