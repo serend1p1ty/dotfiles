@@ -158,9 +158,6 @@ set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
 " ,代替<leader>
 let mapleader=","
 
-" ; 开启命令行模式
-nnoremap ; :
-
 " F7 打开/关闭粘贴模式
 set pastetoggle=<F7>
 
@@ -172,6 +169,10 @@ nnoremap <leader>s Oimport ipdb; ipdb.set_trace(context=7)<ESC>
 
 " <C-L> 插入模式下向右移动
 inoremap <C-L> <right>
+
+" zj/k 在当前行的下一行/上一行插入新行，并进入普通模式
+nnoremap zj o<ESC>k
+nnoremap zk O<ESC>j
 
 """""""""""""""
 "  save/exit  "
@@ -205,6 +206,18 @@ nnoremap [b :bnext<CR>
 " ]b 进入上一个缓存区
 nnoremap ]b :bprevious<CR>
 
+"""""""""""""""""""
+"  command model  "
+"""""""""""""""""""
+" ; 开启命令行模式
+nnoremap ; :
+
+" <C-J> 下一条命令
+cnoremap <C-J> <down>
+
+" <C-H> 上一条命令
+cnoremap <C-K> <up>
+
 """""""""
 "  run  "
 """""""""
@@ -222,8 +235,8 @@ endfunc
 """"""""""""""""""
 "  requirements  "
 """"""""""""""""""
-" F11 为vim插件安装必要的依赖
-nnoremap <F11> :call InstallRequirements()<CR>
+" F10 为vim插件安装必要的依赖
+nnoremap <F10> :call InstallRequirements()<CR>
 func! InstallRequirements()
     let req = {"pip3": ['autopep8', 'flake8']}
     let cmd_map = {"pip3": "sudo pip3 install -i https://pypi.douban.com/simple/"}
