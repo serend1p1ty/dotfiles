@@ -1,4 +1,4 @@
-# code-env
+# dotfiles
 
 这个仓库帮助你在`Linux`环境下迅速搭建起一套编程环境。环境包括：`zsh`，`vim`，`tmux`。
 

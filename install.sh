@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ############################  SETUP PARAMETERS
-app_name='code-env'
+app_name='dotfiles'
 [ -z "$repo_url" ] && repo_url='https://github.com/ppnman/code-env.git'
 
 ############################  BASIC SETUP TOOLS
