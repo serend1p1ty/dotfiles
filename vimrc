@@ -1,7 +1,88 @@
+set nocompatible                " 关闭vi兼容模式
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Plugins Management                             "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:basic = 1
+let s:appearance = 1
+let s:text = 1
+let s:python = 1
+let s:git = 1
+
+call plug#begin('~/.vim/plugged')
+
+if s:basic > 0
+    " 目录树
+    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+
+    " 增强tab
+    Plug 'ervandew/supertab'
+
+    " 搜索文件
+    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+
+    " 异步执行
+    Plug 'skywind3000/asyncrun.vim'
+
+    " 快速注释
+    Plug 'scrooloose/nerdcommenter'
+endif
+
+if s:appearance > 0
+    " 配色方案
+    Plug 'cocopon/iceberg.vim'
+    Plug 'lifepillar/vim-solarized8'
+
+    " 彩虹括号
+    Plug 'luochen1990/rainbow'
+
+    " 状态栏
+    Plug 'vim-airline/vim-airline'
+endif
+
+if s:text > 0
+    " 代码片段补全
+    Plug 'SirVer/ultisnips'
+    Plug 'ppnman/vim-snippets'
+
+    " 自动括号
+    Plug 'jiangmiao/auto-pairs'
+
+    " 操作成对符号
+    Plug 'tpope/vim-surround'
+
+    " 文本对象
+    Plug 'kana/vim-textobj-user'
+    Plug 'kana/vim-textobj-indent'
+    Plug 'sgur/vim-textobj-parameter'
+    Plug 'bps/vim-textobj-python', { 'for': 'python' }
+    Plug 'kana/vim-textobj-function', { 'for': ['c','cpp','vim','java'] }
+endif
+
+if s:python > 0
+    " 代码提示
+    Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+
+    " 代码检错
+    Plug 'w0rp/ale', { 'for': 'python' }
+
+    " 代码格式化
+    Plug 'Chiel92/vim-autoformat', { 'for': 'python' }
+
+    " 显示缩进线
+    Plug 'Yggdroot/indentLine', { 'for': 'python' }
+endif
+
+if s:git > 0
+    " 显示gitdiff
+    Plug 'mhinz/vim-signify'
+endif
+
+call plug#end()
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Basic settings                               "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible                " 关闭vi兼容模式
 set number                      " 显示行号
 set cursorline                  " 高亮光标所在行
 set backspace=indent,eol,start  " Backspace删除
@@ -157,85 +238,8 @@ func! InstallRequirements()
 endfunc
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                            Plugin configuration                            "
+"                           Plugins Configuration                            "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:basic = 1
-let s:appearance = 1
-let s:text = 1
-let s:python = 1
-let s:git = 1
-
-call plug#begin('~/.vim/plugged')
-
-if s:basic > 0
-    " 目录树
-    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-
-    " 增强tab
-    Plug 'ervandew/supertab'
-
-    " 搜索文件
-    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-
-    " 异步执行
-    Plug 'skywind3000/asyncrun.vim'
-
-    " 快速注释
-    Plug 'scrooloose/nerdcommenter'
-endif
-
-if s:appearance > 0
-    " 配色方案
-    Plug 'cocopon/iceberg.vim'
-    Plug 'lifepillar/vim-solarized8'
-
-    " 彩虹括号
-    Plug 'luochen1990/rainbow'
-
-    " 状态栏
-    Plug 'vim-airline/vim-airline'
-endif
-
-if s:text > 0
-    " 代码片段补全
-    Plug 'SirVer/ultisnips'
-    Plug 'ppnman/vim-snippets'
-
-    " 自动括号
-    Plug 'jiangmiao/auto-pairs'
-
-    " 操作成对符号
-    Plug 'tpope/vim-surround'
-
-    " 文本对象
-    Plug 'kana/vim-textobj-user'
-    Plug 'kana/vim-textobj-indent'
-    Plug 'sgur/vim-textobj-parameter'
-    Plug 'bps/vim-textobj-python', { 'for':  'python' }
-    Plug 'kana/vim-textobj-function', { 'for': ['c','cpp','vim','java'] }
-endif
-
-if s:python > 0
-    " 代码提示
-    Plug 'davidhalter/jedi-vim', { 'for':  'python' }
-
-    " 代码检错
-    Plug 'w0rp/ale', { 'for':  'python' }
-
-    " 代码格式化
-    Plug 'Chiel92/vim-autoformat', { 'for':  'python' }
-
-    " 显示缩进线
-    Plug 'Yggdroot/indentLine', { 'for': 'python' }
-endif
-
-if s:git > 0
-    " 显示gitdiff
-    Plug 'mhinz/vim-signify'
-endif
-
-call plug#end()
-
 """"""""""""""
 "  jedi-vim  "
 """"""""""""""
