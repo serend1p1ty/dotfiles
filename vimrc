@@ -206,6 +206,12 @@ if s:text > 0
 
     " 操作成对符号
     Plug 'tpope/vim-surround'
+
+    " 文本对象
+    Plug 'kana/vim-textobj-user'
+    Plug 'kana/vim-textobj-function'
+    Plug 'kana/vim-textobj-indent'
+    Plug 'sgur/vim-textobj-parameter'
 endif
 
 if s:python > 0
