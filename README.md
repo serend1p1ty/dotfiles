@@ -16,7 +16,7 @@
 | 模糊搜索     | `fzf`                 |
 | 彩色主题     | `powerlevel9k`        |
 
-`vim`内置18个插件，专为`Python`打造。
+`vim`内置23个插件，专为`Python`打造。
 
 | 功能         | 对应的插件       |
 | ------------ | ---------------- |
@@ -32,6 +32,7 @@
 | 显示缩进线   | `identLine`      |
 | 自动补全括号 | `auto-pairs`     |
 | 操作成对符号 | `vim-surround`   |
+| 文本对象     | `vim-textobj-user/indent/parameter/python/function`|
 | 代码片段补全 | `vim-ultisnips`和`vim-snippets`|
 | 状态栏       | `vim-airline`    |
 | 显示gitdiff  | `vim-signify`    |
