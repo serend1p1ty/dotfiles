@@ -7,6 +7,7 @@ set cursorline                  " 高亮光标所在行
 set backspace=indent,eol,start  " Backspace删除
 set noshowmode                  " 关闭左下角类似"-- INSERT --"的状态提示
 set nowrap                      " 不自动换行
+set signcolumn=yes              " 一直显示符号列
 syntax enable                   " 语法高亮
 
 """"""""""""""""
@@ -140,8 +141,8 @@ endfunc
 """"""""""""""""""
 "  requirements  "
 """"""""""""""""""
-" install 为vim插件安装必要的依赖
-nnoremap install :call InstallRequirements()<CR>
+" F11 为vim插件安装必要的依赖
+nnoremap <F11> :call InstallRequirements()<CR>
 func! InstallRequirements()
     let req = {"pip3": ['autopep8', 'flake8']}
     let cmd_map = {"pip3": "sudo pip3 install -i https://pypi.douban.com/simple/"}
@@ -159,7 +160,7 @@ endfunc
 "                            Plugin configuration                            "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:basic = 1
-let s:color = 1
+let s:appearance = 1
 let s:text = 1
 let s:python = 1
 let s:git = 1
@@ -170,15 +171,15 @@ if s:basic > 0
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'ervandew/supertab'
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-    Plug 'vim-airline/vim-airline'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'scrooloose/nerdcommenter'
 endif
 
-if s:color > 0
+if s:appearance > 0
     Plug 'cocopon/iceberg.vim'
     Plug 'lifepillar/vim-solarized8'
     Plug 'luochen1990/rainbow'
+    Plug 'vim-airline/vim-airline'
 endif
 
 if s:text > 0
