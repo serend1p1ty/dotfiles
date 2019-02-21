@@ -103,6 +103,33 @@ install_vim8_from_source()
 
 setup_vim_plug() 
 {
+    msg "Trying to install essential packages for ycm."
+    sudo apt install build-essential cmake python3-dev
+    success_or_error "Successfully installed essential packages for ycm." \
+                     "Failed to install essential packages for ycm."
+
+    msg "Trying to install autopep8 for vim-autoformat."
+    sudo pip3 install -i https://pypi.douban.com/simple/ autopep8
+    success_or_error "Successfully installed autopep8 for vim-autoformat." \
+                     "Failed to install autopep8 for vim-autoformat."
+
+    msg "Trying to install flake8 for ale."
+    sudo pip3 install -i https://pypi.douban.com/simple/ flake8
+    success_or_error "Successfully installed flake8 for ale." \
+                     "Failed to install flake8 for ale."
+
+    msg "Trying to install ctags for LeaderF."
+    sudo apt install -y ctags
+    success_or_error "Successfully installed ctags for LeaderF." \
+                     "Failed to install ctags for LeaderF."
+
+    msg "Trying to install ripgrep for LeaderF."
+    wget -c https://github.com/BurntSushi/ripgrep/releases/download/0.10.0/ripgrep_0.10.0_amd64.deb
+    sudo dpkg -i ripgrep_0.10.0_amd64.deb
+    success_or_error "Successfully installed ripgrep for LeaderF." \
+                     "Failed to install ripgrep for LeaderF."
+    rm ripgrep_0.10.0_amd64.deb
+
     local system_shell="$SHELL"
     export SHELL='/bin/sh'
 
@@ -113,28 +140,6 @@ setup_vim_plug()
                      "Failed to install plugins with vim-plug."
 
     export SHELL="$system_shell"
-
-    msg "Trying to install autopep8."
-    sudo pip3 install -i https://pypi.douban.com/simple/ autopep8
-    success_or_error "Successfully installed autopep8." \
-                     "Failed to install autopep8."
-
-    msg "Trying to install flake8."
-    sudo pip3 install -i https://pypi.douban.com/simple/ flake8
-    success_or_error "Successfully installed flake8." \
-                     "Failed to install flake8."
-
-    msg "Trying to install ctags."
-    sudo apt install -y ctags
-    success_or_error "Successfully installed ctags." \
-                     "Failed to install ctags."
-
-    msg "Trying to install ripgrep."
-    wget -c https://github.com/BurntSushi/ripgrep/releases/download/0.10.0/ripgrep_0.10.0_amd64.deb
-    sudo dpkg -i ripgrep_0.10.0_amd64.deb
-    success_or_error "Successfully installed ripgrep." \
-                     "Failed to install ripgrep."
-    rm ripgrep_0.10.0_amd64.deb
 }
 
 setup_vim()

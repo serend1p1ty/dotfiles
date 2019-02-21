@@ -59,7 +59,7 @@ endif
 
 if s:python > 0
     " 代码提示
-    Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py', 'for': 'python' }
 
     " 代码检错
     Plug 'w0rp/ale', { 'for': 'python' }
@@ -242,11 +242,19 @@ endf
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Plugins Configuration                            "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""
-"  jedi-vim  "
-""""""""""""""
-" 在vim的命令行中显示函数签名
-let g:jedi#show_call_signatures = "2"
+"""""""""""""""""""
+"  YouCompleteMe  "
+"""""""""""""""""""
+" 输入两个字符后开启语义补全
+let g:ycm_semantic_triggers =  {
+			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+			\ 'cs,lua,javascript': ['re!\w{2}'],
+			\ }
+
+"""""""""""""""
+"  UltiSnips  "
+"""""""""""""""
+let g:UltiSnipsExpandTrigger="<C-Z>"
 
 """"""""""""""
 "  nerdtree  "
