@@ -27,6 +27,9 @@ if s:basic > 0
 
     " vim-tmux快速导航
     Plug 'christoomey/vim-tmux-navigator'
+
+    " 有用的快捷键
+    Plug 'tpope/vim-unimpaired'
 endif
 
 if s:appearance > 0
@@ -39,6 +42,8 @@ if s:appearance > 0
 
     " 状态栏
     Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    " Plug 'edkolev/tmuxline.vim'
 endif
 
 if s:text > 0
@@ -168,6 +173,9 @@ let mapleader=","
 " F7 打开/关闭粘贴模式
 set pastetoggle=<F7>
 
+" F3 显示缓存区
+nnoremap <F3> :buffers<CR>
+
 " \\ 关闭高亮显示搜索项
 nnoremap <silent> \\ :nohlsearch<CR>
 
@@ -182,10 +190,6 @@ inoremap <C-L> <right>
 
 " 在全文范围内替换光标处的单词
 nnoremap <leader>s :%s/\<<C-R><C-W>\>//g<left><left>
-
-" zj/k 在当前行的下一行/上一行插入新行，并进入普通模式
-nnoremap zj o<ESC>k
-nnoremap zk O<ESC>j
 
 """""""""""""""
 "  save/exit  "
@@ -206,18 +210,6 @@ nnoremap <C-H> <C-W><C-H>
 
 " <leader>o 只保留当前窗口
 nnoremap <leader>o :only<CR
-
-""""""""""""
-"  buffer  "
-""""""""""""
-" F3 显示缓存区
-nnoremap <F3> :buffers<CR>
-
-" [b 进入下一个缓存区
-nnoremap [b :bnext<CR>
-
-" ]b 进入上一个缓存区
-nnoremap ]b :bprevious<CR>
 
 """"""""""""""""""
 "  command mode  "
@@ -253,14 +245,23 @@ endf
 """""""""""""""""""
 " 输入两个字符后开启语义补全
 let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript': ['re!\w{2}'],
-			\ }
+                        \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+                        \ 'cs,lua,javascript': ['re!\w{2}'],
+                        \ }
 
 """""""""""""""
 "  UltiSnips  "
 """""""""""""""
 let g:UltiSnipsExpandTrigger="<C-Z>"
+
+"""""""""""""
+"  airline  "
+"""""""""""""
+" 启动顶部buffer状态栏
+let g:airline#extensions#tabline#enabled = 1
+
+" 设置airline主题
+let g:airline_theme='solarized'
 
 """"""""""""""
 "  nerdtree  "
@@ -338,27 +339,27 @@ noremap re :<C-U>Leaderf! rg --recall<CR>
 """""""""""""
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-	\	'operators': '_,_',
-	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-	\	'separately': {
-	\		'*': {},
-	\		'tex': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-	\		},
-	\		'lisp': {
-	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-	\		},
-	\		'vim': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-	\		},
-	\		'html': {
-	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-	\		},
-	\		'css': 0,
-	\	}
-	\}
+        \       'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+        \       'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+        \       'operators': '_,_',
+        \       'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+        \       'separately': {
+        \               '*': {},
+        \               'tex': {
+        \                       'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+        \               },
+        \               'lisp': {
+        \                       'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+        \               },
+        \               'vim': {
+        \                       'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+        \               },
+        \               'html': {
+        \                       'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+        \               },
+        \               'css': 0,
+        \       }
+        \}
 
 """"""""""""""""
 "  indentLine  "
