@@ -2,8 +2,6 @@
 
 这个仓库帮助你在`Linux`环境下迅速搭建起一套编程环境。环境包括：`zsh`，`vim`，`tmux`。
 
-![](https://github.com/ppnman/code-env/blob/master/doc/vim.png)
-
 ## 1. :pencil:介绍
 
 `zsh`内置5个插件。
