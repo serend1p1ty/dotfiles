@@ -1,41 +1,8 @@
 # dotfiles
 
-这个仓库帮助你在`Linux`环境下迅速搭建起一套编程环境。环境包括：`zsh`，`vim`，`tmux`。
-
 ## 1. :pencil:介绍
 
-`zsh`内置5个插件。
-
-| 功能         | 对应的插件            |
-| ------------ | --------------------- |
-| 快速目录跳转 | `autojump`            |
-| 历史命令提示 | `autosuggestions`     |
-| 语法高亮     | `syntax-highlighting` |
-| 模糊搜索     | `fzf`                 |
-| 彩色主题     | `powerlevel9k`        |
-
-`vim`内置24个插件，专为`Python`打造。
-
-| 功能         | 对应的插件       |
-| ------------ | ---------------- |
-| 代码自动补全 | `YouCompleteMe`  |
-| 语法检错     | `ale`            |
-| 目录树       | `nerdtree`       |
-| 异步执行代码 | `asyncrun`       |
-| 代码规范化   | `vim-autoformat` |
-| 增强tab键    | `supertab`       |
-| 快速注释     | `nerdcomment`    |
-| 查找文件     | `LeaderF`        |
-| 彩虹括号     | `rainbow`        |
-| 显示缩进线   | `identLine`      |
-| 自动补全括号 | `auto-pairs`     |
-| 操作成对符号 | `vim-surround`   |
-| 文本对象     | `vim-textobj-user/indent/parameter/python/function`|
-| 代码片段补全 | `vim-ultisnips`和`vim-snippets`|
-| 状态栏       | `vim-airline`    |
-| 显示gitdiff  | `vim-signify`    |
-| git命令包装器| `vim-fugitive`   |
-| 多主题       | `iceberg.vim`和`vim-solarized8`|
+这个仓库帮助你在`Linux`环境下迅速搭建起一套编程环境。环境包括：`zsh`，`vim`，`tmux`。
 
 ## 2. :hammer_and_wrench:安装
 
@@ -49,7 +16,7 @@
 
 ### 2.2 安装
 
-只需要一行命令即可完成`code-env`的基本配置
+只需要一行命令即可完成配置
 
 ```
 curl -sL https://bit.ly/2WOXNKx > install.sh && bash install.sh
