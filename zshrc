@@ -70,3 +70,5 @@ fe()
 # 别名
 alias vi='vim'
 alias cl='clear'
+alias to='tmux'
+alias tc='tmux kill-server'
