@@ -180,7 +180,7 @@ nnoremap <F3> :buffers<CR>
 nnoremap <silent> \\ :nohlsearch<CR>
 
 " <leader>r 在tmux的另一个窗格中执行上一条命令
-nmap <leader>r :!tmux send-keys -t 0:0.1 C-P C-J<CR><CR>
+nmap <leader>r :AsyncRun! tmux send-keys -t 0:0.1 C-P C-J <CR>
 
 " st 插入ipdb.set_trace()
 nnoremap st Oimport ipdb; ipdb.set_trace(context=7)<ESC>
@@ -291,12 +291,12 @@ let g:ale_sign_warning = '•'
 "  asyncrun  "
 """"""""""""""
 " 运行AsyncRunStart时打开quickfix窗口
-augroup MyGroup
-    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
-augroup END
+" augroup MyGroup
+    " autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+" augroup END
 
 " F6 打开/关闭quickfix窗口
-noremap <F6> :call asyncrun#quickfix_toggle(8)<CR>
+" noremap <F6> :call asyncrun#quickfix_toggle(8)<CR>
 
 """"""""""""""""""""
 "  vim-autoformat  "
