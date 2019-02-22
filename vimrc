@@ -24,6 +24,9 @@ if s:basic > 0
 
     " 快速注释
     Plug 'scrooloose/nerdcommenter'
+
+    " vim-tmux快速导航
+    Plug 'christoomey/vim-tmux-navigator'
 endif
 
 if s:appearance > 0
@@ -167,6 +170,9 @@ set pastetoggle=<F7>
 
 " \\ 关闭高亮显示搜索项
 nnoremap <silent> \\ :nohlsearch<CR>
+
+" <leader>r 在tmux的另一个窗格中执行上一条命令
+nmap <leader>r :!tmux send-keys -t 0:0.1 C-P C-J<CR><CR>
 
 " st 插入ipdb.set_trace()
 nnoremap st Oimport ipdb; ipdb.set_trace(context=7)<ESC>
