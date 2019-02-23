@@ -30,11 +30,14 @@ if s:basic > 0
 
     " 有用的快捷键
     Plug 'tpope/vim-unimpaired'
+
+    " 光标快速移动
+    Plug 'easymotion/vim-easymotion'
 endif
 
 if s:appearance > 0
     " 配色方案
-    Plug 'cocopon/iceberg.vim'
+    " Plug 'cocopon/iceberg.vim'
     Plug 'lifepillar/vim-solarized8'
 
     " 彩虹括号
@@ -57,12 +60,18 @@ if s:text > 0
     " 操作成对符号
     Plug 'tpope/vim-surround'
 
+    " 重复一个插件的操作
+    Plug 'tpope/vim-repeat'
+
+    " 去除行尾空格
+    Plug 'ntpeters/vim-better-whitespace'
+
     " 文本对象
     Plug 'kana/vim-textobj-user'
     Plug 'kana/vim-textobj-indent'
+    Plug 'kana/vim-textobj-function', { 'for': ['c','cpp','vim','java'] }
     Plug 'sgur/vim-textobj-parameter'
     Plug 'bps/vim-textobj-python', { 'for': 'python' }
-    Plug 'kana/vim-textobj-function', { 'for': ['c','cpp','vim','java'] }
 endif
 
 if s:python > 0
@@ -252,7 +261,23 @@ let g:ycm_semantic_triggers =  {
 """""""""""""""
 "  UltiSnips  "
 """""""""""""""
+" <C-Z> 补全代码片段
 let g:UltiSnipsExpandTrigger="<C-Z>"
+
+"""""""""""""""""""""""""""
+"  vim-better-whitespace  "
+"""""""""""""""""""""""""""
+" <F8> 去除行尾空格
+nnoremap <F8> :StripWhitespace<CR>
+
+""""""""""""""""
+"  easymotion  "
+""""""""""""""""
+" 将前缀修改成f
+map f <Plug>(easymotion-prefix)
+
+" 智能大小写
+let g:EasyMotion_smartcase = 1
 
 """""""""""""
 "  airline  "
@@ -292,7 +317,7 @@ let g:ale_sign_warning = '•'
 """"""""""""""
 " 运行AsyncRunStart时打开quickfix窗口
 " augroup MyGroup
-    " autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+"     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
 " augroup END
 
 " F6 打开/关闭quickfix窗口
@@ -370,8 +395,8 @@ let g:indentLine_enabled = 0
 " 缩进线字符设置
 let g:indentLine_char = '¦'
 
-" F12 打开/关闭缩进线显示
-nnoremap <F12> :IndentLinesToggle<CR>
+" F9 打开/关闭缩进线显示
+nnoremap <F9> :IndentLinesToggle<CR>
 
 """""""""""""""""
 "  colorscheme  "
