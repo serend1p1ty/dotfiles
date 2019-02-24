@@ -13,31 +13,27 @@ if s:basic > 0
     " 目录树
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
-    " 增强tab
-    Plug 'ervandew/supertab'
-
     " 搜索文件
-    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+    Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': 'Leaderf' }
 
     " 异步执行
-    Plug 'skywind3000/asyncrun.vim'
+    Plug 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
 
     " 快速注释
-    Plug 'scrooloose/nerdcommenter'
+    Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 
     " vim-tmux快速导航
     Plug 'christoomey/vim-tmux-navigator'
 
-    " 有用的快捷键
-    Plug 'tpope/vim-unimpaired'
-
     " 光标快速移动
-    Plug 'easymotion/vim-easymotion'
+    Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion-bd-w)' }
+
+    " 自动补全
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py', 'on': [] }
 endif
 
 if s:appearance > 0
     " 配色方案
-    " Plug 'cocopon/iceberg.vim'
     Plug 'lifepillar/vim-solarized8'
 
     " 彩虹括号
@@ -69,23 +65,15 @@ if s:text > 0
     " 文本对象
     Plug 'kana/vim-textobj-user'
     Plug 'kana/vim-textobj-indent'
-    Plug 'kana/vim-textobj-function', { 'for': ['c','cpp','vim','java'] }
     Plug 'sgur/vim-textobj-parameter'
-    Plug 'bps/vim-textobj-python', { 'for': 'python' }
 endif
 
 if s:python > 0
-    " 代码提示
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py', 'for': 'python' }
-
     " 代码检错
     Plug 'w0rp/ale', { 'for': 'python' }
 
     " 代码格式化
-    Plug 'Chiel92/vim-autoformat', { 'for': 'python' }
-
-    " 显示缩进线
-    Plug 'Yggdroot/indentLine', { 'for': 'python' }
+    Plug 'Chiel92/vim-autoformat', { 'on': 'Autoformat' }
 endif
 
 if s:git > 0
@@ -136,7 +124,7 @@ filetype plugin indent on       " 根据文件类型设置缩进风格
 "  search  "
 """"""""""""
 set ignorecase                  " 搜索时不区分大小写
-set smartcase                   " 搜索时智能判断大小写
+set smartcase                   " 除非出现大写字母
 set hlsearch                    " 高亮匹配项
 
 """"""""""""""
@@ -152,27 +140,6 @@ set fileencodings=utf-8,gbk     " 打开文件时按照下面的顺序尝试识�
 set fdm=indent                  " 代码折叠默认使用缩进
 set foldlevel=99                " 默认打开所有折叠
 
-""""""""""""""""
-"  wildignore  "
-""""""""""""""""
-set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc,.pyo,.egg-info,.class
-set wildignore=*.o,*.obj,*~,*.exe,*.a,*.pdb,*.lib
-set wildignore+=*.so,*.dll,*.swp,*.egg,*.jar,*.class,*.pyc,*.pyo,*.bin,*.dex
-set wildignore+=*.zip,*.7z,*.rar,*.gz,*.tar,*.gzip,*.bz2,*.tgz,*.xz
-set wildignore+=*DS_Store*,*.ipch
-set wildignore+=*.gem
-set wildignore+=*.png,*.jpg,*.gif,*.bmp,*.tga,*.pcx,*.ppm,*.img,*.iso
-set wildignore+=*.so,*.swp,*.zip,*/.Trash/**,*.pdf,*.dmg,*/.rbenv/**
-set wildignore+=*/.nx/**,*.app,*.git,.git
-set wildignore+=*.wav,*.mp3,*.ogg,*.pcm
-set wildignore+=*.mht,*.suo,*.sdf,*.jnlp
-set wildignore+=*.chm,*.epub,*.pdf,*.mobi,*.ttf
-set wildignore+=*.mp4,*.avi,*.flv,*.mov,*.mkv,*.swf,*.swc
-set wildignore+=*.ppt,*.pptx,*.docx,*.xlt,*.xls,*.xlsx,*.odt,*.wps
-set wildignore+=*.msi,*.crx,*.deb,*.vfd,*.apk,*.ipa,*.bin,*.msu
-set wildignore+=*.gba,*.sfc,*.078,*.nds,*.smd,*.smc
-set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  Keymaps                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -182,9 +149,6 @@ let mapleader=","
 " F7 打开/关闭粘贴模式
 set pastetoggle=<F7>
 
-" F3 显示缓存区
-nnoremap <F3> :buffers<CR>
-
 " \\ 关闭高亮显示搜索项
 nnoremap <silent> \\ :nohlsearch<CR>
 
@@ -193,9 +157,6 @@ nmap <leader>r :AsyncRun! tmux send-keys -t 0:0.1 C-P C-J <CR>
 
 " st 插入ipdb.set_trace()
 nnoremap st Oimport ipdb; ipdb.set_trace(context=7)<ESC>
-
-" <C-L> 插入模式下向右移动
-inoremap <C-L> <right>
 
 " 在全文范围内替换光标处的单词
 nnoremap <leader>s :%s/\<<C-R><C-W>\>//g<left><left>
@@ -217,8 +178,17 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" <leader>o 只保留当前窗口
-nnoremap <leader>o :only<CR
+""""""""""""
+"  buffer  "
+""""""""""""
+" F3 显示缓冲区
+nnoremap <F3> :buffers<CR>
+
+" [b 下一个缓冲区
+nnoremap [b :bnext<CR>
+
+" ]b 上一个缓冲区
+nnoremap ]b :bprevious<CR>
 
 """"""""""""""""""
 "  command mode  "
@@ -229,22 +199,8 @@ nnoremap ; :
 " <C-J> 下一条命令
 cnoremap <C-J> <down>
 
-" <C-H> 上一条命令
+" <C-K> 上一条命令
 cnoremap <C-K> <up>
-
-""""""""""""""
-"  run code  "
-""""""""""""""
-" <F5> 执行代码
-nnoremap <F5> :call RunCode()<CR>
-fun! RunCode()
-    exec "w"
-    if &filetype == 'sh'
-        exec "AsyncRun! sh %"
-    elseif &filetype == 'python'
-        exec "AsyncRun! python3 %"
-    endif
-endf
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Plugins Configuration                            "
@@ -252,6 +208,12 @@ endf
 """""""""""""""""""
 "  YouCompleteMe  "
 """""""""""""""""""
+" 第一次进入插入模式时才加载ycm
+augroup load_ycm
+    autocmd!
+    autocmd InsertEnter * call plug#load('YouCompleteMe') | autocmd! load_ycm
+augroup END
+
 " 输入两个字符后开启语义补全
 let g:ycm_semantic_triggers =  {
                         \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
@@ -264,6 +226,16 @@ let g:ycm_semantic_triggers =  {
 " <C-Z> 补全代码片段
 let g:UltiSnipsExpandTrigger="<C-Z>"
 
+""""""""""""""""""""
+"  vim-commentary  "
+""""""""""""""""""""
+" 设置这两个映射是为了延迟加载插件
+" gc 可视模式下注释
+map  gc  <Plug>Commentary
+
+" gcc 注释行
+nmap gcc <Plug>CommentaryLine
+
 """""""""""""""""""""""""""
 "  vim-better-whitespace  "
 """""""""""""""""""""""""""
@@ -273,11 +245,8 @@ nnoremap <F8> :StripWhitespace<CR>
 """"""""""""""""
 "  easymotion  "
 """"""""""""""""
-" 将前缀修改成f
-map f <Plug>(easymotion-prefix)
-
-" 智能大小写
-let g:EasyMotion_smartcase = 1
+" mw 跳转到单词
+map mw <Plug>(easymotion-bd-w)
 
 """""""""""""
 "  airline  "
@@ -300,11 +269,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 """""""""
 "  ale  "
 """""""""
-" 保存文件时自动检查语法错误
-let g:ale_fix_on_save = 1
-
 " 语法错误提示信息的输出格式
-let g:ale_echo_msg_format = '[%linter%]-[%severity%]-%s '
+let g:ale_echo_msg_format = '[%linter%]-[%severity%]-%s'
 
 " 自定义错误提示符
 let g:ale_sign_error = '•'
@@ -312,49 +278,29 @@ let g:ale_sign_error = '•'
 " 自定义警告提示符
 let g:ale_sign_warning = '•'
 
-""""""""""""""
-"  asyncrun  "
-""""""""""""""
-" 运行AsyncRunStart时打开quickfix窗口
-" augroup MyGroup
-"     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
-" augroup END
-
-" F6 打开/关闭quickfix窗口
-" noremap <F6> :call asyncrun#quickfix_toggle(8)<CR>
-
 """"""""""""""""""""
 "  vim-autoformat  "
 """"""""""""""""""""
 " F4 代码格式化
 noremap <F4> :Autoformat<CR>
 
-""""""""""""""
-"  supertab  "
-""""""""""""""
-" 默认根据上下文补全
-let g:SuperTabDefaultCompletionType = "context"
-
-"""""""""""""""""""
-"  nerdcommenter  "
-"""""""""""""""""""
-" 在注释符后面加一个空格
-let g:NERDSpaceDelims = 1
-
 """""""""""""
 "  LeaderF  "
 """""""""""""
-" <leader>m MRU(most recently used)文件搜索
-nnoremap <leader>m :LeaderfMru<CR>
+" fi 搜索当前目录下的文件
+nnoremap fi :Leaderf file<CR>
 
-" [c 历史命令搜索
-nnoremap [c :LeaderfHistoryCmd<CR>
+" fm MRU(most recently used)文件搜索
+nnoremap fm :Leaderf mru<CR>
 
-" [f 函数搜索
-nnoremap [f :LeaderfFunction<CR>
+" fc 历史命令搜索
+nnoremap fc :Leaderf cmdHistory<CR>
 
-" <leader>F 搜索光标处的单词
-noremap <leader>F :<C-U><C-R>=printf("Leaderf! rg -e %s", expand("<cword>"))<CR>
+" ff 函数搜索
+nnoremap ff :Leaderf function<CR>
+
+" fw 搜索光标处的单词
+noremap fw :<C-U><C-R>=printf("Leaderf! rg -e %s", expand("<cword>"))<CR>
 
 " re 重新打开上一次的搜索结果
 noremap re :<C-U>Leaderf! rg --recall<CR>
@@ -385,18 +331,6 @@ let g:rainbow_conf = {
         \               'css': 0,
         \       }
         \}
-
-""""""""""""""""
-"  indentLine  "
-""""""""""""""""
-" 默认关闭
-let g:indentLine_enabled = 0
-
-" 缩进线字符设置
-let g:indentLine_char = '¦'
-
-" F9 打开/关闭缩进线显示
-nnoremap <F9> :IndentLinesToggle<CR>
 
 """""""""""""""""
 "  colorscheme  "

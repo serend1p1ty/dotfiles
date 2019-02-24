@@ -5,12 +5,12 @@ app_name='dotfiles'
 [ -z "$repo_url" ] && repo_url='https://github.com/ppnman/code-env.git'
 
 ############################  BASIC SETUP TOOLS
-msg() 
+msg()
 {
     printf '>>> %b\n' "$1" >&2
 }
 
-success_or_error() 
+success_or_error()
 {
     if [ "$?" -eq '0' ]; then
         msg "\33[32m[✔]\33[0m ${1}"
@@ -19,7 +19,7 @@ success_or_error()
     fi
 }
 
-program_exists() 
+program_exists()
 {
     local ret='0'
     command -v $1 >/dev/null 2>&1 || { local ret='1'; }
@@ -32,7 +32,7 @@ program_exists()
     return 0
 }
 
-program_must_exist() 
+program_must_exist()
 {
     program_exists $1
 
@@ -44,7 +44,7 @@ program_must_exist()
 }
 
 ############################ SETUP FUNCTIONS
-do_backup() 
+do_backup()
 {
     if [ -e "$1" ]; then
         msg "Attempting to back up $1."
@@ -55,7 +55,7 @@ do_backup()
     fi
 }
 
-clone_repo() 
+clone_repo()
 {
     msg "Trying to clone $app_name."
     git clone "$repo_url"
@@ -73,11 +73,11 @@ install_vim8_from_source()
     libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
     libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
     python3-dev ruby-dev lua5.1 liblua5.1-0-dev libperl-dev
-    
+
     # step2: download source code.
     git clone https://github.com/vim/vim.git
     cd vim
-    
+
     # step3: configurate cmake.
     ./configure --with-features=huge \
                 --enable-multibyte \
@@ -95,21 +95,21 @@ install_vim8_from_source()
     make && sudo make install
     success_or_error "Successfully installed vim8." \
                      "Failed to install vim8."
-    
+
     # step5: remove vim folder.
     cd ..
     rm -rf vim
 }
 
-setup_vim_plug() 
+setup_vim_plug()
 {
     msg "Trying to install essential packages for ycm."
-    sudo apt install build-essential cmake python3-dev
+    sudo apt install -y build-essential cmake python3-dev
     success_or_error "Successfully installed essential packages for ycm." \
                      "Failed to install essential packages for ycm."
 
     msg "Trying to install autopep8 for vim-autoformat."
-    sudo pip3 install -i https://pypi.douban.com/simple/ autopep8
+    sudo apt install -y python-autopep8
     success_or_error "Successfully installed autopep8 for vim-autoformat." \
                      "Failed to install autopep8 for vim-autoformat."
 
@@ -135,7 +135,7 @@ setup_vim_plug()
 
     vim "+PlugInstall" \
         "+qall"
-    
+
     success_or_error "Successfully installed plugins with vim-plug." \
                      "Failed to install plugins with vim-plug."
 
@@ -245,18 +245,18 @@ install_tmux_from_source()
     # step1: install some essential softwares.
     sudo apt install -y automake build-essential pkg-config \
     libevent-dev libncurses5-dev
- 
+
     # step2: download source code.
     git clone https://github.com/tmux/tmux.git
     cd tmux
- 
+
     # step3: compile and install.
     sh autogen.sh
     ./configure
     make && sudo make install
     success_or_error "Successfully installed tmux from source code." \
                      "Failed to install tmux from source code."
- 
+
     # step4: remove tmux folder.
     cd ..
     rm -rf tmux
