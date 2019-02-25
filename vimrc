@@ -152,9 +152,6 @@ set pastetoggle=<F7>
 " \\ 关闭高亮显示搜索项
 nnoremap <silent> \\ :nohlsearch<CR>
 
-" <leader>r 在tmux的另一个窗格中执行上一条命令
-nmap <leader>r :AsyncRun! tmux send-keys -t 0:0.1 C-P C-J <CR>
-
 " st 插入ipdb.set_trace()
 nnoremap st Oimport ipdb; ipdb.set_trace(context=7)<ESC>
 
@@ -201,6 +198,16 @@ cnoremap <C-J> <down>
 
 " <C-K> 上一条命令
 cnoremap <C-K> <up>
+
+""""""""""""""
+"  run code  "
+""""""""""""""
+" <leader>r 在tmux的另一个窗格中执行上一条命令
+nnoremap <leader>r :call RunCode()<CR>
+fu! RunCode()
+    exec "w"
+    exec "AsyncRun! tmux send-keys -t 0:0.1 C-P C-J"
+endf
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Plugins Configuration                            "
