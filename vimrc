@@ -143,17 +143,15 @@ set foldlevel=99                " 默认打开所有折叠
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  Keymaps                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ,代替<leader>
-let mapleader=","
+" space代替<leader>
+let mapleader=" "
+nnoremap <SPACE> <NOP>
 
 " F7 打开/关闭粘贴模式
 set pastetoggle=<F7>
 
 " \\ 关闭高亮显示搜索项
 nnoremap <silent> \\ :nohlsearch<CR>
-
-" st 插入ipdb.set_trace()
-nnoremap st Oimport ipdb; ipdb.set_trace(context=7)<ESC>
 
 " 在全文范围内替换光标处的单词
 nnoremap <leader>s :%s/\<<C-R><C-W>\>//g<left><left>
@@ -176,6 +174,20 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 """"""""""""
+"  insert  "
+""""""""""""
+" zs 插入ipdb.set_trace()
+nnoremap zs Oimport ipdb; ipdb.set_trace(context=7)<ESC>
+
+" zj/k 在当前行的下/上方插入空行
+nnoremap zj o<ESC>k
+nnoremap zk O<ESC>j
+
+" zh/l 在光标的左/右边插入空格
+nnoremap zh i<SPACE><ESC>l
+nnoremap zl a<SPACE><ESC>h
+
+""""""""""""
 "  buffer  "
 """"""""""""
 " F3 显示缓冲区
@@ -190,8 +202,9 @@ nnoremap ]b :bprevious<CR>
 """"""""""""""""""
 "  command mode  "
 """"""""""""""""""
-" ; 开启命令行模式
+" ;和:功能互换
 nnoremap ; :
+nnoremap : ;
 
 " <C-J> 下一条命令
 cnoremap <C-J> <down>
@@ -202,8 +215,8 @@ cnoremap <C-K> <up>
 """"""""""""""
 "  run code  "
 """"""""""""""
-" <leader>r 在tmux的另一个窗格中执行上一条命令
-nnoremap <leader>r :call RunCode()<CR>
+" <F5> 在tmux的另一个窗格中执行上一条命令
+nnoremap <F5> :call RunCode()<CR>
 fu! RunCode()
     exec "w"
     exec "AsyncRun! tmux send-keys -t 0:0.1 C-P C-J"
@@ -294,23 +307,26 @@ noremap <F4> :Autoformat<CR>
 """""""""""""
 "  LeaderF  "
 """""""""""""
-" fi 搜索当前目录下的文件
-nnoremap fi :Leaderf file<CR>
+" 取消LeaderF默认快捷键
+let g:Lf_ShortcutF = ''
 
-" fm MRU(most recently used)文件搜索
-nnoremap fm :Leaderf mru<CR>
+" <leader>fi 搜索当前目录下的文件
+nnoremap <leader>fi :Leaderf file<CR>
 
-" fc 历史命令搜索
-nnoremap fc :Leaderf cmdHistory<CR>
+" <leader>fm 搜索最近使用过的文件
+nnoremap <leader>fm :Leaderf mru<CR>
 
-" ff 函数搜索
-nnoremap ff :Leaderf function<CR>
+" <leader>fc 搜索历史命令
+nnoremap <leader>fc :Leaderf cmdHistory<CR>
 
-" fw 搜索光标处的单词
-noremap fw :<C-U><C-R>=printf("Leaderf! rg -e %s", expand("<cword>"))<CR>
+" <leader>ff 搜索当前文件中定义的函数
+nnoremap <leader>ff :Leaderf function<CR>
 
-" re 重新打开上一次的搜索结果
-noremap re :<C-U>Leaderf! rg --recall<CR>
+" <leader>fw 搜索光标处的单词
+noremap <leader>fw :<C-U><C-R>=printf("Leaderf! rg -e %s", expand("<cword>"))<CR>
+
+" <leader>fr 重新打开上一次的搜索结果
+noremap <leader>fr :<C-U>Leaderf! rg --recall<CR>
 
 """""""""""""
 "  rainbow  "
