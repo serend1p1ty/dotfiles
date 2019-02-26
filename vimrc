@@ -265,8 +265,8 @@ nnoremap <F8> :StripWhitespace<CR>
 """"""""""""""""
 "  easymotion  "
 """"""""""""""""
-" mw 跳转到单词
-map mw <Plug>(easymotion-bd-w)
+" <leader>mw 跳转到单词
+map <leader>mw <Plug>(easymotion-bd-w)
 
 """""""""""""
 "  airline  "
