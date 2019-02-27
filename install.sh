@@ -152,9 +152,9 @@ setup_vim()
 
     do_backup "$HOME/.vim"
     do_backup "$HOME/.vimrc"
-    cp "$app_name"/vimrc "$HOME"/.vimrc
+    echo "source ~/.vim/config/init.vim" >> ~/.vimrc
     mkdir -p "$HOME"/.vim
-    cp -r "$app_name"/autoload "$HOME"/.vim
+    cp -r "$app_name"/vim/* "$HOME"/.vim
 
     setup_vim_plug
 
