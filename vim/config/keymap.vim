@@ -62,7 +62,9 @@ nnoremap ]b :bprevious<CR>
 """"""""""""""""""
 " ;和:功能互换
 nnoremap ; :
+vnoremap ; :
 nnoremap : ;
+vnoremap : ;
 
 " <C-J> 下一条命令
 cnoremap <C-J> <down>
