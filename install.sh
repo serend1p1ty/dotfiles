@@ -2,7 +2,7 @@
 
 ############################  SETUP PARAMETERS
 app_name='dotfiles'
-[ -z "$repo_url" ] && repo_url='https://github.com/ppnman/code-env.git'
+[ -z "$repo_url" ] && repo_url='https://github.com/ppnman/dotfiles.git'
 
 ############################  BASIC SETUP TOOLS
 msg()
