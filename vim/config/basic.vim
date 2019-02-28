@@ -7,6 +7,7 @@ set cursorline                  " 高亮光标所在行
 set backspace=indent,eol,start  " Backspace删除
 set noshowmode                  " 关闭左下角类似"-- INSERT --"的状态提示
 set nowrap                      " 不自动换行
+set colorcolumn=80              " 高亮第80列
 set signcolumn=yes              " 一直显示符号列
 syntax enable                   " 语法高亮
 set completeopt=longest,menu    " 关闭函数预览窗口
@@ -54,3 +55,10 @@ set fileencodings=utf-8,gbk     " 打开文件时按照下面的顺序尝试识�
 """"""""""
 set fdm=indent                  " 代码折叠默认使用缩进
 set foldlevel=99                " 默认打开所有折叠
+
+""""""""""""""""
+"  file cache  "
+""""""""""""""""
+set noswapfile          	" 禁止生成临时文件
+set autoread            	" 文件在vim之外修改过，自动重新读入
+set autowrite           	" 自动保存
