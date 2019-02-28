@@ -29,7 +29,7 @@ if s:basic > 0
     Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion-bd-w)' }
 
     " 自动补全
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py', 'on': [] }
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 endif
 
 if s:appearance > 0
