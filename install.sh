@@ -319,6 +319,13 @@ if [ "$ans" == "y" ]; then
     setup_vim
 fi
 
+read -p ">>> Do you want to use my flake8 configuration? (y/n)" ans
+if [ "$ans" == "y" ]; then
+    cp "$app_name"/flake8 "$HOME"/.config/flake8
+    success_or_error "Successfully installed flake8 configuration." \
+                     "Failed to install flake8 configuration."
+fi
+
 rm -rf "$app_name"
 
 msg "Thanks for installing $app_name, enjoy it!"
