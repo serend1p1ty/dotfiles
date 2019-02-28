@@ -71,7 +71,7 @@ endif
 
 if s:git > 0
     " Git状态显示
-    Plug 'mhinz/vim-signify'
+    Plug 'mhinz/vim-signify', { 'on': 'SignifyToggle' }
 
     " Git命令包装器
     Plug 'tpope/vim-fugitive'
