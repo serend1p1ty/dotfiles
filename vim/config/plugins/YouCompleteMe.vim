@@ -9,3 +9,12 @@ let g:ycm_semantic_triggers =  {
                         \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
                         \ 'cs,lua,javascript': ['re!\w{2}'],
                         \ }
+
+" 指定python解释器的路径
+let g:ycm_python_binary_path = '/usr/bin/python3'
+
+" 让ycm从注释和字符串中收集标识符信息
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+
+" 跳转到定义，如果定义不可访问，就跳转到声明
+nnoremap <leader>jd :YcmCompleter GoTo<CR>

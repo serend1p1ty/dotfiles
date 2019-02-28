@@ -40,15 +40,13 @@ if s:appearance > 0
     Plug 'luochen1990/rainbow'
 
     " 状态栏
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
     " Plug 'edkolev/tmuxline.vim'
 endif
 
 if s:text > 0
     " 代码片段补全
-    Plug 'SirVer/ultisnips'
-    Plug 'ppnman/vim-snippets'
+    Plug 'SirVer/ultisnips' | Plug 'ppnman/vim-snippets'
 
     " 自动括号
     Plug 'jiangmiao/auto-pairs'
@@ -61,11 +59,6 @@ if s:text > 0
 
     " 去除行尾空格
     Plug 'ntpeters/vim-better-whitespace'
-
-    " 文本对象
-    Plug 'kana/vim-textobj-user'
-    Plug 'kana/vim-textobj-indent'
-    Plug 'sgur/vim-textobj-parameter'
 endif
 
 if s:python > 0
@@ -77,10 +70,10 @@ if s:python > 0
 endif
 
 if s:git > 0
-    " 显示gitdiff
+    " Git状态显示
     Plug 'mhinz/vim-signify'
 
-    " git命令包装器
+    " Git命令包装器
     Plug 'tpope/vim-fugitive'
 endif
 

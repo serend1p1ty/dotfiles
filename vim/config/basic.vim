@@ -12,6 +12,9 @@ syntax enable                   " 语法高亮
 set completeopt=longest,menu    " 关闭函数预览窗口
 let python_highlight_all = 1    " 开启不规范python语法提示
 
+" 打开文件时自动定位到最后一次编辑的位置
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
+
 """"""""""""""""
 "  true color  "
 """"""""""""""""
