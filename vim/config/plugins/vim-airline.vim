@@ -5,4 +5,4 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " 设置airline主题
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'gruvbox'

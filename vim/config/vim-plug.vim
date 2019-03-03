@@ -40,7 +40,7 @@ endif
 
 if s:appearance > 0
     " 配色方案
-    Plug 'lifepillar/vim-solarized8'
+    Plug 'morhetz/gruvbox'
 
     " 彩虹括号
     Plug 'luochen1990/rainbow'
