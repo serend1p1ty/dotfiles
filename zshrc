@@ -34,7 +34,7 @@ export FZF_DEFAULT_OPTS="--height 50% --layout=reverse"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # 打开最近使用过的文件
-v() 
+v()
 {
     local files
     files=$(grep '^>' ~/.viminfo | cut -c3- |
@@ -49,7 +49,7 @@ v()
 }
 
 # 打开任何地方的文件
-vf() 
+vf()
 {
     local files
     files=(${(f)"$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1 -m)"})
@@ -60,7 +60,7 @@ vf()
 }
 
 # 打开当前目录下的文件
-fe() 
+fe()
 {
     local files
     IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
@@ -68,6 +68,7 @@ fe()
 }
 
 # 别名
+alias l='ls'
 alias vi='vim'
 alias cl='clear'
 alias to='tmux'

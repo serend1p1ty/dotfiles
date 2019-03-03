@@ -42,6 +42,7 @@ filetype plugin indent on       " 根据文件类型设置缩进风格
 set ignorecase                  " 搜索时不区分大小写
 set smartcase                   " 除非出现大写字母
 set hlsearch                    " 高亮匹配项
+set incsearch                   " 搜索时显示匹配的过程
 
 """"""""""""""
 "  encoding  "

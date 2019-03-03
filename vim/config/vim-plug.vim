@@ -13,6 +13,9 @@ if s:basic > 0
     " 目录树
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
+    " 撤销树
+    Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+
     " 搜索文件
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': 'Leaderf' }
 
@@ -28,8 +31,11 @@ if s:basic > 0
     " 光标快速移动
     Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion-bd-w)' }
 
+    " tab补全
+    Plug 'ervandew/supertab'
+
     " 自动补全
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+    " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 endif
 
 if s:appearance > 0
@@ -39,8 +45,10 @@ if s:appearance > 0
     " 彩虹括号
     Plug 'luochen1990/rainbow'
 
-    " 状态栏
+    " vim状态栏
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+
+    " tmux状态栏
     " Plug 'edkolev/tmuxline.vim'
 endif
 
@@ -62,6 +70,9 @@ if s:text > 0
 endif
 
 if s:python > 0
+    " 代码补全
+    Plug 'davidhalter/jedi-vim'
+
     " 代码检错
     Plug 'w0rp/ale', { 'for': 'python' }
 
