@@ -66,7 +66,7 @@ if s:text > 0
     Plug 'tpope/vim-repeat'
 
     " 去除行尾空格
-    Plug 'ntpeters/vim-better-whitespace'
+    " Plug 'ntpeters/vim-better-whitespace'
 endif
 
 if s:python > 0

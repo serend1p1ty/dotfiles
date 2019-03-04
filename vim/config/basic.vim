@@ -4,14 +4,12 @@
 set nocompatible                " 关闭vi兼容模式
 set number                      " 显示行号
 set cursorline                  " 高亮光标所在行
-set colorcolumn=80              " 高亮第80列
 set backspace=indent,eol,start  " Backspace删除
 set noshowmode                  " 关闭左下角类似"-- INSERT --"的状态提示
 set nowrap                      " 不自动换行
 set signcolumn=yes              " 一直显示符号列
 syntax enable                   " 语法高亮
 set completeopt=longest,menu    " 关闭函数预览窗口
-let python_highlight_all=1      " 开启不规范python语法提示
 
 " 打开文件时自动定位到最后一次编辑的位置
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
