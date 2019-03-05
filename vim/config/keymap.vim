@@ -57,6 +57,12 @@ nnoremap [b :bnext<CR>
 " ]b 上一个缓冲区
 nnoremap ]b :bprevious<CR>
 
+" [d 删除当前缓存区
+nnoremap [d :bdelete<CR>
+
+" ]d 删除指定缓存区
+nnoremap ]d :bdelete
+
 """"""""""""""""""
 "  command mode  "
 """"""""""""""""""
