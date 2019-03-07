@@ -1,9 +1,14 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  Keymaps                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" space代替<leader>
-let mapleader=" "
-nnoremap <SPACE> <NOP>
+" ,代替<leader>
+let mapleader=","
+
+" Q 执行存储在寄存器q中的宏
+nnoremap Q @q
+
+" Y 复制当前位置到行尾之间的内容
+nnoremap Y y$
 
 " F7 打开/关闭粘贴模式
 set pastetoggle=<F7>
@@ -66,11 +71,9 @@ nnoremap ]d :bdelete
 """"""""""""""""""
 "  command mode  "
 """"""""""""""""""
-" ;和:功能互换
+" ;进入命令行模式
 nnoremap ; :
 vnoremap ; :
-nnoremap : ;
-vnoremap : ;
 
 " <C-J> 下一条命令
 cnoremap <C-J> <down>
