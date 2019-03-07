@@ -36,6 +36,9 @@ if s:basic > 0
 
     " 自动补全
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+
+    " 中文帮助文档
+    Plug 'yianwillis/vimcdoc'
 endif
 
 if s:appearance > 0
