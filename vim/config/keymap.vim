@@ -19,6 +19,9 @@ nnoremap <silent> \\ :nohlsearch<CR>
 " 在全文范围内替换光标处的单词
 nnoremap <leader>s :%s/\<<C-R><C-W>\>//g<left><left>
 
+" M 移动到匹配的符号处
+nnoremap M %
+
 """""""""""""""
 "  save/exit  "
 """""""""""""""
@@ -65,8 +68,14 @@ nnoremap ]b :bprevious<CR>
 " [d 删除当前缓存区
 nnoremap [d :bdelete<CR>
 
-" ]d 删除指定缓存区
-nnoremap ]d :bdelete
+"""""""""""
+"  marks  "
+"""""""""""
+" <F4> 显示所有书签
+nnoremap <F4> :marks<CR>
+
+" ]d 删除当前缓存区所有书签
+nnoremap ]d :delmarks!<CR>
 
 """"""""""""""""""
 "  command mode  "

@@ -108,11 +108,6 @@ setup_vim_plug()
     success_or_error "Successfully installed essential packages for ycm." \
                      "Failed to install essential packages for ycm."
 
-    msg "Trying to install autopep8 for vim-autoformat."
-    sudo apt install -y python-autopep8
-    success_or_error "Successfully installed autopep8 for vim-autoformat." \
-                     "Failed to install autopep8 for vim-autoformat."
-
     msg "Trying to install flake8 for ale."
     sudo pip3 install -i https://pypi.douban.com/simple/ flake8
     success_or_error "Successfully installed flake8 for ale." \

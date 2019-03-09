@@ -81,9 +81,6 @@ if s:python > 0
 
     " 代码检错
     Plug 'w0rp/ale', { 'for': 'python' }
-
-    " 代码格式化
-    Plug 'Chiel92/vim-autoformat', { 'on': 'Autoformat' }
 endif
 
 if s:git > 0
