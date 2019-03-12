@@ -1,2 +1,2 @@
-" <leader>m 跳转到单词
-map <leader>m <Plug>(easymotion-bd-w)
+" s 跳转到单词
+map s <Plug>(easymotion-bd-w)

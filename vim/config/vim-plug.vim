@@ -17,7 +17,7 @@ if s:basic > 0
     Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
     " 搜索文件
-    Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': 'Leaderf' }
+    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
     " 异步执行
     Plug 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
@@ -81,6 +81,12 @@ if s:python > 0
 
     " 代码检错
     Plug 'w0rp/ale', { 'for': 'python' }
+
+    " 代码折叠
+    Plug 'tmhedberg/SimpylFold'
+
+    " 快速折叠
+    Plug 'Konfekt/FastFold'
 endif
 
 if s:git > 0

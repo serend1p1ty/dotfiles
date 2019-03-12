@@ -22,6 +22,12 @@ nnoremap <leader>s :%s/\<<C-R><C-W>\>//g<left><left>
 " M 移动到匹配的符号处
 nnoremap M %
 
+" gm 移动到行尾
+nnoremap gm $
+
+" gn 移动到行首
+nnoremap gn ^
+
 """""""""""""""
 "  save/exit  "
 """""""""""""""
