@@ -28,6 +28,19 @@ nnoremap gm $
 " gn 移动到行首
 nnoremap gn ^
 
+" * 搜索并使光标保持在原位置
+nnoremap * *N
+
+""""""""""""""""
+"  copy/paste  "
+""""""""""""""""
+" <C-C> 复制到系统粘贴板
+nnoremap <C-C> "+yy
+cnoremap <C-C> "+y
+
+" <C-V> 从系统粘贴板粘贴
+nnoremap <C-V> "+p
+
 """""""""""""""
 "  save/exit  "
 """""""""""""""
