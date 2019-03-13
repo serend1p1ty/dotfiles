@@ -44,33 +44,50 @@ nnoremap <C-V> "+p
 """""""""""""""
 "  save/exit  "
 """""""""""""""
+" <leader>q 退出文件
 nnoremap <leader>q :q<CR>
+
+" <leader>a 退出所有文件
 nnoremap <leader>a :qa<CR>
+
+" <leader>w 保存文件
 nnoremap <leader>w :w<CR>
+
+" <leader>x 保存并退出文件
 nnoremap <leader>x :x<CR>
 
 """""""""""""""""
 "  multiwindow  "
 """""""""""""""""
-" <C-H/J/K/L> 窗口之间的移动
+" <C-J> 移动到下边的窗口 
 nnoremap <C-J> <C-W><C-J>
+
+" <C-K> 移动到上边的窗口 
 nnoremap <C-K> <C-W><C-K>
+
+" <C-L> 移动到右边的窗口 
 nnoremap <C-L> <C-W><C-L>
+
+" <C-H> 移动到左边的窗口 
 nnoremap <C-H> <C-W><C-H>
 
 """"""""""""
 "  insert  "
 """"""""""""
-" zs 插入ipdb.set_trace()
-nnoremap zs Oimport ipdb; ipdb.set_trace(context=7)<ESC>
+" <SPACE>s 插入ipdb.set_trace()
+nnoremap <SPACE>s Oimport ipdb; ipdb.set_trace(context=7)<ESC>
 
-" zj/k 在当前行的下/上方插入空行
-nnoremap zj o<ESC>k
-nnoremap zk O<ESC>j
+" <SPACE>j 在当前行的下方插入空行
+nnoremap <SPACE>j o<ESC>k
 
-" zh/l 在光标的左/右边插入空格
-nnoremap zh i<SPACE><ESC>l
-nnoremap zl a<SPACE><ESC>h
+" <SPACE>k 在当前行的上方插入空行
+nnoremap <SPACE>k O<ESC>j
+
+" <SPACE>h 在光标的左边插入空格
+nnoremap <SPACE>h i<SPACE><ESC>l
+
+" <SPACE>l 在光标的右边插入空格
+nnoremap <SPACE>l a<SPACE><ESC>h
 
 """"""""""""
 "  buffer  "
