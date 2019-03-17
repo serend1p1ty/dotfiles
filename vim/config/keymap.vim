@@ -23,13 +23,16 @@ nnoremap <leader>s :%s/\<<C-R><C-W>\>//g<left><left>
 nnoremap M %
 
 " gm 移动到行尾
-nnoremap gm $
+noremap gm $
 
 " gn 移动到行首
-nnoremap gn ^
+noremap gn ^
 
 " * 搜索并使光标保持在原位置
 nnoremap * *N
+
+" 插入模式下另起一行
+inoremap <C-O> <ESC>o
 
 """"""""""""""""
 "  copy/paste  "

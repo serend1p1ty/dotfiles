@@ -39,6 +39,9 @@ if s:basic > 0
 
     " 中文帮助文档
     Plug 'yianwillis/vimcdoc'
+
+    " vim开始界面
+    Plug 'mhinz/vim-startify'
 endif
 
 if s:appearance > 0
@@ -57,7 +60,7 @@ endif
 
 if s:text > 0
     " f命令查找多行
-    Plug 'rhysd/clever-f.vim'
+    Plug 'rhysd/clever-f.vim', { 'on': ['<Plug>(clever-f-f)', '<Plug>(clever-f-F)'] }
 
     " 代码片段补全
     Plug 'SirVer/ultisnips' | Plug 'ppnman/vim-snippets'
@@ -71,6 +74,9 @@ if s:text > 0
     " 重复一个插件的操作
     Plug 'tpope/vim-repeat'
 
+    " 文本排列
+    Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
+
     " 去除行尾空格
     " Plug 'ntpeters/vim-better-whitespace'
 endif
@@ -83,10 +89,10 @@ if s:python > 0
     Plug 'w0rp/ale', { 'for': 'python' }
 
     " 代码折叠
-    Plug 'tmhedberg/SimpylFold'
+    Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 
     " 快速折叠
-    Plug 'Konfekt/FastFold'
+    Plug 'Konfekt/FastFold', { 'for': 'python' }
 endif
 
 if s:git > 0
