@@ -31,9 +31,6 @@ if s:basic > 0
     " 光标快速移动
     Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion-bd-w)' }
 
-    " tab补全
-    " Plug 'ervandew/supertab'
-
     " 自动补全
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
@@ -42,6 +39,12 @@ if s:basic > 0
 
     " vim开始界面
     Plug 'mhinz/vim-startify'
+
+    " 快捷键提示
+    Plug 'liuchengxu/vim-which-key'
+
+    " tab补全
+    " Plug 'ervandew/supertab'
 endif
 
 if s:appearance > 0

@@ -39,7 +39,7 @@ inoremap <C-O> <ESC>o
 """"""""""""""""
 " <C-C> 复制到系统粘贴板
 nnoremap <C-C> "+yy
-cnoremap <C-C> "+y
+vnoremap <C-C> "+y
 
 " <C-V> 从系统粘贴板粘贴
 nnoremap <C-V> "+p

@@ -17,4 +17,4 @@ let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 
 " 跳转到定义，如果定义不可访问，就跳转到声明
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>j :YcmCompleter GoTo<CR>
