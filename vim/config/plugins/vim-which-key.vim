@@ -59,7 +59,7 @@ let g:rbracket_map = {
 \ }
 
 call which_key#register(',', "g:leader_map")
-call which_key#register('g', "g:g_map")
+" call which_key#register('g', "g:g_map")
 call which_key#register('<space>', "g:space_map")
 call which_key#register('[', "g:lbracket_map")
 call which_key#register(']', "g:rbracket_map")
