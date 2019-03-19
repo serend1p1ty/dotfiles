@@ -138,6 +138,12 @@ cnoremap <C-J> <down>
 " <C-K> 上一条命令
 cnoremap <C-K> <up>
 
+" <C-H> 光标向左移动
+cnoremap <C-H> <left>
+
+" <C-L> 光标向右移动
+cnoremap <C-L> <right>
+
 """"""""""""""
 "  run code  "
 """"""""""""""
