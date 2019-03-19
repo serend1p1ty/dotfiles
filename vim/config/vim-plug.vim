@@ -85,9 +85,6 @@ if s:text > 0
 endif
 
 if s:python > 0
-    " 代码补全
-    " Plug 'davidhalter/jedi-vim'
-
     " 代码检错
     Plug 'w0rp/ale', { 'for': 'python' }
 
@@ -96,6 +93,9 @@ if s:python > 0
 
     " 快速折叠
     Plug 'Konfekt/FastFold', { 'for': 'python' }
+ 
+    " 代码补全
+    " Plug 'davidhalter/jedi-vim'
 endif
 
 if s:git > 0

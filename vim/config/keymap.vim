@@ -31,9 +31,6 @@ noremap gn ^
 " * 搜索并使光标保持在原位置
 nnoremap * *N
 
-" 插入模式下另起一行
-inoremap <C-O> <ESC>o
-
 """"""""""""""""
 "  copy/paste  "
 """"""""""""""""
@@ -59,9 +56,24 @@ nnoremap <leader>w :w<CR>
 " <leader>x 保存并退出文件
 nnoremap <leader>x :x<CR>
 
-"""""""""""""""""
-"  multiwindow  "
-"""""""""""""""""
+""""""""""
+"  move  "
+""""""""""
+" <C-H> 插入模式下光标向左移动
+inoremap <C-H> <left>
+
+" <C-J> 插入模式下光标向下移动
+inoremap <C-J> <down>
+
+" <C-K> 插入模式下光标向上移动
+inoremap <C-K> <up>
+
+" <C-L> 插入模式下光标向右移动
+inoremap <C-L> <right>
+
+" <C-H> 移动到左边的窗口 
+nnoremap <C-H> <C-W><C-H>
+
 " <C-J> 移动到下边的窗口 
 nnoremap <C-J> <C-W><C-J>
 
@@ -70,9 +82,6 @@ nnoremap <C-K> <C-W><C-K>
 
 " <C-L> 移动到右边的窗口 
 nnoremap <C-L> <C-W><C-L>
-
-" <C-H> 移动到左边的窗口 
-nnoremap <C-H> <C-W><C-H>
 
 """"""""""""
 "  insert  "
