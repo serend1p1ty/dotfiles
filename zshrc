@@ -1,3 +1,5 @@
+export TERM="xterm-256color"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -73,7 +75,9 @@ alias vi='vim'
 alias cl='clear'
 alias to='tmux'
 alias tc='tmux kill-server'
+alias gl='git log'
 alias ga='git add .'
+alias gs='git status'
 alias gc='git commit -m'
 alias gd='git difftool'
 alias gp='git push origin master'
