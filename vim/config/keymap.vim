@@ -20,7 +20,7 @@ nnoremap <silent> \\ :nohlsearch<CR>
 nnoremap <leader>s :%s/\<<C-R><C-W>\>//g<left><left>
 
 " M 移动到匹配的符号处
-nnoremap M %
+noremap M %
 
 " gm 移动到行尾
 noremap gm $
@@ -128,7 +128,7 @@ nnoremap ]d :delmarks!<CR>
 """"""""""""""""""
 "  command mode  "
 """"""""""""""""""
-" ;进入命令行模式
+" ; 进入命令行模式
 nnoremap ; :
 vnoremap ; :
 
@@ -143,6 +143,13 @@ cnoremap <C-H> <left>
 
 " <C-L> 光标向右移动
 cnoremap <C-L> <right>
+
+""""""""""""""""
+"  very magic  "
+""""""""""""""""
+cnoremap %s %s/\v//g<left><left><left>
+vnoremap :  :s/\v//g<left><left><left>
+nnoremap :  :g/\v/<left>
 
 """"""""""""""
 "  run code  "

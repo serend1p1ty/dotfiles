@@ -1,5 +1,3 @@
-set timeoutlen=500
-
 let g:leader_map = {
       \ 'name' : '+Leader-Key',
       \ 'w'    : '保存文件',
