@@ -1,2 +1,2 @@
-" <F6> 打开/关闭vim-signify
-nnoremap <F6> :SignifyToggle<CR>
+" <F7> 打开/关闭vim-signify
+nnoremap <F7> :SignifyToggle<CR>

@@ -160,3 +160,6 @@ fu! RunCode()
     exec "w"
     exec "AsyncRun! tmux send-keys -t 0:0.1 C-P C-J"
 endf
+
+" <F6> 在tmux的另一个窗格中执行<C-C>
+nnoremap <silent> <F6> :AsyncRun! tmux send-keys -t 0:0.1 C-C<CR>
