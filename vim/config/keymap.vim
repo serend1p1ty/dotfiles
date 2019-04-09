@@ -104,9 +104,6 @@ nnoremap <SPACE>l a<SPACE><ESC>h
 """"""""""""
 "  buffer  "
 """"""""""""
-" F3 显示缓冲区
-nnoremap <F3> :buffers<CR>
-
 " [b 下一个缓冲区
 nnoremap [b :bnext<CR>
 
@@ -119,11 +116,11 @@ nnoremap [d :bdelete<CR>
 """""""""""
 "  marks  "
 """""""""""
-" <F4> 显示所有书签
-nnoremap <F4> :marks<CR>
+" <F3> 显示所有书签
+nnoremap <F3> :marks<CR>
 
 " ]d 删除当前缓存区所有书签
-nnoremap ]d :delmarks!<CR>
+nnoremap <silent> ]d :delmarks!<CR>
 
 """"""""""""""""""
 "  command mode  "
@@ -153,12 +150,26 @@ nnoremap :  :g/\v/<left>
 """"""""""""""
 "  run code  "
 """"""""""""""
-" <F5> 在tmux的另一个窗格中执行上一条命令
-nnoremap <F5> :call RunCode()<CR>
-fu! RunCode()
+" <F6> 编译
+nnoremap <silent> <F6> :call Compile()<CR>
+fu! Compile()
     exec "w"
-    exec "AsyncRun! tmux send-keys -t 0:0.1 C-P C-J"
+    if &filetype == 'cpp'
+        let cmd = 'g++ -Wall -o %< -std=c++11 %'
+    elseif &filetype == 'c'
+        let cmd = 'gcc -Wall -o %< %'
+    else
+        return
+    endif
+    exec "AsyncRun! " . cmd
 endf
 
-" <F6> 在tmux的另一个窗格中执行<C-C>
-nnoremap <silent> <F6> :AsyncRun! tmux send-keys -t 0:0.1 C-C<CR>
+" <F5> 运行
+nnoremap <silent> <F5> :call Run()<CR>
+fu! Run()
+    if exists('$TMUX')
+        exec "AsyncRun! tmux send-keys -t 0:0.1 C-P C-M"
+    else
+        exec "AsyncRun! $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+    endif
+endf

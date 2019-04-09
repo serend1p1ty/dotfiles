@@ -76,9 +76,6 @@ if s:text > 0
 
     " 文本排列
     Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
-
-    " 去除行尾空格
-    " Plug 'ntpeters/vim-better-whitespace'
 endif
 
 if s:python > 0
@@ -90,9 +87,6 @@ if s:python > 0
 
     " 快速折叠
     Plug 'Konfekt/FastFold', { 'for': 'python' }
- 
-    " 代码补全
-    " Plug 'davidhalter/jedi-vim'
 endif
 
 if s:git > 0
