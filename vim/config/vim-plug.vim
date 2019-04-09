@@ -32,16 +32,13 @@ if s:basic > 0
     Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion-bd-w)' }
 
     " 自动补全
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 
     " 中文帮助文档
     Plug 'yianwillis/vimcdoc'
 
     " vim开始界面
     Plug 'mhinz/vim-startify'
-
-    " 快捷键提示
-    Plug 'liuchengxu/vim-which-key'
 
     " tab补全
     " Plug 'ervandew/supertab'
@@ -75,7 +72,7 @@ if s:text > 0
     Plug 'tpope/vim-surround'
 
     " 重复一个插件的操作
-    Plug 'tpope/vim-repeat'
+    " Plug 'tpope/vim-repeat'
 
     " 文本排列
     Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }

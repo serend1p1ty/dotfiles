@@ -129,8 +129,7 @@ nnoremap ]d :delmarks!<CR>
 "  command mode  "
 """"""""""""""""""
 " ; 进入命令行模式
-nnoremap ; :
-vnoremap ; :
+noremap ; :
 
 " <C-J> 下一条命令
 cnoremap <C-J> <down>

@@ -150,6 +150,7 @@ setup_vim()
     echo "source ~/.vim/config/init.vim" >> ~/.vimrc
     mkdir -p "$HOME"/.vim
     cp -r "$app_name"/vim/* "$HOME"/.vim
+    cp "$app_name"/ycm_extra_conf.py "$HOME"/.ycm_extra_conf.py
 
     setup_vim_plug
 
