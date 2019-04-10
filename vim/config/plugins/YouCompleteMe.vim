@@ -5,7 +5,14 @@ let g:ycm_semantic_triggers =  {
                         \ }
 
 " 指定python解释器的路径
-let g:ycm_python_binary_path = '/usr/bin/python3'
+silent fu! LINUX()
+    return has('unix') && !has('macunix') && !has('win32unix')
+endf
+if LINUX()
+    let g:ycm_python_binary_path = '/usr/bin/python3'
+else
+    let g:ycm_python_binary_path = 'C:\\Users\\GooCoder\\AppData\\Local\\Programs\\Python\\Python37\\python.exe'
+endif
 
 " 让ycm从注释和字符串中收集标识符信息
 let g:ycm_collect_identifiers_from_comments_and_strings = 1

@@ -14,6 +14,23 @@ set completeopt=longest,menu    " 关闭函数预览窗口
 " 打开文件时自动定位到最后一次编辑的位置
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
 
+""""""""""
+"  gvim  "
+""""""""""
+if has('gui_running')
+    set guioptions-=T
+    set guioptions-=m
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=b
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10
+endif
+
+""""""""""""""""""
+"  input method  "
+""""""""""""""""""
+set iminsert=2                  " 插入模式下启用输入法
+
 """"""""""""""""
 "  true color  "
 """"""""""""""""
@@ -48,6 +65,8 @@ set incsearch                   " 搜索时显示匹配的过程
 set encoding=utf-8              " 内部工作编码
 set fileencoding=utf-8          " 保存文件默认编码
 set fileencodings=utf-8,gbk     " 打开文件时按照下面的顺序尝试识别编码
+source $VIMRUNTIME/delmenu.vim  " 解决菜单乱码
+source $VIMRUNTIME/menu.vim
 
 """"""""""
 "  fold  "
@@ -58,6 +77,6 @@ set foldlevel=99                " 默认打开所有折叠
 """"""""""""""""
 "  file cache  "
 """"""""""""""""
-set noswapfile          	" 禁止生成临时文件
-set autoread            	" 文件在vim之外修改过，自动重新读入
-set autowrite           	" 自动保存
+set noswapfile                  " 禁止生成临时文件
+set autoread                    " 文件在vim之外修改过，自动重新读入
+set autowrite                   " 自动保存

@@ -7,7 +7,17 @@ let s:text = 1
 let s:python = 1
 let s:git = 1
 
-call plug#begin('~/.vim/plugged')
+silent fu! LINUX()
+    return has('unix') && !has('macunix') && !has('win32unix')
+endf
+
+if LINUX()
+    let plugin_path = '~/.vim/plugged'
+else
+    let plugin_path = '~/vimfiles/plugged'
+endif
+
+call plug#begin(plugin_path)
 
 if s:basic > 0
     " 目录树
@@ -17,7 +27,11 @@ if s:basic > 0
     Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
     " 搜索文件
-    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+    if LINUX()
+        Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+    else
+        Plug 'Yggdroot/LeaderF', { 'do': './install.bat' }
+    endif
 
     " 异步执行
     Plug 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
@@ -32,7 +46,11 @@ if s:basic > 0
     Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion-bd-w)' }
 
     " 自动补全
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+    if LINUX()
+        Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+    else
+        Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --clang-completer' }
+    endif
 
     " 中文帮助文档
     Plug 'yianwillis/vimcdoc'

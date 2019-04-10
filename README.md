@@ -2,7 +2,11 @@
 
 ## 1. :pencil:介绍
 
-这个仓库帮助你在`Linux`环境下迅速搭建起一套开发环境。环境包括：`zsh`，`vim`，`tmux`。
+这个仓库帮助你在`Linux`环境下迅速搭建起一套开发环境。
+
+环境包括：`zsh`，`vim`，`tmux`。
+
+`vim`的配置文件同时兼容`Windows`，但是不提供自动安装脚本。
 
 ## 2. :hammer_and_wrench:安装
 

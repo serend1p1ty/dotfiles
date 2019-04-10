@@ -155,9 +155,9 @@ nnoremap <silent> <F6> :call Compile()<CR>
 fu! Compile()
     exec "w"
     if &filetype == 'cpp'
-        let cmd = 'g++ -Wall -o %< -std=c++11 %'
+        let cmd = 'g++ -g -Wall -o %< -std=c++11 %'
     elseif &filetype == 'c'
-        let cmd = 'gcc -Wall -o %< %'
+        let cmd = 'gcc -g -Wall -o %< %'
     else
         return
     endif
@@ -172,4 +172,11 @@ fu! Run()
     else
         exec "AsyncRun! $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
     endif
+endf
+
+" <F7> 调试
+packadd termdebug
+nnoremap <silent> <F7> :call Debug()<CR>
+fu! Debug()
+    exec "Termdebug %<"
 endf
