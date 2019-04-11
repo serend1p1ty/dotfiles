@@ -17,11 +17,20 @@ endif
 " 让ycm从注释和字符串中收集标识符信息
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 
+" 语义补全最大候选条目
+let g:ycm_max_num_candidates = 10
+
 " c族语言补全设置
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 " 禁止每次询问是否加载ycm_extra_conf
 let g:ycm_confirm_extra_conf = 0
+
+" 错误提示标志
+let g:ycm_error_symbol = '•'
+
+" 警告提示标志
+let g:ycm_warning_symbol = '•'
 
 " 调试YCM
 " let g:ycm_log_level = 'debug'

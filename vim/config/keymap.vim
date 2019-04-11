@@ -2,7 +2,7 @@
 "                                  Keymaps                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ,代替<leader>
-let mapleader=","
+let mapleader = ","
 
 " Q 执行存储在寄存器q中的宏
 nnoremap Q @q
@@ -10,14 +10,17 @@ nnoremap Q @q
 " Y 复制当前位置到行尾之间的内容
 nnoremap Y y$
 
-" F7 打开/关闭粘贴模式
-set pastetoggle=<F7>
+" F8 打开/关闭粘贴模式
+set pastetoggle=<F8>
 
 " \\ 关闭高亮显示搜索项
 nnoremap <silent> \\ :nohlsearch<CR>
 
 " 在全文范围内替换光标处的单词
 nnoremap <leader>s :%s/\<<C-R><C-W>\>//g<left><left>
+
+" <C-A> 全选
+nnoremap <C-A> ggVG
 
 " M 移动到匹配的符号处
 noremap M %
@@ -38,8 +41,9 @@ nnoremap * *N
 nnoremap <C-C> "+yy
 vnoremap <C-C> "+y
 
-" <C-V> 从系统粘贴板粘贴
-nnoremap <C-V> "+p
+" <C-P> 从系统粘贴板粘贴
+nnoremap <C-P> o<ESC>"+p
+inoremap <C-P> <C-R>*
 
 """""""""""""""
 "  save/exit  "
@@ -63,10 +67,10 @@ nnoremap <leader>x :x<CR>
 inoremap <C-H> <left>
 
 " <C-J> 插入模式下光标向下移动
-inoremap <C-J> <down>
+" inoremap <C-J> <down>
 
 " <C-K> 插入模式下光标向上移动
-inoremap <C-K> <up>
+" inoremap <C-K> <up>
 
 " <C-L> 插入模式下光标向右移动
 inoremap <C-L> <right>
@@ -117,10 +121,10 @@ nnoremap [d :bdelete<CR>
 "  marks  "
 """""""""""
 " <F3> 显示所有书签
-nnoremap <F3> :marks<CR>
+" nnoremap <F3> :marks<CR>
 
 " ]d 删除当前缓存区所有书签
-nnoremap <silent> ]d :delmarks!<CR>
+" nnoremap <silent> ]d :delmarks!<CR>
 
 """"""""""""""""""
 "  command mode  "
@@ -145,11 +149,18 @@ cnoremap <C-L> <right>
 """"""""""""""""
 cnoremap %s %s/\v//g<left><left><left>
 vnoremap :  :s/\v//g<left><left><left>
-nnoremap :  :g/\v/<left>
+nnoremap :  :s/\v//g<left><left><left>
 
 """"""""""""""
 "  run code  "
 """"""""""""""
+" <F7> 调试
+packadd termdebug
+nnoremap <silent> <F7> :call Debug()<CR>
+fu! Debug()
+    exec "Termdebug %<"
+endf
+
 " <F6> 编译
 nnoremap <silent> <F6> :call Compile()<CR>
 fu! Compile()
@@ -174,9 +185,12 @@ fu! Run()
     endif
 endf
 
-" <F7> 调试
-packadd termdebug
-nnoremap <silent> <F7> :call Debug()<CR>
-fu! Debug()
-    exec "Termdebug %<"
+" <F3> 停止
+nnoremap <silent> <F3> :call Stop()<CR>
+fu! Stop()
+    if exists('$TMUX')
+        exec "AsyncRun! tmux send-keys -t 0:0.1 C-C"
+    else
+        exec "AsyncStop!"
+    endif
 endf
