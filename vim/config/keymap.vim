@@ -44,6 +44,7 @@ vnoremap <C-C> "+y
 " <C-P> 从系统粘贴板粘贴
 nnoremap <C-P> o<ESC>"+p
 inoremap <C-P> <C-R>*
+cnoremap <C-P> <C-R>*
 
 """""""""""""""
 "  save/exit  "
@@ -109,19 +110,19 @@ nnoremap <SPACE>l a<SPACE><ESC>h
 "  buffer  "
 """"""""""""
 " [b 下一个缓冲区
-nnoremap [b :bnext<CR>
+nnoremap <silent> [b :bnext<CR>
 
 " ]b 上一个缓冲区
-nnoremap ]b :bprevious<CR>
+nnoremap <silent> ]b :bprevious<CR>
 
 " [d 删除当前缓存区
-nnoremap [d :bdelete<CR>
+nnoremap <silent> [d :bdelete<CR>
 
 """""""""""
 "  marks  "
 """""""""""
 " <F3> 显示所有书签
-" nnoremap <F3> :marks<CR>
+" nnoremap <silent> <F3> :marks<CR>
 
 " ]d 删除当前缓存区所有书签
 " nnoremap <silent> ]d :delmarks!<CR>

@@ -6,6 +6,7 @@ let s:appearance = 1
 let s:text = 1
 let s:python = 1
 let s:git = 1
+let s:markdown = 1
 
 silent fu! LINUX()
     return has('unix') && !has('macunix') && !has('win32unix')
@@ -90,7 +91,7 @@ if s:text > 0
     Plug 'tpope/vim-surround'
 
     " 重复一个插件的操作
-    " Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-repeat'
 
     " 文本排列
     Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
@@ -113,6 +114,10 @@ if s:git > 0
 
     " Git命令包装器
     Plug 'tpope/vim-fugitive'
+endif
+
+if s:markdown > 0
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' }
 endif
 
 call plug#end()
