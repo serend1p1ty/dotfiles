@@ -10,8 +10,8 @@ nnoremap Q @q
 " Y 复制当前位置到行尾之间的内容
 nnoremap Y y$
 
-" F8 打开/关闭粘贴模式
-set pastetoggle=<F8>
+" <F12> 打开/关闭粘贴模式
+set pastetoggle=<F12>
 
 " \\ 关闭高亮显示搜索项
 nnoremap <silent> \\ :nohlsearch<CR>
@@ -78,15 +78,19 @@ inoremap <C-L> <right>
 
 " <C-H> 移动到左边的窗口 
 nnoremap <C-H> <C-W><C-H>
+tnoremap <C-H> <C-W><C-H>
 
 " <C-J> 移动到下边的窗口 
 nnoremap <C-J> <C-W><C-J>
+tnoremap <C-J> <C-W><C-J>
 
 " <C-K> 移动到上边的窗口 
 nnoremap <C-K> <C-W><C-K>
+tnoremap <C-K> <C-W><C-K>
 
 " <C-L> 移动到右边的窗口 
 nnoremap <C-L> <C-W><C-L>
+tnoremap <C-L> <C-W><C-L>
 
 """"""""""""
 "  insert  "
@@ -149,8 +153,7 @@ cnoremap <C-L> <right>
 "  very magic  "
 """"""""""""""""
 cnoremap %s %s/\v//g<left><left><left>
-vnoremap :  :s/\v//g<left><left><left>
-nnoremap :  :s/\v//g<left><left><left>
+noremap :  :s/\v//g<left><left><left>
 
 """"""""""""""
 "  run code  "
@@ -181,6 +184,9 @@ nnoremap <silent> <F5> :call Run()<CR>
 fu! Run()
     if exists('$TMUX')
         exec "AsyncRun! tmux send-keys -t 0:0.1 C-P C-M"
+    elseif &filetype == 'python'
+        exec "w"
+        exec "AsyncRun! python3 %"
     else
         exec "AsyncRun! $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
     endif
