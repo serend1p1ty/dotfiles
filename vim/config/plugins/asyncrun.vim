@@ -1,5 +1,5 @@
 " <F4> 开启/关闭quickfix窗口
-noremap <F4> :call asyncrun#quickfix_toggle(8)<cr>
+noremap <silent> <F4> :call asyncrun#quickfix_toggle(8)<cr>
 
 " 实时输出python程序运行结果
 let $PYTHONUNBUFFERED=1

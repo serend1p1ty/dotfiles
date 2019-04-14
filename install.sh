@@ -242,9 +242,10 @@ install_tmux_from_source()
     sudo apt install -y automake build-essential pkg-config \
     libevent-dev libncurses5-dev
 
-    # step2: download source code.
+    # step2: download tmux2.8 source code.
     git clone https://github.com/tmux/tmux.git
     cd tmux
+    git checkout 01918cb
 
     # step3: compile and install.
     sh autogen.sh
