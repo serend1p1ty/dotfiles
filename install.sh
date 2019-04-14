@@ -268,6 +268,9 @@ enable_italic()
 
     # install tmux-256color
     tic -x tmux-256color.terminfo
+
+    # remove
+    rm tmux-256color.terminfo
 }
 
 setup_tmux()
