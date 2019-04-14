@@ -176,7 +176,7 @@ fu! Compile()
     else
         return
     endif
-    exec "AsyncRun! " . cmd
+    exec "AsyncRun " . cmd
 endf
 
 " <F5> 运行
@@ -186,9 +186,9 @@ fu! Run()
         exec "AsyncRun! tmux send-keys -t 0:0.1 C-P C-M"
     elseif &filetype == 'python'
         exec "w"
-        exec "AsyncRun! python3 %"
+        exec "AsyncRun -raw -cwd=$(VIM_FILEDIR) python3 $(VIM_FILEPATH)"
     else
-        exec "AsyncRun! $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+        exec "AsyncRun -raw -cwd=$(VIM_FILEDIR) $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
     endif
 endf
 
@@ -196,8 +196,8 @@ endf
 nnoremap <silent> <F3> :call Stop()<CR>
 fu! Stop()
     if exists('$TMUX')
-        exec "AsyncRun! tmux send-keys -t 0:0.1 C-C"
+        exec "AsyncRun tmux send-keys -t 0:0.1 C-C"
     else
-        exec "AsyncStop!"
+        exec "AsyncStop"
     endif
 endf
