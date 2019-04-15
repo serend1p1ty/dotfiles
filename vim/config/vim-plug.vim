@@ -65,7 +65,8 @@ endif
 
 if s:appearance > 0
     " 配色方案
-    Plug 'morhetz/gruvbox'
+    " Plug 'morhetz/gruvbox'
+    Plug 'joshdick/onedark.vim'
 
     " 彩虹括号
     Plug 'luochen1990/rainbow'

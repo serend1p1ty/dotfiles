@@ -19,8 +19,8 @@ nnoremap <silent> \\ :nohlsearch<CR>
 " 在全文范围内替换光标处的单词
 nnoremap <leader>s :%s/\<<C-R><C-W>\>//g<left><left>
 
-" <C-A> 全选
-nnoremap <C-A> ggVG
+" <C-B> 全选
+nnoremap <C-B> ggVG
 
 " M 移动到匹配的符号处
 noremap M %
