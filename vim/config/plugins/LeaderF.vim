@@ -1,5 +1,8 @@
-" <leader>fi 搜索当前目录下的文件
-let g:Lf_ShortcutF = '<leader>fi'
+" <C-P> 搜索当前目录下的文件
+let g:Lf_ShortcutF = '<C-P>'
+
+" <leader>fi 运行Leaderf file命令
+nnoremap <leader>fi :Leaderf file 
 
 " <leader>fm 搜索最近使用过的文件
 nnoremap <leader>fm :Leaderf mru<CR>
@@ -11,7 +14,7 @@ nnoremap <leader>fc :Leaderf cmdHistory<CR>
 nnoremap <leader>ff :Leaderf function<CR>
 
 " <leader>fw 搜索光标处的单词
-noremap <leader>fw :<C-U><C-R>=printf("Leaderf! rg -e %s", expand("<cword>"))<CR>
+nnoremap <leader>fw :<C-U><C-R>=printf("Leaderf! rg -e %s", expand("<cword>"))<CR>
 
 " <leader>fr 重新打开上一次的搜索结果
-noremap <leader>fr :<C-U>Leaderf! rg --recall<CR>
+nnoremap <leader>fr :<C-U>Leaderf! rg --recall<CR>

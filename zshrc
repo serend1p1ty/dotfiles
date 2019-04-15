@@ -1,10 +1,16 @@
+# 指定终端类型
 export TERM="xterm-256color"
 
-# Path to your oh-my-zsh installation.
+# 使终端接受<C-S>和<C-Q>
+stty -ixon
+
+# 指定oh-my-zsh路径
 export ZSH="$HOME/.oh-my-zsh"
 
+# 设置zsh主题
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
+# 设置zsh插件
 plugins=(
     git
     zsh-autosuggestions
@@ -12,24 +18,34 @@ plugins=(
     zsh-syntax-highlighting
 )
 
+# 加载oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# powerlevel9k配置
+##################
+#  powerlevel9k  #
+##################
 # 双行提示
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+
 # 去掉用户名和主机名提示
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+
 # 修改提示符样式
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="$ "
+
 # 禁用右提示符
 POWERLEVEL9K_DISABLE_RPROMPT=true
 
-# autosuggestion配置
+####################
+#  autosuggestion  #
+####################
 # 改变提示字符的颜色
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=24"
 
-# fuzzy finder配置
+##################
+#  fuzzy finder  #
+##################
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_DEFAULT_OPTS="--height 50% --layout=reverse"
@@ -70,7 +86,6 @@ fe()
 }
 
 # 别名
-alias l='ls'
 alias vi='vim'
 alias cl='clear'
 alias to='tmux'

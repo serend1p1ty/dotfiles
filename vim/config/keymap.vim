@@ -1,8 +1,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  Keymaps                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ,代替<leader>
-let mapleader = ","
+" 空格代替<leader>
+let mapleader = " "
 
 " Q 执行存储在寄存器q中的宏
 nnoremap Q @q
@@ -17,10 +17,10 @@ set pastetoggle=<F12>
 nnoremap <silent> \\ :nohlsearch<CR>
 
 " 在全文范围内替换光标处的单词
-nnoremap <leader>s :%s/\<<C-R><C-W>\>//g<left><left>
+nnoremap <C-S> :%s/\<<C-R><C-W>\>//g<left><left>
 
-" <C-B> 全选
-nnoremap <C-B> ggVG
+" <C-W> 全选
+nnoremap <C-W> ggVG
 
 " M 移动到匹配的符号处
 noremap M %
@@ -28,11 +28,15 @@ noremap M %
 " gm 移动到行尾
 noremap gm $
 
-" gn 移动到行首
-noremap gn ^
-
 " * 搜索并使光标保持在原位置
 nnoremap * *N
+
+" 可视模式下粘贴不覆盖寄存器
+vnoremap p pgvy
+
+" 缩进时保持可视状态
+vnoremap < <gv
+vnoremap > >gv
 
 """"""""""""""""
 "  copy/paste  "
@@ -41,10 +45,10 @@ nnoremap * *N
 nnoremap <C-C> "+yy
 vnoremap <C-C> "+y
 
-" <C-P> 从系统粘贴板粘贴
-nnoremap <C-P> o<ESC>"+p
-inoremap <C-P> <C-R>*
-cnoremap <C-P> <C-R>*
+" <C-V> 从系统粘贴板粘贴
+nnoremap <C-V> o<ESC>"+p
+inoremap <C-V> <C-R>+
+cnoremap <C-V> <C-R>+
 
 """""""""""""""
 "  save/exit  "
@@ -95,20 +99,20 @@ tnoremap <C-L> <C-W><C-L>
 """"""""""""
 "  insert  "
 """"""""""""
-" <SPACE>s 插入ipdb.set_trace()
-nnoremap <SPACE>s Oimport ipdb; ipdb.set_trace(context=7)<ESC>
+" <leader>d 插入ipdb.set_trace()
+nnoremap <leader>d Oimport ipdb; ipdb.set_trace(context=7)<ESC>
 
-" <SPACE>j 在当前行的下方插入空行
-nnoremap <SPACE>j o<ESC>k
+" <leader>j 在当前行的下方插入空行
+nnoremap <leader>j o<ESC>k
 
-" <SPACE>k 在当前行的上方插入空行
-nnoremap <SPACE>k O<ESC>j
+" <leader>k 在当前行的上方插入空行
+nnoremap <leader>k O<ESC>j
 
-" <SPACE>h 在光标的左边插入空格
-nnoremap <SPACE>h i<SPACE><ESC>l
+" <leader>h 在光标的左边插入空格
+nnoremap <leader>h i<SPACE><ESC>l
 
-" <SPACE>l 在光标的右边插入空格
-nnoremap <SPACE>l a<SPACE><ESC>h
+" <leader>l 在光标的右边插入空格
+nnoremap <leader>l a<SPACE><ESC>h
 
 """"""""""""
 "  buffer  "
@@ -134,8 +138,9 @@ nnoremap <silent> [d :bdelete<CR>
 """"""""""""""""""
 "  command mode  "
 """"""""""""""""""
-" ; 进入命令行模式
+" 交换;和:
 noremap ; :
+noremap : ;
 
 " <C-J> 下一条命令
 cnoremap <C-J> <down>
@@ -152,19 +157,12 @@ cnoremap <C-L> <right>
 """"""""""""""""
 "  very magic  "
 """"""""""""""""
-cnoremap %s %s/\v//g<left><left><left>
-noremap :  :s/\v//g<left><left><left>
+cnoremap %s       %s/\v//g<left><left><left>
+noremap <leader>s :s/\v//g<left><left><left>
 
 """"""""""""""
 "  run code  "
 """"""""""""""
-" <F7> 调试
-packadd termdebug
-nnoremap <silent> <F7> :call Debug()<CR>
-fu! Debug()
-    exec "Termdebug %<"
-endf
-
 " <F6> 编译
 nnoremap <silent> <F6> :call Compile()<CR>
 fu! Compile()
@@ -177,6 +175,16 @@ fu! Compile()
         return
     endif
     exec "AsyncRun " . cmd
+endf
+
+" <C-F6> 停止
+nnoremap <silent> <C-F6> :call Stop()<CR>
+fu! Stop()
+    if exists('$TMUX')
+        exec "AsyncRun tmux send-keys -t 0:0.1 C-C"
+    else
+        exec "AsyncStop"
+    endif
 endf
 
 " <F5> 运行
@@ -192,12 +200,9 @@ fu! Run()
     endif
 endf
 
-" <F3> 停止
-nnoremap <silent> <F3> :call Stop()<CR>
-fu! Stop()
-    if exists('$TMUX')
-        exec "AsyncRun tmux send-keys -t 0:0.1 C-C"
-    else
-        exec "AsyncStop"
-    endif
+" <C-F5> 调试
+packadd termdebug
+nnoremap <silent> <C-F5> :call Debug()<CR>
+fu! Debug()
+    exec "Termdebug %<"
 endf

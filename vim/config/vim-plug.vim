@@ -80,7 +80,7 @@ endif
 
 if s:text > 0
     " f命令查找多行
-    Plug 'rhysd/clever-f.vim', { 'on': ['<Plug>(clever-f-f)', '<Plug>(clever-f-F)'] }
+    " Plug 'rhysd/clever-f.vim', { 'on': ['<Plug>(clever-f-f)', '<Plug>(clever-f-F)'] }
 
     " 代码片段补全
     Plug 'SirVer/ultisnips' | Plug 'ppnman/vim-snippets'
@@ -118,7 +118,7 @@ if s:git > 0
 endif
 
 if s:markdown > 0
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' }
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
 endif
 
 call plug#end()
