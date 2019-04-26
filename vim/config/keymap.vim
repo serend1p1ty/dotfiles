@@ -177,16 +177,6 @@ fu! Compile()
     exec "AsyncRun " . cmd
 endf
 
-" <C-F6> 停止
-nnoremap <silent> <C-F6> :call Stop()<CR>
-fu! Stop()
-    if exists('$TMUX')
-        exec "AsyncRun tmux send-keys -t 0:0.1 C-C"
-    else
-        exec "AsyncStop"
-    endif
-endf
-
 " <F5> 运行
 nnoremap <silent> <F5> :call Run()<CR>
 fu! Run()
@@ -205,4 +195,14 @@ packadd termdebug
 nnoremap <silent> <C-F5> :call Debug()<CR>
 fu! Debug()
     exec "Termdebug %<"
+endf
+
+" <F3> 停止
+nnoremap <silent> <F3> :call Stop()<CR>
+fu! Stop()
+    if exists('$TMUX')
+        exec "AsyncRun tmux send-keys -t 0:0.1 C-C"
+    else
+        exec "AsyncStop"
+    endif
 endf
