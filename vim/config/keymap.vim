@@ -13,8 +13,8 @@ nnoremap Y y$
 " <F12> 打开/关闭粘贴模式
 set pastetoggle=<F12>
 
-" \\ 关闭高亮显示搜索项
-nnoremap <silent> \\ :nohlsearch<CR>
+" <backspace> 关闭高亮显示搜索项
+nnoremap <silent> <backspace> :nohlsearch<CR>
 
 " 在全文范围内替换光标处的单词
 nnoremap <C-S> :%s/\<<C-R><C-W>\>//g<left><left>
@@ -70,12 +70,6 @@ nnoremap <leader>x :x<CR>
 """"""""""
 " <C-H> 插入模式下光标向左移动
 inoremap <C-H> <left>
-
-" <C-J> 插入模式下光标向下移动
-" inoremap <C-J> <down>
-
-" <C-K> 插入模式下光标向上移动
-" inoremap <C-K> <up>
 
 " <C-L> 插入模式下光标向右移动
 inoremap <C-L> <right>
