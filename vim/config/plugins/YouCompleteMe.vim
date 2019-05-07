@@ -36,4 +36,4 @@ let g:ycm_warning_symbol = '•'
 " let g:ycm_log_level = 'debug'
 
 " 跳转到定义，如果定义不可访问，就跳转到声明
-nnoremap <leader>j :YcmCompleter GoTo<CR>
+nnoremap <leader>g :YcmCompleter GoTo<CR>
