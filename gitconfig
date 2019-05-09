@@ -1,0 +1,7 @@
+[user]
+    email = zjli1997@163.com
+    name = 520Chris
+[core]
+    editor = nvim
+[credential]
+    helper = cache --timeout=86400

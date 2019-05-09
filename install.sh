@@ -1,246 +1,167 @@
 #!/usr/bin/env bash
 
-############################  SETUP PARAMETERS
-app_name='dotfiles'
-[ -z "$repo_url" ] && repo_url='https://github.com/ppnman/dotfiles.git'
-
-############################  BASIC SETUP TOOLS
-msg()
-{
-    printf '>>> %b\n' "$1" >&2
-}
-
-success_or_error()
-{
-    if [ "$?" -eq '0' ]; then
-        msg "\33[32m[✔]\33[0m ${1}"
-    else
-        msg "\33[31m[✘]\33[0m ${2}"
-    fi
-}
-
-program_exists()
-{
-    local ret='0'
-    command -v $1 >/dev/null 2>&1 || { local ret='1'; }
-
-    # fail on non-zero return value
-    if [ "$ret" -ne 0 ]; then
-        return 1
-    fi
-
-    return 0
-}
-
-program_must_exist()
-{
-    program_exists $1
-
-    # throw error on non-zero return value
-    if [ "$?" -ne 0 ]; then
-        msg "\33[31m[✘]\33[0m You must have '$1' installed to continue."
-        exit 1
-    fi
-}
+############################ SETUP PARAMETERS
+appName='dotfiles'
+[ -z "$repoURL" ] && repoURL='https://github.com/ppnman/dotfiles.git'
 
 ############################ SETUP FUNCTIONS
-do_backup()
+doBackup()
 {
     if [ -e "$1" ]; then
-        msg "Attempting to back up $1."
+        echo ">>> Trying to back up $1."
         today=`date +%Y%m%d_%s`
         [ -e "$1" ] && [ ! -L "$1" ] && mv -v "$1" "$1.$today";
-        success_or_error "$1 has been backed up." \
-                         "Failed to back up $1."
     fi
 }
 
-clone_repo()
+cloneRepo()
 {
-    msg "Trying to clone $app_name."
-    git clone "$repo_url"
-    success_or_error "Successfully cloned $app_name." \
-                     "Failed to cloned $app_name"
+    echo ">>> Trying to clone $appName."
+    git clone "$repoURL"
+    echo ">>> Done."
 }
 
-install_vim8_from_source()
+installNeovim()
 {
-    # step0: remove original vim.
-    sudo apt purge -y vim vim-runtime vim-gnome vim-common vim-tiny vim-gui-common
-
-    # step1: install some essential softwares.
-    sudo apt install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
-    libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
-    libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
-    python3-dev ruby-dev lua5.1 liblua5.1-0-dev libperl-dev
-
-    # step2: download source code.
-    git clone https://github.com/vim/vim.git
-    cd vim
-
-    # step3: configurate cmake.
-    ./configure --with-features=huge \
-                --enable-multibyte \
-                --enable-rubyinterp=yes \
-                --enable-python3interp=yes \
-                --with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
-                --enable-perlinterp=yes \
-                --enable-luainterp=yes \
-                --enable-gui=gtk2 \
-                --enable-cscope \
-                --prefix=/usr/local \
-                --enable-fail-if-missing
-
-    # step4: compile and install.
-    make && sudo make install
-    success_or_error "Successfully installed vim8." \
-                     "Failed to install vim8."
-
-    # step5: remove vim folder.
-    cd ..
-    rm -rf vim
+    echo ">>> Trying to install nvim."
+    sudo add-apt-repository -y ppa:neovim-ppa/unstable
+    sudo apt update
+    sudo apt install -y neovim
+    echo ">>> Done."
 }
 
-setup_vim_plug()
+installVimPlugins()
 {
-    msg "Trying to install essential packages for ycm."
+    echo ">>> Trying to install essential packages for ycm."
     sudo apt install -y build-essential cmake python3-dev
-    success_or_error "Successfully installed essential packages for ycm." \
-                     "Failed to install essential packages for ycm."
+    echo ">>> Done."
 
-    msg "Trying to install flake8 for ale."
-    sudo pip3 install -i https://pypi.douban.com/simple/ flake8
-    success_or_error "Successfully installed flake8 for ale." \
-                     "Failed to install flake8 for ale."
+    echo ">>> Trying to install python3.7."
+    sudo apt-get install -y python-dev python-setuptools python-pip python-smbus build-essential \
+                            libncursesw5-dev libgdbm-dev libc6-dev zlib1g-dev libsqlite3-dev tk-dev \
+                            libssl-dev openssl libffi-dev
+    wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
+    tar zxvf Python-3.7.3.tgz
+    cd Python-3.7.3
+    ./configure --with-ssl
+    make
+    sudo make install
+    cd ..
+    sudo rm -rf Python-3.7.3 Python-3.7.3.tgz
+    sudo ln -sf /usr/local/bin/python3.7 /usr/local/bin/python3
+    sudo ln -sf /usr/local/bin/pip3.7 /usr/local/bin/pip3
+    echo ">>> Done."
 
-    msg "Trying to install ctags for LeaderF."
-    sudo apt install -y ctags
-    success_or_error "Successfully installed ctags for LeaderF." \
-                     "Failed to install ctags for LeaderF."
+    echo ">>> Trying to install python3 module for nvim."
+    pip3 install neovim --user
+    echo ">>> Done."
 
-    msg "Trying to install ripgrep for LeaderF."
-    wget -c https://github.com/BurntSushi/ripgrep/releases/download/0.10.0/ripgrep_0.10.0_amd64.deb
-    sudo dpkg -i ripgrep_0.10.0_amd64.deb
-    success_or_error "Successfully installed ripgrep for LeaderF." \
-                     "Failed to install ripgrep for LeaderF."
-    rm ripgrep_0.10.0_amd64.deb
+    echo ">>> Trying to install nodejs for coc."
+    sudo apt install -y nodejs nodejs-legacy npm
+    sudo npm config set registry https://registry.npm.taobao.org
+    sudo npm install -g n
+    sudo n stable
+    sudo npm install -g neovim
+    echo ">>> Done."
 
-    local system_shell="$SHELL"
-    export SHELL='/bin/sh'
-
-    vim "+PlugInstall" \
-        "+qall"
-
-    success_or_error "Successfully installed plugins with vim-plug." \
-                     "Failed to install plugins with vim-plug."
-
-    export SHELL="$system_shell"
+    nvim "+PlugInstall" \
+         "+qall"
 }
 
-setup_vim()
+setupNeovim()
 {
-    read -p ">>> Have you ever installed vim8 in your computer? (y/n)" ans
+    read -p ">>> Have you ever installed Neovim in your computer? (y/n)" ans
     if [ "$ans" == "n" ]; then
-        msg "I will install vim8 from source code."
-        install_vim8_from_source
+        installNeovim
     fi
 
-    do_backup "$HOME/.vim"
-    do_backup "$HOME/.vimrc"
-    echo "source ~/.vim/config/init.vim" >> ~/.vimrc
-    mkdir -p "$HOME"/.vim
-    cp -r "$app_name"/vim/* "$HOME"/.vim
-    cp "$app_name"/ycm_extra_conf.py "$HOME"/.ycm_extra_conf.py
+    doBackup "$HOME/.config/nvim"
+    mkdir -p "$HOME"/.config/nvim
+    cp -r "$appName"/vim/* "$HOME"/.config/nvim
 
-    setup_vim_plug
+    installVimPlugins
 
-    msg "Thanks for installing my vim!"
+    echo ">>> Thanks for installing my vim!"
 }
 
-setup_zsh_plug()
+installZshPlugins()
 {
-    msg "Trying to install zsh-theme."
+    echo ">>> Trying to install zsh-theme."
     git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-    success_or_error "Successfully installed zsh-theme." \
-                     "Failed to install zsh-theme."
+    echo ">>> Done."
 
-    msg "Trying to install powerline fonts."
-    sudo apt install -y fonts-powerline
-    success_or_error "Successfully installed powerline fonts." \
-                     "Failed to install powerline fonts."
+    echo ">>> Trying to install nerd-font."
+    sudo mkdir -p /usr/share/fonts/custom
+    sudo mv "$appName"/font/Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf /usr/share/fonts/custom
+    sudo chmod 744 /usr/share/fonts/custom/Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf
+    sudo mkfontscale
+    sudo mkfontdir
+    sudo fc-cache -fv
+    rm -f fonts.dir fonts.scale
+    echo ">>> Done."
 
-    msg "Trying to install zsh-plugin: autojump."
+    echo ">>> Trying to install zsh-plugin: autojump."
     sudo apt install -y autojump
-    success_or_error "Successfully installed autojump." \
-                     "Failed to install autojump."
+    echo ">>> Done."
 
-    msg "Trying to install zsh-plugin: autosuggestions."
+    echo ">>> Trying to install zsh-plugin: autosuggestions."
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    success_or_error "Successfully installed autosuggestions." \
-                     "Failed to install autosuggestions."
+    echo ">>> Done."
 
-    msg "Trying to install zsh-plugin: syntax-highlighting."
+    echo ">>> Trying to install zsh-plugin: syntax-highlighting."
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    success_or_error "Successfully installed syntax-highlighting." \
-                     "Failed to install syntax-highlighting."
+    echo ">>> Done."
 
-    msg "Trying to install fuzzy finder."
+    echo ">>> Trying to install fuzzy finder."
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
-    success_or_error "Successfully installed fuzzy finder." \
-                     "Failed to install fuzzy finder."
+    echo ">>> Done."
 
-    msg "Trying to install fd."
+    echo ">>> Trying to install fd."
     wget -c https://github.com/sharkdp/fd/releases/download/v7.3.0/fd_7.3.0_amd64.deb
     sudo dpkg -i fd_7.3.0_amd64.deb
-    success_or_error "Successfully installed fd." \
-                     "Failed to install fd."
     rm fd_7.3.0_amd64.deb
+    echo ">>> Done."
 }
 
-setup_zsh()
+setupZsh()
 {
-    read -p ">>> Please tell me which part of zsh you want to install? (1/2)" part
-
-    if [ "$part" == "1" ]; then
-        msg "You are processing the first part of installation."
-
-        msg "Trying to install zsh."
+    read -p ">>> Have you ever installed zsh in your computer? (y/n)" ans
+    if [ "$ans" == "n" ]; then
+        echo ">>> Trying to install zsh."
         sudo apt install -y zsh
-        success_or_error "Successfully installed zsh." \
-                         "Failed to install zsh."
 
         # Switch the shell to zsh
         chsh -s /bin/zsh
 
-        read -p ">>> Please restart your computer to validate zsh. Would you want to restart it by yourself? (y/n)" ans
+        read -p ">>> Your computer is going to be rebooted to validate zsh. Would you want to restart it by yourself? (y/n)" ans
         if [ "$ans" == "n" ]; then
             reboot
         else
-            msg "Don't forget to restart your computer, and continue to complete the second part of installation."
+            echo ">>> Don't forget to restart your computer, and continue to complete the rest part of installation."
         fi
-    else
-        msg "You are processing the second part of installation."
-
-        msg "Trying to install oh-my-zsh."
-        wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
-        success_or_error "Successfully installed oh-my-zsh." \
-                         "Failed to install oh-my-zsh."
-
-        do_backup "$HOME/.zshrc"
-        cp "$app_name"/zshrc "$HOME"/.zshrc
-
-        setup_zsh_plug
-
-        msg "Thanks for installing my zsh!"
     fi
+
+    read -p ">>> Have you ever installed oh-my-zsh in your computer? (y/n)" ans
+    if [ "$ans" == "n" ]; then
+        echo ">>> Trying to install oh-my-zsh."
+        wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+        echo ">>> Done."
+    fi
+
+    doBackup "$HOME/.zshrc"
+    cp "$appName"/zshrc "$HOME"/.zshrc
+
+    installZshPlugins
+
+    echo ">>> Thanks for installing my zsh!"
 }
 
-install_tmux_from_source()
+installTmux()
 {
     # step1: install some essential softwares.
     sudo apt install -y automake build-essential pkg-config \
-    libevent-dev libncurses5-dev
+                        libevent-dev libncurses5-dev
 
     # step2: download tmux2.8 source code.
     git clone https://github.com/tmux/tmux.git
@@ -251,15 +172,13 @@ install_tmux_from_source()
     sh autogen.sh
     ./configure
     make && sudo make install
-    success_or_error "Successfully installed tmux from source code." \
-                     "Failed to install tmux from source code."
 
     # step4: remove tmux folder.
     cd ..
     rm -rf tmux
 }
 
-enable_italic()
+enableItalic()
 {
     # create a new type of terminal named "tmux-256color"
     echo "tmux-256color|tmux with 256 colors,
@@ -274,58 +193,58 @@ enable_italic()
     rm tmux-256color.terminfo
 }
 
-setup_tmux()
+setupTmux()
 {
-    install_tmux_from_source
+    installTmux
 
-    do_backup "$HOME/.tmux.conf"
-    cp "$app_name"/tmux.conf "$HOME"/.tmux.conf
+    doBackup "$HOME/.tmux.conf"
+    cp "$appName"/tmux.conf "$HOME"/.tmux.conf
 
-    enable_italic
+    enableItalic
 
-    msg "Thanks for installing my tmux!"
+    echo ">>> Thanks for installing my tmux!"
 }
 
 ############################ MAIN()
-msg "Welcome to $app_name, I will guide you through the installation."
-
-program_must_exist "git"
-program_must_exist "pip3"
+echo ">>> Welcome to $appName!"
 
 if [ -z "$HOME" ]; then
-    msg "\33[31m[✘]\33[0m Must have HOME environmental variable."
+    echo ">>> HOME environmental variable is required."
     exit 1
 fi
 
-if [ ! -e "./$app_name" ]; then
-    clone_repo
+if [ ! -e "./$appName" ]; then
+    echo ">>> Trying to install git."
+    sudo apt install -y git
+    echo ">>> Done."
+
+    cloneRepo
 fi
 
 read -p ">>> Do you want to use my zsh? (y/n)" ans
 if [ "$ans" == "y" ]; then
-    msg "Zsh installation will begin......"
-    setup_zsh
+    echo ">>> Zsh installation will begin......"
+    setupZsh
 fi
 
 read -p ">>> Do you want to use my tmux? (y/n)" ans
 if [ "$ans" == "y" ]; then
-    msg "Tmux installation will begin......"
-    setup_tmux
+    echo ">>> Tmux installation will begin......"
+    setupTmux
 fi
 
 read -p ">>> Do you want to use my vim? (y/n)" ans
 if [ "$ans" == "y" ]; then
-    msg "Vim installation will begin......"
-    setup_vim
+    echo ">>> Vim installation will begin......"
+    setupNeovim
 fi
 
-read -p ">>> Do you want to use my flake8 configuration? (y/n)" ans
+read -p ">>> Do you want to use my gitconfig? (y/n)" ans
 if [ "$ans" == "y" ]; then
-    cp "$app_name"/flake8 "$HOME"/.config/flake8
-    success_or_error "Successfully installed flake8 configuration." \
-                     "Failed to install flake8 configuration."
+    cp "$appName"/gitconfig ~/.gitconfig
 fi
 
-rm -rf "$app_name"
+rm -rf "$appName"
+rm install.sh
 
-msg "Thanks for installing $app_name, enjoy it!"
+echo ">>> Thanks for installing $appName, enjoy it!"

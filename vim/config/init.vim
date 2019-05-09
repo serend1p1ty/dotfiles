@@ -1,21 +1,31 @@
+" 确定平台
+silent fu! LINUX()
+    return has('unix') && !has('macunix') && !has('win32unix')
+endf
+silent fu! WINDOWS()
+    return has('win32') || has('win64')
+endf
+silent fu! OSX()
+    return has('macunix')
+endf
+let g:is_linux   = LINUX()
+let g:is_windows = WINDOWS()
+let g:is_osx     = OSX()
+let g:is_nvim    = has('nvim')
+
 " 获得本文件所在的目录
 let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
-" 定义一个用来加载文件的命令
-command! -nargs=1 LoadScript exec 'source '.s:home.'/'.'<args>'
-
 " 加载基础配置
-LoadScript basic.vim
+exec 'source' s:home.'/basic.vim'
 
 " 加载按键映射
-LoadScript keymap.vim
+exec 'source' s:home.'/keymap.vim'
 
 " 加载插件
-LoadScript vim-plug.vim
+exec 'source' s:home.'/vim-plug.vim'
 
 " 加载插件配置文件
-let plugin_config_path = s:home.'/plugins'
-let file_list = split(globpath(plugin_config_path,'*.vim'),'\n')
-for file in file_list
-    exec 'source' fnameescape(file)
+for config_file in split(glob(s:home.'/plugins/*.vim'), '\n')
+    exec 'source' config_file
 endfo

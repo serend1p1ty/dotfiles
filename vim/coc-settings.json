@@ -1,0 +1,22 @@
+{
+    "diagnostic.errorSign": "●",
+    "diagnostic.warningSign": "●",
+
+    "git.enableGutters": true,
+    "git.addedSign.hlGroup": "GitGutterAdd",
+    "git.changedSign.hlGroup": "GitGutterChange",
+    "git.removedSign.hlGroup": "GitGutterDelete",
+    "git.topRemovedSign.hlGroup": "GitGutterDelete",
+    "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+    "git.addedSign.text": "▎",
+    "git.changedSign.text": "▎",
+    "git.removedSign.text": "▎",
+    "git.topRemovedSign.text": "▎",
+    "git.changeRemovedSign.text": "▋",
+
+    "python.jediEnabled": false,
+    "python.autoComplete.extraPaths": [
+      "${env:SPARK_HOME}/python",
+      "${env:SPARK_HOME}/python/pyspark"
+    ]
+}

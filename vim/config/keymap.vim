@@ -4,6 +4,16 @@
 " 空格代替<leader>
 let mapleader = " "
 
+" 交换;和:
+noremap ; :
+noremap : ;
+
+" <leader>] 清除所有断点
+nnoremap <leader>] :g/import ipdb; ipdb.set_trace(context=7)/d<CR>
+
+" <C-\> 从终端模式进入普通模式
+tnoremap <C-\> <C-\><C-N>
+
 " Q 执行存储在寄存器q中的宏
 nnoremap Q @q
 
@@ -16,17 +26,8 @@ set pastetoggle=<F12>
 " <backspace> 关闭高亮显示搜索项
 nnoremap <silent> <backspace> :nohlsearch<CR>
 
-" 在全文范围内替换光标处的单词
-nnoremap <C-S> :%s/\<<C-R><C-W>\>//g<left><left>
-
-" <C-W> 全选
-nnoremap <C-W> ggVG
-
-" M 移动到匹配的符号处
-noremap M %
-
-" gm 移动到行尾
-noremap gm $
+" <C-A> 全选
+nnoremap <C-A> ggVG
 
 " * 搜索并使光标保持在原位置
 nnoremap * *N
@@ -60,7 +61,7 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>a :qa<CR>
 
 " <leader>w 保存文件
-nnoremap <leader>w :w<CR>
+nnoremap <leader>w :w!<CR>
 
 " <leader>x 保存并退出文件
 nnoremap <leader>x :x<CR>
@@ -68,45 +69,43 @@ nnoremap <leader>x :x<CR>
 """"""""""
 "  move  "
 """"""""""
-" <C-H> 插入模式下光标向左移动
 inoremap <C-H> <left>
-
-" <C-L> 插入模式下光标向右移动
-inoremap <C-L> <right>
-
-" <C-H> 移动到左边的窗口 
+cnoremap <C-H> <left>
 nnoremap <C-H> <C-W><C-H>
-tnoremap <C-H> <C-W><C-H>
+tnoremap <C-H> <C-\><C-N><C-W><C-H>
 
-" <C-J> 移动到下边的窗口 
+inoremap <C-J> <down>
+cnoremap <C-J> <down>
 nnoremap <C-J> <C-W><C-J>
-tnoremap <C-J> <C-W><C-J>
+tnoremap <C-J> <C-\><C-N><C-W><C-J>
 
-" <C-K> 移动到上边的窗口 
+inoremap <C-K> <up>
+cnoremap <C-K> <up>
 nnoremap <C-K> <C-W><C-K>
-tnoremap <C-K> <C-W><C-K>
+tnoremap <C-K> <C-\><C-N><C-W><C-K>
 
-" <C-L> 移动到右边的窗口 
+inoremap <C-L> <right>
+cnoremap <C-L> <right>
 nnoremap <C-L> <C-W><C-L>
-tnoremap <C-L> <C-W><C-L>
+tnoremap <C-L> <C-\><C-N><C-W><C-L>
 
 """"""""""""
 "  insert  "
 """"""""""""
-" <leader>d 插入ipdb.set_trace()
-nnoremap <leader>d Oimport ipdb; ipdb.set_trace(context=7)<ESC>
+" zp 插入ipdb.set_trace()
+nnoremap zp Oimport ipdb; ipdb.set_trace(context=7)<ESC>
 
-" <leader>j 在当前行的下方插入空行
-nnoremap <leader>j o<ESC>k
+" zj 在当前行的下方插入空行
+nnoremap zj o<ESC>k
 
-" <leader>k 在当前行的上方插入空行
-nnoremap <leader>k O<ESC>j
+" zk 在当前行的上方插入空行
+nnoremap zk O<ESC>j
 
-" <leader>h 在光标的左边插入空格
-nnoremap <leader>h i<SPACE><ESC>l
+" zh 在光标的左边插入空格
+nnoremap zh i<SPACE><ESC>l
 
-" <leader>l 在光标的右边插入空格
-nnoremap <leader>l a<SPACE><ESC>h
+" zl 在光标的右边插入空格
+nnoremap zl a<SPACE><ESC>h
 
 """"""""""""
 "  buffer  "
@@ -118,85 +117,41 @@ nnoremap <silent> [b :bnext<CR>
 nnoremap <silent> ]b :bprevious<CR>
 
 " [d 删除当前缓存区
-nnoremap <silent> [d :bdelete<CR>
-
-"""""""""""
-"  marks  "
-"""""""""""
-" <F3> 显示所有书签
-" nnoremap <silent> <F3> :marks<CR>
-
-" ]d 删除当前缓存区所有书签
-" nnoremap <silent> ]d :delmarks!<CR>
-
-""""""""""""""""""
-"  command mode  "
-""""""""""""""""""
-" 交换;和:
-noremap ; :
-noremap : ;
-
-" <C-J> 下一条命令
-cnoremap <C-J> <down>
-
-" <C-K> 上一条命令
-cnoremap <C-K> <up>
-
-" <C-H> 光标向左移动
-cnoremap <C-H> <left>
-
-" <C-L> 光标向右移动
-cnoremap <C-L> <right>
+nnoremap <silent> [d :call DeleteBuffer()<CR>
+fu! DeleteBuffer()
+    let bufNo = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+    if bufNo > 1
+        exec "bp | bd #"
+    else
+        exec "bd"
+    endif
+endf
 
 """"""""""""""""
-"  very magic  "
+"  substitute  "
 """"""""""""""""
-cnoremap %s       %s/\v//g<left><left><left>
-noremap <leader>s :s/\v//g<left><left><left>
+cnoremap %s        %s/\v//g<left><left><left>
+vnoremap <leader>s :s/\v//g<left><left><left>
+nnoremap <leader>s :%s/\<<C-R><C-W>\>//g<left><left>
 
 """"""""""""""
 "  run code  "
 """"""""""""""
-" <F6> 编译
-nnoremap <silent> <F6> :call Compile()<CR>
-fu! Compile()
-    exec "w"
-    if &filetype == 'cpp'
-        let cmd = 'g++ -g -Wall -o %< -std=c++11 %'
-    elseif &filetype == 'c'
-        let cmd = 'gcc -g -Wall -o %< %'
-    else
-        return
-    endif
-    exec "AsyncRun " . cmd
-endf
-
 " <F5> 运行
 nnoremap <silent> <F5> :call Run()<CR>
 fu! Run()
-    if exists('$TMUX')
-        exec "AsyncRun! tmux send-keys -t 0:0.1 C-P C-M"
-    elseif &filetype == 'python'
-        exec "w"
-        exec "AsyncRun -raw -cwd=$(VIM_FILEDIR) python3 $(VIM_FILEPATH)"
-    else
-        exec "AsyncRun -raw -cwd=$(VIM_FILEDIR) $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+    exec "w"
+    exec "Topen"
+    if &filetype == 'python'
+        exec "T python3 %"
     endif
+    exec "stopinsert"
 endf
 
-" <C-F5> 调试
-packadd termdebug
-nnoremap <silent> <C-F5> :call Debug()<CR>
-fu! Debug()
-    exec "Termdebug %<"
-endf
+" <F4> 反转终端
+nnoremap <silent> <F4> :Ttoggle<CR><C-W><C-J>
+tnoremap <silent> <F4> <C-\><C-N>:Ttoggle<CR>
 
-" <F3> 停止
-nnoremap <silent> <F3> :call Stop()<CR>
-fu! Stop()
-    if exists('$TMUX')
-        exec "AsyncRun tmux send-keys -t 0:0.1 C-C"
-    else
-        exec "AsyncStop"
-    endif
-endf
+" <F3> 彻底关闭终端
+nnoremap <silent> <F3> :Tclose!<CR>
+tnoremap <silent> <F3> <C-\><C-N>:Tclose!<CR>

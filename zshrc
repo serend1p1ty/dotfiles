@@ -62,7 +62,7 @@ v()
 
     if [[ -n $files ]]
     then
-        eval "vim $files"
+        eval "nvim $files"
     fi
 }
 
@@ -73,7 +73,7 @@ vf()
     files=(${(f)"$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1 -m)"})
     if [[ -n $files ]]
     then
-        vim $files
+        nvim $files
     fi
 }
 
@@ -82,11 +82,11 @@ fe()
 {
     local files
     IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
-    [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+    [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
 }
 
 # 别名
-alias vi='vim'
+alias vi='nvim'
 alias cl='clear'
 alias to='tmux'
 alias tc='tmux kill-server'
