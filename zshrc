@@ -88,7 +88,7 @@ fe()
 # 别名
 alias vi='nvim'
 alias cl='clear'
-alias to='tmux'
+alias to='tmux new -s editor'
 alias tc='tmux kill-server'
 alias gl='git log'
 alias ga='git add .'
