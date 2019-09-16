@@ -33,10 +33,10 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " [c 下一个诊断错误
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> [c <Plug>(coc-diagnostic-next)
 
 " ]c 上一个诊断错误
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <silent> ]c <Plug>(coc-diagnostic-prev)
 
 " gd 跳转到定义
 nmap <silent> gd <Plug>(coc-definition)
