@@ -1,6 +1,3 @@
-" 打开vista时焦点留在当前窗口
-let g:vista_stay_on_open = 0
-
 " 默认从coc获取符号
 let g:vista_default_executive = 'coc'
 
