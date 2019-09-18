@@ -2,7 +2,7 @@
 let g:vista_default_executive = 'coc'
 
 " 当只剩下vista时退出vim
-autocmd BufEnter * if winnr("$") == 1 && vista#sidebar#IsVisible() | execute "normal! :q!\<CR>" | endif
+au BufEnter * if winnr("$") == 1 && vista#sidebar#IsVisible() | execute "normal! :q!\<CR>" | endif
 
 " <F6> 打开/关闭Vista
 nnoremap <F6> :Vista!!<CR>

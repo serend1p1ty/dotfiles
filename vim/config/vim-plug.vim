@@ -39,7 +39,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " other
-Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion-bd-w)' }
 Plug '~/.fzf' | Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'christoomey/vim-tmux-navigator'

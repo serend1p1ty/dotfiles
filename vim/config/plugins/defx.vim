@@ -11,7 +11,7 @@ call defx#custom#option('_', {
 	\ })
 
 " 只剩下目录树时退出vim
-autocmd WinEnter * if &ft == 'defx' && winnr('$') == 1 | q | endif
+au WinEnter * if &ft == 'defx' && winnr('$') == 1 | q | endif
 
 " 自定义功能键
 autocmd FileType defx do WinEnter | call s:defx_my_settings()
