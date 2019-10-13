@@ -3,5 +3,11 @@
     name = 520Chris
 [core]
     editor = nvim
+[diff]
+    tool = nvimdiff
+[difftool]
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = nvim -d $REMOTE $LOCAL -c 'wincmd J'
 [credential]
     helper = cache --timeout=86400
