@@ -138,9 +138,9 @@ setupZsh()
         # Switch the shell to zsh
         chsh -s /bin/zsh
 
-        read -p ">>> Your computer is going to be rebooted to validate zsh. Would you want to restart it by yourself? (y/n)" ans
+        read -p ">>> You are going to logout to validate zsh. Would you want to logout by yourself? (y/n)" ans
         if [ "$ans" == "n" ]; then
-            reboot
+            logout
         else
             echo ">>> Don't forget to restart your computer, and continue to complete the rest part of installation."
         fi
