@@ -93,7 +93,11 @@ installZshPlugins()
     echo ">>> Trying to install nerd-font."
     sudo mkdir -p /usr/share/fonts/custom
     sudo mv "$appName"/font/Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf /usr/share/fonts/custom
+    sudo mv "$appName"/font/SFMono-Regular.otf /usr/share/fonts/custom
+    sudo mv "$appName"/font/SFMono-RegularItalic.otf /usr/share/fonts/custom
     sudo chmod 744 /usr/share/fonts/custom/Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf
+    sudo chmod 744 /usr/share/fonts/custom/SFMono-Regular.otf
+    sudo chmod 744 /usr/share/fonts/custom/SFMono-RegularItalic.otf
     sudo mkfontscale
     sudo mkfontdir
     sudo fc-cache -fv
