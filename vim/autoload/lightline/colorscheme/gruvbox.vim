@@ -17,19 +17,19 @@ let s:fg4    = ['#a89984', 246]
 let s:palette = {'normal':{}, 'insert':{}, 'replace':{}, 'visual':{}, 'inactive':{}, 'tabline':{}, 'terminal':{}}
 
 " [foregroundColor, backgroundColor, fontType]
-let s:palette.normal.left     = [[s:bg, s:green, 'bold'], [s:bg, s:bg4]]
+let s:palette.normal.left     = [[s:bg, s:green, 'bold'], [s:bg, s:bg4], [s:blue1, s:bg1]]
 let s:palette.normal.right    = [[s:bg, s:green], [s:bg, s:bg4], [s:red, s:bg1], [s:blue1, s:bg1]]
 let s:palette.normal.middle   = [[s:fg2, s:bg1]]
 
-let s:palette.insert.left     = [[s:bg, s:blue, 'bold'], [s:bg, s:bg4]]
+let s:palette.insert.left     = [[s:bg, s:blue, 'bold'], [s:bg, s:bg4], [s:blue1, s:bg1]]
 let s:palette.insert.right    = [[s:bg, s:blue], [s:bg, s:bg4], [s:red, s:bg1], [s:blue1, s:bg1]]
 let s:palette.insert.middle   = [[s:fg2, s:bg1]]
 
-let s:palette.visual.left     = [[s:bg, s:orange, 'bold'], [s:bg, s:bg4]]
+let s:palette.visual.left     = [[s:bg, s:orange, 'bold'], [s:bg, s:bg4], [s:blue1, s:bg1]]
 let s:palette.visual.right    = [[s:bg, s:orange], [s:bg, s:bg4], [s:red, s:bg1], [s:blue1, s:bg1]]
 let s:palette.visual.middle   = [[s:fg2, s:bg1]]
 
-let s:palette.replace.left    = [[s:bg, s:aqua, 'bold'], [s:bg, s:bg4]]
+let s:palette.replace.left    = [[s:bg, s:aqua, 'bold'], [s:bg, s:bg4], [s:blue1, s:bg1]]
 let s:palette.replace.right   = [[s:bg, s:aqua], [s:bg, s:bg4], [s:red, s:bg1], [s:blue1, s:bg1]]
 let s:palette.replace.middle  = [[s:fg2, s:bg1]]
 

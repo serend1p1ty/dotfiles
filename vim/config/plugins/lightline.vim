@@ -1,7 +1,7 @@
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ 'active': {
-      \   'left':  [['mode'], ['GitInfo'], ['Filename']],
+      \   'left':  [['mode'], ['GitInfo'], ['CocStatus'], ['Filename']],
       \   'right': [['LineInfo'], ['FileEncodingFormat'], ['CocError'], ['CocWarn']],
       \ },
       \ 'inactive': {
@@ -21,6 +21,7 @@ let g:lightline = {
       \ 'component_function': {
       \   'GitInfo':            'GetGitInfo',
       \   'Filename':           'GetFilenameIconStatus',
+      \   'CocStatus':          'GetCocStatus',
       \   'LineInfo':           'GetLineInfo',
       \   'FileEncodingFormat': 'GetFileEncodingFormat',
       \   'CocError':           'GetCocError',
@@ -75,6 +76,12 @@ fu! GetFilenameIconStatus() abort
     let isModified   = s:IsModified()
     let filenameIcon = s:GetFilenameIcon()
     return empty(isModified) ? filenameIcon : filenameIcon . " " . isModified
+endf
+" }}}
+
+" CocStatus {{{
+fu! GetCocStatus() abort
+    return get(g:, 'coc_status', '')
 endf
 " }}}
 

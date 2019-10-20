@@ -1,10 +1,10 @@
-let g:lightline#bufferline#show_number       = 2
-let g:lightline#bufferline#enable_devicons   = 1
+let g:lightline#bufferline#show_number = 2
+let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#filename_modifier = ':t'
-let g:lightline#bufferline#unnamed           = '[No Name]'
-let g:lightline#bufferline#number_map        = {
-    \ 0: '⓿ ', 1: '❶ ', 2: '❷ ', 3: '❸ ', 4: '❹ ',
-    \ 5: '❺ ', 6: '❻ ', 7: '❼ ', 8: '❽ ', 9: '❾ '}
+let g:lightline#bufferline#unnamed = '[No Name]'
+let g:lightline#bufferline#number_map = {
+    \ 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴',
+    \ 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
 
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
