@@ -1,7 +1,6 @@
 {
     "diagnostic.errorSign": "●",
     "diagnostic.warningSign": "●",
-
     "git.enableGutters": true,
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.changedSign.hlGroup": "GitGutterChange",
@@ -13,6 +12,13 @@
     "git.removedSign.text": "▎",
     "git.topRemovedSign.text": "▎",
     "git.changeRemovedSign.text": "▋",
-
     "python.jediEnabled": false,
+    "languageserver": {
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"],
+            "ignoredRootPaths": ["~"]
+        }
+    }
 }
