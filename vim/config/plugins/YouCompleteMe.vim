@@ -4,13 +4,6 @@ let g:ycm_semantic_triggers =  {
                         \ 'cs,lua,javascript': ['re!\w{2}'],
                         \ }
 
-" 指定python解释器的路径
-if g:is_linux
-    let g:ycm_python_binary_path = '/usr/bin/python3'
-else
-    let g:ycm_python_binary_path = 'C:\\Users\\GooCoder\\AppData\\Local\\Programs\\Python\\Python37\\python.exe'
-endif
-
 " 让ycm从注释和字符串中收集标识符信息
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 
@@ -18,7 +11,7 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_max_num_candidates = 10
 
 " c族语言补全设置
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
 
 " 禁止每次询问是否加载ycm_extra_conf
 let g:ycm_confirm_extra_conf = 0
