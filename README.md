@@ -13,7 +13,7 @@
 只需要一行命令即可完成配置
 
 ```bash
-curl -sL https://bit.ly/2WOXNKx > install.sh && bash install.sh
+curl -sL https://raw.githubusercontent.com/520Chris/dotfiles/master/install.sh > install.sh && bash install.sh
 ```
 
 :zap:安装完成之后需要运行`source ~/.zshrc`加载配置。
