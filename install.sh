@@ -142,7 +142,7 @@ setupZsh()
         if [ "$ans" == "n" ]; then
             logout
         else
-            echo ">>> Don't forget to restart your computer, and continue to complete the rest part of installation."
+            echo ">>> Don't forget to logout to validate zsh."
         fi
     fi
 
