@@ -32,9 +32,9 @@ installNeovim()
 
 installVimPlugins()
 {
-    echo ">>> Trying to install essential packages for ycm."
-    sudo apt install -y build-essential cmake python3-dev
-    echo ">>> Done."
+    # echo ">>> Trying to install essential packages for ycm."
+    # sudo apt install -y build-essential cmake python3-dev
+    # echo ">>> Done."
 
     echo ">>> Trying to install python3.7."
     sudo apt-get install -y python-dev python-setuptools python-pip python-smbus build-essential \
@@ -62,6 +62,10 @@ installVimPlugins()
     sudo npm install -g n
     sudo n stable
     sudo npm install -g neovim
+    echo ">>> Done."
+
+    echo ">>> Trying to install bash-language-server for coc."
+    sudo npm i -g bash-language-server
     echo ">>> Done."
 
     nvim "+PlugInstall" \
