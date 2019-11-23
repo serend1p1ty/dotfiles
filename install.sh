@@ -87,7 +87,7 @@ setupNeovim()
 installZshPlugins()
 {
     echo ">>> Trying to install zsh-theme."
-    git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+    git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k --depth=1
     echo ">>> Done."
 
     echo ">>> Trying to install nerd-font."
