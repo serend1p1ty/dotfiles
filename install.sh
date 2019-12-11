@@ -138,16 +138,11 @@ setupZsh()
     if [ "$ans" == "n" ]; then
         echo ">>> Trying to install zsh."
         sudo apt install -y zsh
+        echo ">>> Done."
 
-        # Switch the shell to zsh
+        echo ">>> Trying to switch the shell to zsh."
         chsh -s /bin/zsh
-
-        read -p ">>> You are going to logout to validate zsh. Would you want to logout by yourself? (y/n)" ans
-        if [ "$ans" == "n" ]; then
-            logout
-        else
-            echo ">>> Don't forget to logout to validate zsh."
-        fi
+        echo ">>> Don't forget to logout to enable zsh."
     fi
 
     read -p ">>> Have you ever installed oh-my-zsh in your computer? (y/n)" ans
@@ -252,7 +247,12 @@ if [ "$ans" == "y" ]; then
     cp "$appName"/gitconfig ~/.gitconfig
 fi
 
-rm -rf "$appName"
+read -p ">>> Do you want to use my vscodevim configuration? (y/n)" ans
+if [ "$ans" == "y" ]; then
+    cp "$appName"/vscode.vimrc ~/vscode.vimrc
+fi
+
+# rm -rf "$appName"
 rm install.sh
 
 echo ">>> Thanks for installing $appName, enjoy it!"
