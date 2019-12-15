@@ -5,3 +5,7 @@ nnoremap <C-a> ggVG
 vnoremap p pgvy
 vnoremap < <gv
 vnoremap > >gv
+nnoremap zj o<ESC>k
+nnoremap zk O<ESC>j
+nnoremap zh i<SPACE><ESC>l
+nnoremap zl a<SPACE><ESC>h
