@@ -1,5 +1,5 @@
-noremap ; :
-noremap : ;
+nnoremap ; :
+nnoremap : ;
 nnoremap u undo
 nnoremap <C-r> redo
 nnoremap <C-q> <C-v>
