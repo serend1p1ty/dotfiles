@@ -6,6 +6,8 @@ nnoremap u undo
 nnoremap <C-r> redo
 nnoremap <C-q> <C-v>
 nnoremap <C-a> ggVG
+nnoremap <C-o> workbench.action.navigateBack
+nnoremap <C-i> workbench.action.navigateForward
 nnoremap zj o<ESC>k
 nnoremap zk O<ESC>j
 nnoremap zh i<SPACE><ESC>l
