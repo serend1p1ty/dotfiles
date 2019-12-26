@@ -1,15 +1,22 @@
 nnoremap ; :
 nnoremap : ;
+nnoremap Q @q
+nnoremap Y y$
 nnoremap u undo
 nnoremap <C-r> redo
 nnoremap <C-q> <C-v>
 nnoremap <C-a> ggVG
-nnoremap Q @q
-nnoremap Y y$
 nnoremap zj o<ESC>k
 nnoremap zk O<ESC>j
 nnoremap zh i<SPACE><ESC>l
 nnoremap zl a<SPACE><ESC>h
-vnoremap p pgvy
+nnoremap <leader>q :q<CR>
+nnoremap <leader>w :w<CR>
+nnoremap s <leader><leader><leader>bdw
+nnoremap S <leader><leader><leader>bde
+
+vnoremap ; :
+vnoremap : ;
 vnoremap < <gv
 vnoremap > >gv
+vnoremap p pgvy
