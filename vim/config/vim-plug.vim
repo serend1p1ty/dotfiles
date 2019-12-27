@@ -44,6 +44,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'yianwillis/vimcdoc'
 Plug 'kassio/neoterm'
 Plug 'liuchengxu/vista.vim'
+Plug 'easymotion/vim-easymotion'
 
 if g:is_nvim
     Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
