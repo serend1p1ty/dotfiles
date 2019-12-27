@@ -5,7 +5,7 @@ set nocompatible                " 关闭vi兼容模式
 set backspace=indent,eol,start  " backspace删除
 set number                      " 显示行号
 set hidden                      " 缓存区被放弃时设置为隐藏
-set updatetime=300              " 光标静止300ms之后触发CursorHold事件
+set updatetime=100              " 光标静止100ms之后触发CursorHold事件
 set history=1000                " 记录的历史命令条数最大为1000
 set showcmd                     " 在屏幕的最后一行显示当前命令
 set lazyredraw                  " 执行宏的时候屏幕不会重绘

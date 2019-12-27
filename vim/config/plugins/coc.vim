@@ -1,7 +1,3 @@
-" 设置状态栏的符号
-let g:coc_status_error_sign = '•'
-let g:coc_status_warning_sign = '•'
-
 " <TAB> 跳转至下一个占位符
 let g:coc_snippet_next = '<TAB>'
 
@@ -9,7 +5,7 @@ let g:coc_snippet_next = '<TAB>'
 let g:coc_snippet_prev = '<S-TAB>'
 
 " 安装的拓展
-let g:coc_global_extensions = ['coc-snippets','coc-json','coc-python','coc-git']
+let g:coc_global_extensions = ['coc-snippets','coc-json','coc-python','coc-highlight']
 
 " <TAB> 选择下一项
 inoremap <silent><expr> <TAB>
@@ -30,7 +26,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
                                            \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " 高亮光标下的单词
-" autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " [c 下一个诊断错误
 nmap <silent> [c <Plug>(coc-diagnostic-next)
@@ -43,3 +39,9 @@ nmap <silent> gd <Plug>(coc-definition)
 
 " gr 跳转到引用
 nmap <silent> gr <Plug>(coc-references)
+
+" <leader>cc 打开coc命令面板
+nnoremap <leader>cc :CocCommand<CR>
+
+" <leader>cf 打开coc配置文件
+nnoremap <leader>cf :CocConfig<CR>

@@ -13,8 +13,8 @@ call plug#begin(plugin_path)
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
+Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 Plug 'Konfekt/FastFold', { 'for': 'python' }
 
@@ -28,8 +28,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
 Plug 'mhinz/vim-startify'
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
+Plug 'vim-airline/vim-airline'
 Plug 'kristijanhusak/defx-icons'
 Plug 'ryanoasis/vim-devicons'
 " Plug 'edkolev/tmuxline.vim'

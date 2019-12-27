@@ -1,18 +1,12 @@
 {
-    "diagnostic.errorSign": "●",
-    "diagnostic.warningSign": "●",
-    "git.enableGutters": true,
-    "git.addedSign.hlGroup": "GitGutterAdd",
-    "git.changedSign.hlGroup": "GitGutterChange",
-    "git.removedSign.hlGroup": "GitGutterDelete",
-    "git.topRemovedSign.hlGroup": "GitGutterDelete",
-    "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-    "git.addedSign.text": "▎",
-    "git.changedSign.text": "▎",
-    "git.removedSign.text": "▎",
-    "git.topRemovedSign.text": "▎",
-    "git.changeRemovedSign.text": "▋",
-    "python.jediEnabled": false,
+    "python.linting.pylintArgs": [
+        "--disable=missing-function-docstring",
+        "--disable=unsubscriptable-object",
+        "--disable=invalid-name",
+        "--max-attributes=12",
+        "--max-locals=25",
+        "--generated-members=numpy.*,torch.*,cv2.*,cv.*"
+    ],
     "languageserver": {
         "bash": {
             "command": "bash-language-server",
