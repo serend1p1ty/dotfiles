@@ -32,9 +32,9 @@ installNeovim()
 
 installVimPlugins()
 {
-    echo ">>> Trying to install essential packages for ycm."
-    sudo apt install -y build-essential cmake python3-dev
-    echo ">>> Done."
+    # echo ">>> Trying to install essential packages for ycm."
+    # sudo apt install -y build-essential cmake python3-dev
+    # echo ">>> Done."
 
     echo ">>> Trying to install python3.7."
     sudo apt-get install -y python-dev python-setuptools python-pip python-smbus build-essential \
@@ -64,6 +64,10 @@ installVimPlugins()
     sudo npm install -g neovim
     echo ">>> Done."
 
+    echo ">>> Trying to install bash-language-server for coc."
+    sudo npm i -g bash-language-server
+    echo ">>> Done."
+
     nvim "+PlugInstall" \
          "+qall"
 }
@@ -87,14 +91,14 @@ setupNeovim()
 installZshPlugins()
 {
     echo ">>> Trying to install zsh-theme."
-    git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+    git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k --depth=1
     echo ">>> Done."
 
     echo ">>> Trying to install nerd-font."
     sudo mkdir -p /usr/share/fonts/custom
-    sudo mv "$appName"/font/patched-font/Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf /usr/share/fonts/custom
-    sudo mv "$appName"/font/patched-font/SFMono\ Regular\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.otf /usr/share/fonts/custom
-    sudo mv "$appName"/font/patched-font/SFMono\ RegularItalic\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.otf /usr/share/fonts/custom
+    sudo mv "$appName"/font/patched/Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf /usr/share/fonts/custom
+    sudo mv "$appName"/font/patched/SFMono\ Regular\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.otf /usr/share/fonts/custom
+    sudo mv "$appName"/font/patched/SFMono\ RegularItalic\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.otf /usr/share/fonts/custom
     sudo chmod 744 /usr/share/fonts/custom/Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf
     sudo chmod 744 /usr/share/fonts/custom/SFMono\ Regular\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.otf
     sudo chmod 744 /usr/share/fonts/custom/SFMono\ RegularItalic\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.otf
@@ -134,16 +138,11 @@ setupZsh()
     if [ "$ans" == "n" ]; then
         echo ">>> Trying to install zsh."
         sudo apt install -y zsh
+        echo ">>> Done."
 
-        # Switch the shell to zsh
+        echo ">>> Trying to switch the shell to zsh."
         chsh -s /bin/zsh
-
-        read -p ">>> You are going to logout to validate zsh. Would you want to logout by yourself? (y/n)" ans
-        if [ "$ans" == "n" ]; then
-            logout
-        else
-            echo ">>> Don't forget to restart your computer, and continue to complete the rest part of installation."
-        fi
+        echo ">>> Don't forget to logout to enable zsh."
     fi
 
     read -p ">>> Have you ever installed oh-my-zsh in your computer? (y/n)" ans
@@ -248,7 +247,12 @@ if [ "$ans" == "y" ]; then
     cp "$appName"/gitconfig ~/.gitconfig
 fi
 
-rm -rf "$appName"
+read -p ">>> Do you want to use my vscodevim configuration? (y/n)" ans
+if [ "$ans" == "y" ]; then
+    cp "$appName"/vscode.vimrc ~/vscode.vimrc
+fi
+
+# rm -rf "$appName"
 rm install.sh
 
 echo ">>> Thanks for installing $appName, enjoy it!"
