@@ -8,6 +8,9 @@ nnoremap <C-q> <C-v>
 nnoremap <C-a> ggVG
 nnoremap <C-o> workbench.action.navigateBack
 nnoremap <C-i> workbench.action.navigateForward
+nnoremap gr editor.action.goToReferences
+nnoremap [b workbench.action.nextEditor
+nnoremap ]b workbench.action.previousEditor
 nnoremap zj o<ESC>k
 nnoremap zk O<ESC>j
 nnoremap zh i<SPACE><ESC>l
