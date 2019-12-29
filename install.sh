@@ -2,7 +2,7 @@
 
 ############################ SETUP PARAMETERS
 appName='dotfiles'
-[ -z "$repoURL" ] && repoURL='https://github.com/ppnman/dotfiles.git'
+[ -z "$repoURL" ] && repoURL='https://github.com/520Chris/dotfiles.git'
 
 ############################ SETUP FUNCTIONS
 doBackup()
@@ -36,23 +36,8 @@ installVimPlugins()
     # sudo apt install -y build-essential cmake python3-dev
     # echo ">>> Done."
 
-    echo ">>> Trying to install python3.7."
-    sudo apt-get install -y python-dev python-setuptools python-pip python-smbus build-essential \
-                            libncursesw5-dev libgdbm-dev libc6-dev zlib1g-dev libsqlite3-dev tk-dev \
-                            libssl-dev openssl libffi-dev
-    wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
-    tar zxvf Python-3.7.3.tgz
-    cd Python-3.7.3
-    ./configure --with-ssl
-    make
-    sudo make install
-    cd ..
-    sudo rm -rf Python-3.7.3 Python-3.7.3.tgz
-    sudo ln -sf /usr/local/bin/python3.7 /usr/local/bin/python3
-    sudo ln -sf /usr/local/bin/pip3.7 /usr/local/bin/pip3
-    echo ">>> Done."
-
     echo ">>> Trying to install python3 module for nvim."
+    sudo apt install -y python3-pip
     pip3 install neovim --user
     echo ">>> Done."
 
@@ -97,11 +82,11 @@ installZshPlugins()
     echo ">>> Trying to install nerd-font."
     sudo mkdir -p /usr/share/fonts/custom
     sudo mv "$appName"/font/patched/Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf /usr/share/fonts/custom
-    sudo mv "$appName"/font/patched/SFMono\ Regular\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.otf /usr/share/fonts/custom
-    sudo mv "$appName"/font/patched/SFMono\ RegularItalic\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.otf /usr/share/fonts/custom
+    sudo mv "$appName"/font/patched/SFMono\ Regular\ Nerd\ Font\ Complete\ Mono.otf /usr/share/fonts/custom
+    sudo mv "$appName"/font/patched/SFMono\ RegularItalic\ Nerd\ Font\ Complete\ Mono.otf /usr/share/fonts/custom
     sudo chmod 744 /usr/share/fonts/custom/Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf
-    sudo chmod 744 /usr/share/fonts/custom/SFMono\ Regular\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.otf
-    sudo chmod 744 /usr/share/fonts/custom/SFMono\ RegularItalic\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.otf
+    sudo chmod 744 /usr/share/fonts/custom/SFMono\ Regular\ Nerd\ Font\ Complete\ Mono.otf
+    sudo chmod 744 /usr/share/fonts/custom/SFMono\ RegularItalic\ Nerd\ Font\ Complete\ Mono.otf
     sudo mkfontscale
     sudo mkfontdir
     sudo fc-cache -fv
