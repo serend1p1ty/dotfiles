@@ -5,6 +5,7 @@
         "--disable=invalid-name",
         "--max-attributes=12",
         "--max-locals=25",
+        "--extension-pkg-whitelist=PyQt5",
         "--generated-members=numpy.*,torch.*,cv2.*,cv.*"
     ],
     "languageserver": {
