@@ -29,7 +29,6 @@ Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
-Plug 'kristijanhusak/defx-icons'
 Plug 'ryanoasis/vim-devicons'
 " Plug 'edkolev/tmuxline.vim'
 
@@ -45,13 +44,7 @@ Plug 'yianwillis/vimcdoc'
 Plug 'kassio/neoterm'
 Plug 'liuchengxu/vista.vim'
 Plug 'easymotion/vim-easymotion'
-
-if g:is_nvim
-    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/defx.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'vim-nerdtree/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 
 call plug#end()
