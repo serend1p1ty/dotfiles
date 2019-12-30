@@ -11,9 +11,6 @@ noremap : ;
 " <leader>] 清除所有断点
 nnoremap <leader>] :g/import ipdb; ipdb.set_trace(context=7)/d<CR>
 
-" <C-\> 从终端模式进入普通模式
-tnoremap <C-\> <C-\><C-N>
-
 " Q 执行存储在寄存器q中的宏
 nnoremap Q @q
 
@@ -72,22 +69,39 @@ nnoremap <leader>x :x<CR>
 inoremap <C-H> <left>
 cnoremap <C-H> <left>
 nnoremap <C-H> <C-W><C-H>
-tnoremap <C-H> <C-\><C-N><C-W><C-H>
 
 inoremap <C-J> <down>
 cnoremap <C-J> <down>
 nnoremap <C-J> <C-W><C-J>
-tnoremap <C-J> <C-\><C-N><C-W><C-J>
 
 inoremap <C-K> <up>
 cnoremap <C-K> <up>
 nnoremap <C-K> <C-W><C-K>
-tnoremap <C-K> <C-\><C-N><C-W><C-K>
 
 inoremap <C-L> <right>
 cnoremap <C-L> <right>
 nnoremap <C-L> <C-W><C-L>
-tnoremap <C-L> <C-\><C-N><C-W><C-L>
+
+if has('nvim')
+    augroup term_move
+        au!
+        au TermOpen * tnoremap <buffer> <C-H> <C-\><C-N><C-W><C-H>
+        au TermOpen * tnoremap <buffer> <C-J> <C-\><C-N><C-W><C-J>
+        au TermOpen * tnoremap <buffer> <C-K> <C-\><C-N><C-W><C-K>
+        au TermOpen * tnoremap <buffer> <C-L> <C-\><C-N><C-W><C-L>
+        au TermOpen * tnoremap <buffer> <Esc> <C-\><C-N>
+    augroup END
+
+    augroup fzf
+        au!
+        au FileType fzf tunmap <buffer> <C-H>
+        au FileType fzf tunmap <buffer> <C-J>
+        au FileType fzf tunmap <buffer> <C-K>
+        au FileType fzf tunmap <buffer> <C-L>
+        au FileType fzf tunmap <buffer> <Esc>
+    augroup END
+endif
+
 
 """"""""""""
 "  insert  "
@@ -111,10 +125,25 @@ nnoremap zl a<SPACE><ESC>h
 "  buffer  "
 """"""""""""
 " [b 下一个缓冲区
-nnoremap <silent> [b :bnext<CR>
+nnoremap <silent> [b :call SwitchBuffer(1)<CR>
 
 " ]b 上一个缓冲区
-nnoremap <silent> ]b :bprevious<CR>
+nnoremap <silent> ]b :call SwitchBuffer(-1)<CR>
+fu! SwitchBuffer(offset)
+    let buflist = filter(range(1, bufnr('$')), 'buflisted(v:val)')
+    let len = len(buflist)
+    let current = bufnr('%')
+    for i in range(0, len - 1)
+        if buflist[i] == current
+            let ind = (i + a:offset + len) % len
+            while bufname(buflist[ind]) =~ '^term://'
+                let ind = (ind + a:offset + len) % len
+            endwhile
+            let ind = buflist[ind]
+        endif
+    endfor
+    exec "buffer " . ind
+endf
 
 " [d 删除当前缓存区
 nnoremap <silent> [d :call DeleteBuffer()<CR>
