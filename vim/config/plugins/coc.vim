@@ -40,8 +40,45 @@ nmap <silent> gd <Plug>(coc-definition)
 " gr 跳转到引用
 nmap <silent> gr <Plug>(coc-references)
 
-" <leader>cc 打开coc命令面板
-nnoremap <leader>cc :CocCommand<CR>
+" K 查看文档
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+fu! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endf
 
 " <leader>cf 打开coc配置文件
 nnoremap <leader>cf :CocConfig<CR>
+
+" <leader>cr 重命名
+nmap <leader>cr <Plug>(coc-rename)
+
+" <leader>cm 格式化当前buffer
+nnoremap <leader>cm :Format<CR>
+command! -nargs=0 Format :call CocAction('format')
+
+" <leader>ci 排序import
+nnoremap <leader>ci :OR
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" <leader>ca 列出所有诊断信息
+nnoremap <silent> <leader>ca  :<C-u>CocList diagnostics<cr>
+
+" <leader>ce 列出所有coc拓展
+nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
+
+" <leader>ce 列出所有coc命令
+nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
+
+" <leader>cs 列出当前文件的所有符号
+nnoremap <silent> <leader>cs  :<C-u>CocList outline<cr>
+
+" <leader>co 列出当前工作区的所有符号
+nnoremap <silent> <leader>co  :<C-u>CocList -I symbols<cr>
+
+" <leader>cp 重新打开上一次的搜索结果
+nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
