@@ -19,7 +19,7 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap s <leader><leader><leader>bdw
 nnoremap S <leader><leader><leader>bde
-
+nnoremap <leader>cm editor.action.formatDocument
 vnoremap ; :
 vnoremap : ;
 vnoremap < <gv
