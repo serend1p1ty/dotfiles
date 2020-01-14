@@ -29,6 +29,7 @@ Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 " Plug 'edkolev/tmuxline.vim'
 

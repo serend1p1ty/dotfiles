@@ -1,11 +1,18 @@
 {
+    "python.jediEnabled": false,
     "python.linting.pylintArgs": [
         "--disable=missing-function-docstring",
         "--disable=unsubscriptable-object",
         "--disable=invalid-name",
         "--max-attributes=12",
         "--max-locals=25",
+        "--extension-pkg-whitelist=PyQt5",
         "--generated-members=numpy.*,torch.*,cv2.*,cv.*"
+    ],
+    "python.linting.pylintCategorySeverity.refactor": "Information",
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length=100"
     ],
     "languageserver": {
         "bash": {

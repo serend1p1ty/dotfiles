@@ -36,8 +36,12 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "
 
 " 进入终端时自动进入插入模式
 if has('nvim')
-    au WinEnter term://* startinsert
-    au WinLeave term://* stopinsert
+    augroup smart_mode
+        au!
+        au WinEnter term://* nohlsearch
+        au WinEnter term://* startinsert
+        au WinLeave term://* stopinsert
+    augroup END
 endif
 
 " 高亮光标所在行直到其离开当前窗口
