@@ -5,10 +5,15 @@ appName='dotfiles'
 [ -z "$repoURL" ] && repoURL='https://github.com/520Chris/dotfiles.git'
 
 ############################ SETUP FUNCTIONS
+print()
+{
+    echo -e ">>> \e[1;33m$1\e[0m"
+}
+
 doBackup()
 {
     if [ -e "$1" ]; then
-        echo ">>> Trying to back up $1."
+        print "Trying to back up $1."
         today=`date +%Y%m%d_%s`
         [ -e "$1" ] && [ ! -L "$1" ] && mv -v "$1" "$1.$today";
     fi
@@ -16,42 +21,42 @@ doBackup()
 
 cloneRepo()
 {
-    echo ">>> Trying to clone $appName."
+    print "Trying to clone $appName."
     git clone "$repoURL"
-    echo ">>> Done."
+    print "Done."
 }
 
 installNeovim()
 {
-    echo ">>> Trying to install nvim."
+    print "Trying to install nvim."
     sudo add-apt-repository -y ppa:neovim-ppa/unstable
     sudo apt update
     sudo apt install -y neovim
-    echo ">>> Done."
+    print "Done."
 }
 
 installVimPlugins()
 {
-    # echo ">>> Trying to install essential packages for ycm."
+    # print "Trying to install essential packages for ycm."
     # sudo apt install -y build-essential cmake python3-dev
-    # echo ">>> Done."
+    # print "Done."
 
-    echo ">>> Trying to install python3 module for nvim."
+    print "Trying to install python3 module for nvim."
     sudo apt install -y python3-pip
     pip3 install neovim --user
-    echo ">>> Done."
+    print "Done."
 
-    echo ">>> Trying to install nodejs for coc."
+    print "Trying to install nodejs for coc."
     sudo apt install -y nodejs nodejs-legacy npm
     sudo npm config set registry https://registry.npm.taobao.org
     sudo npm install -g n
     sudo n stable
     sudo npm install -g neovim
-    echo ">>> Done."
+    print "Done."
 
-    echo ">>> Trying to install bash-language-server for coc."
+    print "Trying to install bash-language-server for coc."
     sudo npm i -g bash-language-server
-    echo ">>> Done."
+    print "Done."
 
     nvim "+PlugInstall" \
          "+qall"
@@ -59,7 +64,8 @@ installVimPlugins()
 
 setupNeovim()
 {
-    read -p ">>> Have you ever installed Neovim in your computer? (y/n)" ans
+    print "Have you ever installed Neovim in your computer? (y/n)"
+    read ans
     if [ "$ans" == "n" ]; then
         installNeovim
     fi
@@ -70,16 +76,16 @@ setupNeovim()
 
     installVimPlugins
 
-    echo ">>> Thanks for installing my vim!"
+    print "Thanks for installing my vim!"
 }
 
 installZshPlugins()
 {
-    echo ">>> Trying to install zsh-theme."
+    print "Trying to install zsh-theme."
     git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k --depth=1
-    echo ">>> Done."
+    print "Done."
 
-    echo ">>> Trying to install nerd-font."
+    print "Trying to install nerd-font."
     sudo mkdir -p /usr/share/fonts/custom
     sudo mv "$appName"/font/patched/Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf /usr/share/fonts/custom
     sudo mv "$appName"/font/patched/SFMono\ Regular\ Nerd\ Font\ Complete\ Mono.otf /usr/share/fonts/custom
@@ -91,50 +97,52 @@ installZshPlugins()
     sudo mkfontdir
     sudo fc-cache -fv
     rm -f fonts.dir fonts.scale
-    echo ">>> Done."
+    print "Done."
 
-    echo ">>> Trying to install zsh-plugin: autojump."
+    print "Trying to install zsh-plugin: autojump."
     sudo apt install -y autojump
-    echo ">>> Done."
+    print "Done."
 
-    echo ">>> Trying to install zsh-plugin: autosuggestions."
+    print "Trying to install zsh-plugin: autosuggestions."
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    echo ">>> Done."
+    print "Done."
 
-    echo ">>> Trying to install zsh-plugin: syntax-highlighting."
+    print "Trying to install zsh-plugin: syntax-highlighting."
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    echo ">>> Done."
+    print "Done."
 
-    echo ">>> Trying to install fuzzy finder."
+    print "Trying to install fuzzy finder."
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
-    echo ">>> Done."
+    print "Done."
 
-    echo ">>> Trying to install fd."
+    print "Trying to install fd."
     wget -c https://github.com/sharkdp/fd/releases/download/v7.3.0/fd_7.3.0_amd64.deb
     sudo dpkg -i fd_7.3.0_amd64.deb
     rm fd_7.3.0_amd64.deb
-    echo ">>> Done."
+    print "Done."
 }
 
 setupZsh()
 {
-    read -p ">>> Have you ever installed zsh in your computer? (y/n)" ans
+    print "Have you ever installed zsh in your computer? (y/n)"
+    read ans
     if [ "$ans" == "n" ]; then
-        echo ">>> Trying to install zsh."
+        print "Trying to install zsh."
         sudo apt install -y zsh
-        echo ">>> Done."
+        print "Done."
 
-        echo ">>> Trying to switch the shell to zsh."
+        print "Trying to switch the shell to zsh."
         chsh -s /bin/zsh
-        echo ">>> Don't forget to logout to enable zsh."
+        print "Don't forget to logout to enable zsh."
     fi
 
-    read -p ">>> Have you ever installed oh-my-zsh in your computer? (y/n)" ans
+    print "Have you ever installed oh-my-zsh in your computer? (y/n)"
+    read ans
     if [ "$ans" == "n" ]; then
-        echo ">>> Trying to install oh-my-zsh."
+        print "Trying to install oh-my-zsh."
         wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
-        echo ">>> Done."
+        print "Done."
     fi
 
     doBackup "$HOME/.zshrc"
@@ -142,7 +150,7 @@ setupZsh()
 
     installZshPlugins
 
-    echo ">>> Thanks for installing my zsh!"
+    print "Thanks for installing my zsh!"
 }
 
 installTmux()
@@ -190,49 +198,54 @@ setupTmux()
 
     enableItalic
 
-    echo ">>> Thanks for installing my tmux!"
+    print "Thanks for installing my tmux!"
 }
 
 ############################ MAIN()
-echo ">>> Welcome to $appName!"
+print "Welcome to $appName!"
 
 if [ -z "$HOME" ]; then
-    echo ">>> HOME environmental variable is required."
+    print "HOME environmental variable is required."
     exit 1
 fi
 
 if [ ! -e "./$appName" ]; then
-    echo ">>> Trying to install git."
+    print "Trying to install git."
     sudo apt install -y git
-    echo ">>> Done."
+    print "Done."
 
     cloneRepo
 fi
 
-read -p ">>> Do you want to use my zsh? (y/n)" ans
+print "Do you want to use my zsh? (y/n)"
+read ans
 if [ "$ans" == "y" ]; then
-    echo ">>> Zsh installation will begin......"
+    print "Zsh installation will begin......"
     setupZsh
 fi
 
-read -p ">>> Do you want to use my tmux? (y/n)" ans
+print "Do you want to use my tmux? (y/n)"
+read ans
 if [ "$ans" == "y" ]; then
-    echo ">>> Tmux installation will begin......"
+    print "Tmux installation will begin......"
     setupTmux
 fi
 
-read -p ">>> Do you want to use my vim? (y/n)" ans
+print "Do you want to use my vim? (y/n)"
+read ans
 if [ "$ans" == "y" ]; then
-    echo ">>> Vim installation will begin......"
+    print "Vim installation will begin......"
     setupNeovim
 fi
 
-read -p ">>> Do you want to use my gitconfig? (y/n)" ans
+print "Do you want to use my gitconfig? (y/n)"
+read ans
 if [ "$ans" == "y" ]; then
     cp "$appName"/gitconfig ~/.gitconfig
 fi
 
-read -p ">>> Do you want to use my vscodevim configuration? (y/n)" ans
+print "Do you want to use my vscodevim configuration? (y/n)"
+read ans
 if [ "$ans" == "y" ]; then
     cp "$appName"/vscode.vimrc ~/vscode.vimrc
 fi
@@ -240,4 +253,4 @@ fi
 # rm -rf "$appName"
 rm install.sh
 
-echo ">>> Thanks for installing $appName, enjoy it!"
+print "Thanks for installing $appName, enjoy it!"
