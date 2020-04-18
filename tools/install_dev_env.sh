@@ -244,6 +244,12 @@ if [ "$ans" == "y" ]; then
     cp "$appName"/gitconfig ~/.gitconfig
 fi
 
+print "Do you want to use my flake8 configuration? (y/n)"
+read ans
+if [ "$ans" == "y" ]; then
+    cp "$appName"/flake8 ~/.config/flake8
+fi
+
 print "Do you want to use my vscodevim configuration? (y/n)"
 read ans
 if [ "$ans" == "y" ]; then
