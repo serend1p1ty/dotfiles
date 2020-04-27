@@ -4,3 +4,4 @@ ignore = W503,E203,E221,C901,C408
 max-line-length = 100
 max-complexity = 18
 select = B,C,E,F,W,T4,B9
+exclude = __init__.py
