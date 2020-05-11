@@ -55,6 +55,7 @@ fe()
 }
 
 # 别名
+alias svi="sudo nvim"
 alias vi='nvim'
 alias cl='clear'
 alias to='tmux new -s editor'
