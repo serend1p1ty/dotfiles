@@ -8,6 +8,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
     git
+    z
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
