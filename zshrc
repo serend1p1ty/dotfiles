@@ -14,5 +14,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=24"
 #  fuzzy finder  #
 ##################
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias cl='clear'
