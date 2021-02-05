@@ -13,6 +13,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=24"
 ##################
 #  fuzzy finder  #
 ##################
+# make alt-c work in macos
+bindkey "ç" fzf-cd-widget
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
