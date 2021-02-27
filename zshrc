@@ -22,4 +22,4 @@ export FZF_ALT_C_COMMAND="fd -t d . "
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias cl='clear'
-alias ctags='fd --type f | ctags -L-'
+alias build_ctags='fd --type f | ctags --python-kinds=-i -L-'
