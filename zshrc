@@ -21,5 +21,12 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d . "
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias cl='clear'
-alias build_ctags='fd --type f | ctags --python-kinds=-i -L-'
+alias cl="clear"
+
+build_ctags () {
+    if (($+1)) {
+        fd --type f | ctags --python-kinds=-i -f $1 -L-
+    } else {
+        fd --type f | ctags --python-kinds=-i -L-
+    }
+}
