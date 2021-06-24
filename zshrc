@@ -1,4 +1,5 @@
 ZSH_THEME="robbyrussell"
+# export PS1="[%c]$ "
 
 plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)
 
