@@ -5,17 +5,17 @@ set -e
 this_file_path=$(cd "$(dirname "$0")";pwd)
 root=$this_file_path/..
 
-check_exist () {
+command_exists () {
     command -v "$1" >/dev/null 2>&1 || { echo "$1 is not installed" >&2; exit 1; }
 }
 
-check_exist git
-check_exist wget
+command_exists git
+command_exists wget
 
 echo ">>> Use vim? (y/n)"
 read ans
 if [ "$ans" == "y" ]; then
-    check_exist vim
+    command_exists vim
     git clone --depth=1 https://github.com/serend1p1ty/vim.git ~/.vim_runtime
     sh ~/.vim_runtime/install.sh
 fi
@@ -23,7 +23,7 @@ fi
 echo ">>> Use zsh? (y/n)"
 read ans
 if [ "$ans" == "y" ]; then
-    check_exist zsh
+    command_exists zsh
     echo ">>> Online installation? (y/n)"
     read ans
     if [ "$ans" == "y" ]; then
@@ -51,7 +51,7 @@ fi
 echo ">>> Use tmux? (y/n)"
 read ans
 if [ "$ans" == "y" ]; then
-    check_exist tmux
+    command_exists tmux
     cp $root/tmux.conf ~/.tmux.conf
 fi
 
