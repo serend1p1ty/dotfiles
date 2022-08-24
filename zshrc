@@ -9,7 +9,7 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 #  autosuggestion  #
 ####################
 # set suggestion color
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=24"
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=24"
 
 ##################
 #  fuzzy finder  #

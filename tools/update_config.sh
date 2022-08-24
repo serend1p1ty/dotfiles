@@ -1,5 +1,5 @@
-cur_file_path=$(cd "$(dirname "$0")";pwd)
-root=$cur_file_path/..
+this_file_path=$(cd "$(dirname "$0")";pwd)
+root=$this_file_path/..
 
 if [ $1 == "up" ]; then
     echo "Upload configuration."
