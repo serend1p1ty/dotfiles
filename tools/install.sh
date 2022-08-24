@@ -41,6 +41,7 @@ if [ "$ans" == "y" ]; then
         cp -r $root/third_party/oh-my-zsh ~/.oh-my-zsh
         cp -r $root/third_party/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/
         cp -r $root/third_party/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/
+        echo ">>> Offline installation does not support fzf yet."
     fi
 
     # copy configuration file

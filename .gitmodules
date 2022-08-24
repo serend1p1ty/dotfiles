@@ -1,6 +1,3 @@
-[submodule "third_party/fzf"]
-	path = third_party/fzf
-	url = https://github.com/junegunn/fzf.git
 [submodule "third_party/zsh-autosuggestions"]
 	path = third_party/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
