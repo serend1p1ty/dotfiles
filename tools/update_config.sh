@@ -1,16 +1,17 @@
-this_file_path=$(cd "$(dirname "$0")";pwd)
-root=$this_file_path/..
+this_file_dir=$(cd "$(dirname "$0")";pwd)
+root=$this_file_dir/..
+cd $root
 
 if [ $1 == "up" ]; then
     echo "Upload configuration."
-    cp ~/.tmux.conf $root/tmux.conf
-    cp ~/.zshrc $root/zshrc
-    cp ~/.gitconfig $root/gitconfig
+    cp ~/.tmux.conf tmux.conf
+    cp ~/.zshrc zshrc
+    cp ~/.gitconfig gitconfig
 fi
 
 if [ $1 == "down" ]; then
     echo "Download configuration."
-    cp $root/tmux.conf ~/.tmux.conf
-    cp $root/zshrc ~/.zshrc
-    cp $root/gitconfig ~/.gitconfig
+    cp tmux.conf ~/.tmux.conf
+    cp zshrc ~/.zshrc
+    cp gitconfig ~/.gitconfig
 fi

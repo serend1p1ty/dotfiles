@@ -7,3 +7,6 @@
 [submodule "third_party/oh-my-zsh"]
 	path = third_party/oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
+[submodule "third_party/fzf"]
+	path = third_party/fzf
+	url = https://github.com/junegunn/fzf.git
