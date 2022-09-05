@@ -5,24 +5,24 @@ set -e
 for opt in "$@"; do
     case $opt in
         --vim)
-            install_vim=1
+            install_vim="1"
             ;;
         --zsh)
-            install_zsh=1
+            install_zsh="1"
             ;;
         --zsh-offline)
             arch=$(uname -sm)
-            install_zsh=2
+            install_zsh="2"
             ;;
         --zsh-download=*)
             arch="${opt#*=}"
-            install_zsh=3
+            install_zsh="3"
             ;;
         --tmux)
-            install_tmux=1
+            install_tmux="1"
             ;;
         --gitconfig)
-            install_gitconfig=1
+            install_gitconfig="1"
             ;;
         *)
             # unknown option
@@ -41,15 +41,15 @@ this_file_dir=$(cd "$(dirname "$0")";pwd)
 root=$this_file_dir/..
 cd $root
 
-if [ $install_vim -eq 1 ]; then
+if [ "$install_vim" = "1" ]; then
     command_exists vim
     git clone --depth=1 https://github.com/serend1p1ty/vim.git ~/.vim_runtime
     sh ~/.vim_runtime/install.sh
 fi
 
-if [ $install_zsh -ne 0 ]; then
+if [ "$install_zsh" != "0" ]; then
     command_exists zsh
-    if [ $install_zsh -eq 1 ]; then
+    if [ "$install_zsh" = "1" ]; then
         # online installation
         # oh-my-zsh
         wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
@@ -84,7 +84,7 @@ if [ $install_zsh -ne 0 ]; then
             *)               echo "unsupported architecture $arch"; exit 1 ;;
         esac
 
-        if [ $install_zsh -eq 2 ]; then
+        if [ "$install_zsh" = "2" ]; then
             # offline installation
             cp -r third_party/oh-my-zsh ~/.oh-my-zsh
             cp -r third_party/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/
@@ -109,12 +109,12 @@ if [ $install_zsh -ne 0 ]; then
     fi
 fi
 
-if [ $install_tmux -eq 1 ]; then
+if [ "$install_tmux" = "1" ]; then
     command_exists tmux
     cp tmux.conf ~/.tmux.conf
 fi
 
-if [ $install_gitconfig -eq 1 ]; then
+if [ "$install_gitconfig" = "1" ]; then
     cp gitconfig ~/.gitconfig
 fi
 
