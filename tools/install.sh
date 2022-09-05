@@ -91,7 +91,7 @@ if [ "$install_zsh" != "0" ]; then
             cp -r third_party/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/
 
             cp -r third_party/fzf ~/.fzf
-            $exec_file_path=third_party/fzf/$exec_file
+            exec_file_path=third_party/fzf/$exec_file
             if [ ! -f $exec_file_path ]; then
                 echo ">>> $exec_file_path not found! Run './install.sh --zsh-download=your_arch' to download it."
             fi
