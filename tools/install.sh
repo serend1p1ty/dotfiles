@@ -41,7 +41,7 @@ this_file_dir=$(cd "$(dirname "$0")";pwd)
 root=$this_file_dir/..
 cd $root
 
-if [ "$install_vim" = "1" ]; then
+if [ "$install_vim" = "1" ] || [ "$install_vim" = "2" ] || [ "$install_vim" = "3" ]; then
     command_exists vim
     git clone --depth=1 https://github.com/serend1p1ty/vim.git ~/.vim_runtime
     sh ~/.vim_runtime/install.sh
