@@ -1,6 +1,9 @@
 ZSH_THEME="robbyrussell"
 # export PS1="[%c]$ "
 
+# https://github.com/ohmyzsh/ohmyzsh/wiki/FAQ#i-see-duplicate-typed-characters-after-i-complete-a-command
+export LC_ALL=C.UTF-8
+
 plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)
 
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
